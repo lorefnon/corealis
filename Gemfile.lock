@@ -146,9 +146,6 @@ GEM
       tilt (>= 1.4)
     opal-activesupport (0.3.0)
       opal (>= 0.5.0, < 1.0.0)
-    opal-browser (0.2.0)
-      opal
-      paggio
     opal-jquery (0.4.1)
       opal (>= 0.7.0, < 0.10.0)
     opal-rails (0.8.1)
@@ -162,7 +159,6 @@ GEM
     opal-rspec (0.4.3)
       opal (>= 0.7.0, < 0.9)
     orm_adapter (0.5.0)
-    paggio (0.2.6)
     pg (0.18.4)
     polyamorous (1.3.0)
       activerecord (>= 3.0)
@@ -216,10 +212,6 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.2)
-    reactive-ruby (0.7.40)
-      opal (= 0.8.0)
-      opal-activesupport (>= 0.2.0)
-      opal-browser (= 0.2.0)
     responders (2.1.1)
       railties (>= 4.2.0, < 5.1)
     rspec-core (3.4.2)
@@ -292,7 +284,6 @@ DEPENDENCIES
   pry-rails
   pry-rescue
   rails (= 4.2.5.1)
-  reactive-ruby
   rspec-rails
   sass-rails (~> 5.0)
   spring

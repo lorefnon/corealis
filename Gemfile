@@ -18,7 +18,6 @@ gem 'authority'
 gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
 gem 'opal-rails'
-gem 'reactive-ruby'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
