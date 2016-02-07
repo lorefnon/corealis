@@ -18,6 +18,7 @@ gem 'authority'
 gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
 gem 'opal-rails'
+gem 'haml-rails', '~> 0.9'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
