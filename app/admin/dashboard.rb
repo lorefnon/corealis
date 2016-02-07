@@ -8,16 +8,20 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Upcoming Interviews" do
           ul do
-            Post.recent(5).map do |post|
-              li link_to(post.title, admin_post_path(post))
+            Invitation.upcoming.includes(:quiz).map do |invitation|
+              li link_to(invitation.quiz.title, admin_invitation_path(invitation))
             end
           end
         end
       end
 
       column do
-        panel "Info" do
-          para "Welcome to ActiveAdmin."
+        panel "Recent Interview Sessions" do
+          ul do
+            QuizSession.recent.includes(:quiz).map do |session|
+              li link_to(session.quiz.title, admin_quiz_session_path(session))
+            end
+          end
         end
       end
     end

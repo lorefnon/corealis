@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207102526) do
+ActiveRecord::Schema.define(version: 20160207105357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,9 +54,10 @@ ActiveRecord::Schema.define(version: 20160207102526) do
     t.text     "details"
     t.integer  "answerer_id"
     t.integer  "answerer_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.boolean  "canonical"
+    t.integer  "quiz_session_id"
   end
 
   create_table "invitations", force: :cascade do |t|
@@ -84,6 +85,15 @@ ActiveRecord::Schema.define(version: 20160207102526) do
     t.integer  "associator_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "quiz_sessions", force: :cascade do |t|
+    t.integer  "quiz_id"
+    t.integer  "invitation_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "interviewer_id"
+    t.integer  "interviewee_id"
   end
 
   create_table "quizzes", force: :cascade do |t|
