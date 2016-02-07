@@ -2,7 +2,6 @@ class Answer < ActiveRecord::Base
 
   belongs_to :question
   belongs_to :answerer, polymorphic: true
-  has_many :quizzes, through: :question
 
   scope :canonical, -> { where canonical: true }
 

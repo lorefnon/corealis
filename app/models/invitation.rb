@@ -1,6 +1,10 @@
 class Invitation < ActiveRecord::Base
+
   belongs_to :invitor, class_name: 'AdminUser'
   belongs_to :invitee, class_name: 'User'
+
+  scope :upcoming, -> { where starts_at: (DateTime.now..(DateTime.now+1.week)) }
+
 end
 
 # == Schema Information
