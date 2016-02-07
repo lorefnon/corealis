@@ -47,5 +47,9 @@ module Corealis
     # The path to opal specs from Rails.root
     config.opal.spec_location = 'client_specs'
 
+    config.autoload_paths += %w[
+      app/decorators/concerns
+    ]
+
   end
 end

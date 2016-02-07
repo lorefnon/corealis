@@ -1,6 +1,10 @@
 class Question < ActiveRecord::Base
+
   belongs_to :creator, class_name: 'AdminUser'
   has_many :answers
+
+  validates :title, presence: true
+
 end
 
 # == Schema Information

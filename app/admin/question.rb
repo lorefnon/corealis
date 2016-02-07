@@ -1,17 +1,31 @@
 ActiveAdmin.register Question do
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if resource.something?
-#   permitted
-# end
+  decorate_with QuestionDecorator
 
+  permit_params *(@resource.column_names)
+
+  form do |f|
+    inputs 'Question' do
+      input :title
+      input :description, hint: 'Supports <a href="https://guides.github.com/features/mastering-markdown/">Github flavored markdown</a>'.html_safe
+      if f.object.persisted?
+        label 'Creator'
+        span f.object.creator.name
+      else
+        input :creator_id, as: :hidden, input_html: { value: current_admin_user.id }
+      end
+      actions
+    end
+  end
+
+  show do
+    attributes_table do
+      row :title
+      row :description do |it|
+        it.rendered_description.html_safe
+      end
+      row :creator
+    end
+  end
 
 end

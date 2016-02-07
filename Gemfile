@@ -20,6 +20,9 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'opal-rails'
 gem 'haml-rails', '~> 0.9'
 gem 'annotate'
+gem 'redcarpet'
+gem 'memoist'
+gem 'draper', '~> 1.3'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
