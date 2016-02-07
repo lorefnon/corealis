@@ -1,0 +1,10 @@
+if form.object.persisted?
+  li do
+    label 'Creator'
+    div do
+      link_to form.object.creator.name, admin_admin_user_path(form.object.creator)
+    end
+  end
+else
+  input :creator_id, as: :hidden, input_html: { value: current_admin_user.id }
+end

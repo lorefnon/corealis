@@ -24,6 +24,7 @@ gem 'redcarpet'
 gem 'memoist'
 gem 'draper', '~> 1.3'
 gem 'paper_trail'
+gem 'ruby_gntp'
 
 
 # Use ActiveModel has_secure_password
@@ -47,4 +48,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'quiet_assets'
+  gem 'rack-mini-profiler'
+  gem 'flamegraph'
+  gem 'bullet'
 end

@@ -16,17 +16,8 @@ ActiveAdmin.register Question do
   form do |f|
     inputs 'Question' do
       input :title
-      input :description, hint: 'Supports <a href="https://guides.github.com/features/mastering-markdown/">Github flavored markdown</a>'.html_safe
-      if f.object.persisted?
-        li do
-          label 'Creator'
-          div do
-            link_to f.object.creator.name, admin_admin_user_path(f.object.creator)
-          end
-        end
-      else
-        input :creator_id, as: :hidden, input_html: { value: current_admin_user.id }
-      end
+      input :description, as: :markdown
+      render 'admin/creator_form_entry', form: f
       actions
     end
   end
@@ -38,6 +29,13 @@ ActiveAdmin.register Question do
         it.rendered_description.html_safe
       end
       row :creator
+    end
+    panel "Versions" do
+      table_for question.versions do
+        column :event
+        column :whodunnit
+        column :created_at
+      end
     end
     active_admin_comments
   end
