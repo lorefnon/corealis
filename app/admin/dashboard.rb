@@ -10,7 +10,9 @@ ActiveAdmin.register_page "Dashboard" do
           invitations = Invitation.active.includes(:quiz)
           if invitations.length == 0
             div class: "blank_slate_container" do
-              span "There are no active invitations"
+              span class: "blank_slate" do
+                "There are no active invitations"
+              end
             end
           else
             ul do
@@ -27,7 +29,9 @@ ActiveAdmin.register_page "Dashboard" do
           sessions = QuizSession.recent.includes(:quiz)
           if sessions.length == 0
             div class: 'blank_slate_container' do
-              span "There are no recent quiz sessions"
+              span class: "blank_slate" do
+                "There were no recent quiz sessions"
+              end
             end
           else
             ul do
