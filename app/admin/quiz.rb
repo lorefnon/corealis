@@ -1,18 +1,16 @@
 ActiveAdmin.register Quiz do
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if resource.something?
-#   permitted
-# end
+  permit_params *(@resource.column_names), question_ids: []
 
+  form do |f|
+    inputs 'Quiz' do
+      input :title
+      input :duration
+      input :questions
+      render 'admin/creator_form_entry', form: f
+      actions
+    end
+  end
 
 end
 

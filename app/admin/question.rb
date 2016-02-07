@@ -5,6 +5,9 @@ ActiveAdmin.register Question do
   permit_params *(@resource.column_names)
 
   index do
+    column :select do |it|
+      check_box_tag "question[#{it.id}]", true, false, class: 'question-cbox'
+    end
     column :id
     column :title
     column :creator
@@ -32,6 +35,14 @@ ActiveAdmin.register Question do
     end
     render 'admin/versions', model: question
     active_admin_comments
+  end
+
+  collection_action :add_to_quiz do
+    render 'admin/questions/add_to_quiz'
+  end
+
+  action_item :add_to_quiz, only: :index do
+    link_to "Add to Quiz", add_to_quiz_admin_questions_path, remote: true
   end
 
 end
