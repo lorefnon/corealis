@@ -1,4 +1,6 @@
 class Invitation < ActiveRecord::Base
+  belongs_to :invitor, class_name: 'AdminUser'
+  belongs_to :invitee, class_name: 'User'
 end
 
 # == Schema Information

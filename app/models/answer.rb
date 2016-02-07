@@ -1,4 +1,7 @@
 class Answer < ActiveRecord::Base
+  belongs_to :question
+  belongs_to :answerer, polymorphic: true
+  has_many :quizzes, through: :question
 end
 
 # == Schema Information
@@ -12,4 +15,5 @@ end
 #  answerer_type :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  canonical     :boolean
 #

@@ -1,4 +1,7 @@
 class QuizQuestionAssociator < ActiveRecord::Base
+  belongs_to :question
+  belongs_to :quiz
+  belongs_to :associator, class_name: 'AdminUser'
 end
 
 # == Schema Information
