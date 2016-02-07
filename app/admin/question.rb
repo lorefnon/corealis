@@ -4,13 +4,26 @@ ActiveAdmin.register Question do
 
   permit_params *(@resource.column_names)
 
+  index do
+    column :id
+    column :title
+    column :creator
+    column :created_at
+    column :updated_at
+    actions
+  end
+
   form do |f|
     inputs 'Question' do
       input :title
       input :description, hint: 'Supports <a href="https://guides.github.com/features/mastering-markdown/">Github flavored markdown</a>'.html_safe
       if f.object.persisted?
-        label 'Creator'
-        span f.object.creator.name
+        li do
+          label 'Creator'
+          div do
+            link_to f.object.creator.name, admin_admin_user_path(f.object.creator)
+          end
+        end
       else
         input :creator_id, as: :hidden, input_html: { value: current_admin_user.id }
       end
@@ -26,6 +39,7 @@ ActiveAdmin.register Question do
       end
       row :creator
     end
+    active_admin_comments
   end
 
 end
