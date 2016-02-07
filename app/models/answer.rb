@@ -1,5 +1,7 @@
 class Answer < ActiveRecord::Base
 
+  has_paper_trail
+
   belongs_to :question
   belongs_to :answerer, polymorphic: true
   belongs_to :quiz_session

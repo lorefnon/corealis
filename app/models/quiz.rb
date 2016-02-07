@@ -1,5 +1,7 @@
 class Quiz < ActiveRecord::Base
 
+  has_paper_trail
+
   has_many :quiz_question_associators
   has_many :questions, through: :quiz_question_associators
   has_many :answers, through: :questions

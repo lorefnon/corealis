@@ -1,5 +1,7 @@
 class QuizSession < ActiveRecord::Base
 
+  has_paper_trail
+
   belongs_to :quiz
   belongs_to :invitation
   belongs_to :interviewer, class_name: 'AdminUser'

@@ -1,5 +1,7 @@
 class Question < ActiveRecord::Base
 
+  has_paper_trail
+
   belongs_to :creator, class_name: 'AdminUser'
   has_many :answers
 
