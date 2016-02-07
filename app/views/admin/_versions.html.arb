@@ -1,0 +1,10 @@
+panel "Versions" do
+  table_for model.versions do
+    column :id do |it|
+      link_to it.id, admin_paper_trail_version_path(it)
+    end
+    column :event
+    column :whodunnit
+    column :created_at
+  end
+end

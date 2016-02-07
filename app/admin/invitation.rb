@@ -15,3 +15,18 @@ ActiveAdmin.register Invitation do
 
 
 end
+
+# == Schema Information
+#
+# Table name: invitations
+#
+#  id         :integer          not null, primary key
+#  invitor_id :integer
+#  invitee_id :integer
+#  quiz_id    :integer
+#  valid_from :datetime
+#  valid_till :datetime
+#  duration   :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#

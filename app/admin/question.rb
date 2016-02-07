@@ -30,14 +30,20 @@ ActiveAdmin.register Question do
       end
       row :creator
     end
-    panel "Versions" do
-      table_for question.versions do
-        column :event
-        column :whodunnit
-        column :created_at
-      end
-    end
+    render 'admin/versions', model: question
     active_admin_comments
   end
 
 end
+
+# == Schema Information
+#
+# Table name: questions
+#
+#  id          :integer          not null, primary key
+#  title       :string
+#  description :text
+#  creator_id  :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#

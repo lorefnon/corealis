@@ -25,7 +25,7 @@ gem 'memoist'
 gem 'draper', '~> 1.3'
 gem 'paper_trail'
 gem 'ruby_gntp'
-
+gem 'stackprof'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
