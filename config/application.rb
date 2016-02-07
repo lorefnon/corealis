@@ -31,5 +31,21 @@ module Corealis
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Opal Configuration
+
+    # Compiler options
+    config.opal.method_missing      = true
+    config.opal.optimized_operators = true
+    config.opal.arity_check         = false
+    config.opal.const_missing       = true
+    config.opal.dynamic_require_severity = :ignore
+
+    # Enable/disable /opal_specs route
+    config.opal.enable_specs = true
+
+    # The path to opal specs from Rails.root
+    config.opal.spec_location = 'client_specs'
+
   end
 end
