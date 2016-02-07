@@ -3,8 +3,7 @@ class Invitation < ActiveRecord::Base
   belongs_to :invitor, class_name: 'AdminUser'
   belongs_to :invitee, class_name: 'User'
 
-  scope :upcoming, -> { where starts_at: (Time.zone.now..(Time.zone.now+1.week)) }
-  scope :valid, -> { where 'valid_from <= :now AND valid_till >= :now', now: Time.zone.now }
+  scope :active, -> { where 'valid_from <= :now AND valid_till >= :now', now: Time.zone.now }
 
 end
 

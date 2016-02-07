@@ -6,20 +6,34 @@ ActiveAdmin.register_page "Dashboard" do
 
     columns do
       column do
-        panel "Upcoming Interviews" do
-          ul do
-            Invitation.upcoming.includes(:quiz).map do |invitation|
-              li link_to(invitation.quiz.title, admin_invitation_path(invitation))
+        panel "Active Invitations" do
+          invitations = Invitation.active.includes(:quiz)
+          if invitations.length == 0
+            div class: "blank_slate_container" do
+              span "There are no active invitations"
+            end
+          else
+            ul do
+              Invitation.active.includes(:quiz).each do |invitation|
+                li link_to(invitation.quiz.title, admin_invitation_path(invitation))
+              end
             end
           end
         end
       end
 
       column do
-        panel "Recent Interview Sessions" do
-          ul do
-            QuizSession.recent.includes(:quiz).map do |session|
-              li link_to(session.quiz.title, admin_quiz_session_path(session))
+        panel "Recent Quiz Sessions" do
+          sessions = QuizSession.recent.includes(:quiz)
+          if sessions.length == 0
+            div class: 'blank_slate_container' do
+              span "There are no recent quiz sessions"
+            end
+          else
+            ul do
+              sessions.each do |session|
+                li link_to(session.quiz.title, admin_quiz_session_path(session))
+              end
             end
           end
         end
