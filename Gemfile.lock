@@ -17,8 +17,9 @@ GIT
       sass-rails
 
 GIT
-  remote: git://github.com/opal/opal-rails.git
-  revision: 88b0ae3841b52248544a564163425fa237b2dac2
+  remote: git://github.com/lorefnon/opal-rails.git
+  revision: 9a4499dcb3649f4ba8ad6734ef25eed1507191b4
+  ref: 9a4499d
   specs:
     opal-rails (0.9.0.dev)
       jquery-rails
