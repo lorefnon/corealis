@@ -10,7 +10,7 @@ ActiveAdmin.register Quiz do
     end
 
     def associate_questions
-      if resource && resource.persisted? && params[:question_id].any?
+      if resource && resource.persisted? && ! params[:question_id].blank?
         resource.associate_questions_through(
           associator: current_admin_user,
           question_id: params[:question_id]
@@ -31,16 +31,8 @@ ActiveAdmin.register Quiz do
       row :updated_at
     end
 
-    panel "Questions" do
-      table_for quiz.questions do
-        column :id do |it|
-          link_to it.id, admin_question_path(it)
-        end
-        column :title
-        column :creator
-        column :created_at
-        column :updated_at
-      end
+    if quiz.questions.any?
+      render 'admin/quizzes/quiz_question_removal', quiz: quiz
     end
 
   end
@@ -59,6 +51,24 @@ ActiveAdmin.register Quiz do
       end
       actions
     end
+  end
+
+  collection_action :associate_questions, method: :post do
+    Quiz
+      .find(params[:quiz_id])
+      .associate_questions_through(
+        associator: current_admin_user,
+        question_id: params[:question_id].keys
+      ) unless params[:question_id].blank?
+    redirect_to admin_quiz_path params[:quiz_id]
+  end
+
+  member_action :remove_questions, method: :delete do
+    resource
+      .quiz_question_associators
+      .where(question_id: params[:question_id])
+      .destroy_all
+    redirect_to admin_quiz_path resource
   end
 
 end

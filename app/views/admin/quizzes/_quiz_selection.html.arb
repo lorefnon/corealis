@@ -1,0 +1,20 @@
+panel "Select a quiz" do
+
+  if quizzes.any?
+    table_for Quiz.all do
+      column do |it|
+        radio_button_tag "quiz_id", it.id
+      end
+      column :id
+      column :title
+    end
+  else
+    span "No Quizzes current exist"
+  end
+
+  hr
+  span do
+    link_to "Create a quiz", new_admin_quiz_path(question_id: params[:question_id])
+  end
+
+end

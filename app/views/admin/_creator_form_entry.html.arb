@@ -2,7 +2,9 @@ if form.object.persisted?
   li do
     label 'Creator'
     div do
-      link_to form.object.creator.name, admin_admin_user_path(form.object.creator)
+      if form.object.creator
+        link_to form.object.creator.name, admin_admin_user_path(form.object.creator)
+      end
     end
   end
 else

@@ -1,0 +1,6 @@
+= form_tag associate_questions_admin_quizzes_path, method: :post do
+
+  = render 'admin/quizzes/quiz_selection', quizzes: Quiz.all, title: "Select Questions to be Added"
+  = render 'admin/quizzes/question_selection', questions: Question.where(id: params[:question_id]).all, cta: nil
+
+  %div= submit_tag "Submit"
