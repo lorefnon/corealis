@@ -6,7 +6,7 @@ ActiveAdmin.register Question do
 
   index do
     column :select do |it|
-      check_box_tag "question[#{it.id}]", true, false, class: 'question-cbox'
+      check_box_tag "question", true, false, class: 'question-cbox', 'data-question-id' => it.id
     end
     column :id
     column :title

@@ -8,6 +8,20 @@ class Quiz < ActiveRecord::Base
 
   belongs_to :creator, class_name: 'AdminUser'
 
+  def associate_questions_through(associator:, question_id:)
+    Array(question_id).reduce(
+      quiz_question_associators
+        .where(question_id: question_id)
+        .index_by(&:question_id)
+    ) do |memo, id|
+      memo[id.to_i] ||= quiz_question_associators.create!(
+        associator: associator,
+        question_id: id
+      )
+      memo
+    end
+  end
+
 end
 
 # == Schema Information
