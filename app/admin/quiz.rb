@@ -1,7 +1,12 @@
 ActiveAdmin.register Quiz do
 
   menu priority: 2
-  permit_params *(@resource.column_names), question_ids: []
+  permit_all_params question_ids: []
+
+  filter :title
+  filter :duration
+  filter :created_at
+  filter :updated_at
 
   controller do
 

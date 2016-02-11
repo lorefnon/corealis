@@ -267,3 +267,12 @@ ActiveAdmin.setup do |config|
   #
   # config.include_default_association_filters = true
 end
+
+ActiveAdmin::ResourceDSL.class_eval do
+
+  def permit_all_params options={}
+    permit_params *(@resource.column_names), options
+  end
+
+end
+
