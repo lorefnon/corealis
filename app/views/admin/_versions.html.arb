@@ -1,5 +1,5 @@
 panel "Versions" do
-  table_for model.versions do
+  table_for resource.versions do
     column :id do |it|
       link_to it.id, admin_paper_trail_version_path(it)
     end

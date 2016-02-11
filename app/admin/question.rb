@@ -35,7 +35,7 @@ ActiveAdmin.register Question do
       row :creator
     end
 
-    render 'admin/versions', model: question
+    render 'admin/versions'
 
     panel "Canonical Answers" do
       if question.answers.canonical.any?
@@ -49,6 +49,7 @@ ActiveAdmin.register Question do
         div "No Canonical Answers have been added yet"
       end
       div link_to "Add Canonical Answer", new_admin_answer_path(canonical: true, question_id: question.id)
+      div link_to "View All Answers", admin_answers_path(q: { question_id_eq: question.id })
     end
 
     active_admin_comments
@@ -61,6 +62,10 @@ ActiveAdmin.register Question do
 
   action_item :add_to_quiz, only: :index do
     link_to "Add to Quiz", add_to_quiz_admin_questions_path, remote: true
+  end
+
+  action_item :view_answers, only: :show do
+    link_to "View All Answers", admin_answers_path(q: { question_id_eq: question.id })
   end
 
 end

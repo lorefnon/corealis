@@ -37,6 +37,7 @@ ActiveAdmin.register AdminUser do
       row :created_at
       row :updated_at
     end
+    render 'admin/versions'
     active_admin_comments
   end
 

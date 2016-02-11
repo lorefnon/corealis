@@ -13,6 +13,18 @@ ActiveAdmin.register Invitation do
 #   permitted
 # end
 
+  show do
+    attributes_table do
+      row :id
+      row :invitor_id
+      row :quiz_id
+      row :valid_from
+      row :valid_till
+      row :duration
+    end
+    render 'admin/versions'
+  end
+
 
 end
 

@@ -1,6 +1,22 @@
 ActiveAdmin.register Answer do
 
+  menu false
+  config.filters = false
+  config.clear_action_items!
+
   permit_params *(@resource.column_names)
+
+  show do
+    attributes_table do
+      row :id
+      row :question_id
+      row :details
+      row :answerer
+      row :created_at
+      row :updated_at
+    end
+    render 'admin/versions'
+  end
 
   form do |f|
     inputs "Question" do

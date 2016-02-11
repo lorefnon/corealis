@@ -35,6 +35,8 @@ ActiveAdmin.register Quiz do
       render 'admin/quizzes/quiz_question_removal', quiz: quiz
     end
 
+    render 'admin/versions'
+
   end
 
   form do |f|
