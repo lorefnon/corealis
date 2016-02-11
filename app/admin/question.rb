@@ -1,5 +1,6 @@
 ActiveAdmin.register Question do
 
+  menu priority: 3
   decorate_with QuestionDecorator
 
   permit_params *(@resource.column_names)

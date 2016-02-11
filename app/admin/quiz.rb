@@ -1,5 +1,6 @@
 ActiveAdmin.register Quiz do
 
+  menu priority: 2
   permit_params *(@resource.column_names), question_ids: []
 
   controller do
