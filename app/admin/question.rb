@@ -1,6 +1,11 @@
 ActiveAdmin.register Question do
 
   menu priority: 3
+
+  filter :title
+  filter :created_at
+  filter :updated_at
+
   decorate_with QuestionDecorator
 
   permit_all_params
