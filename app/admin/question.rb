@@ -8,7 +8,7 @@ ActiveAdmin.register Question do
 
   decorate_with QuestionDecorator
 
-  permit_all_params
+  permit_params :id, :title, :description, :creator, :creator_id
 
   index do
     selectable_column

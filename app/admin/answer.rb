@@ -4,7 +4,7 @@ ActiveAdmin.register Answer do
   config.filters = false
   config.clear_action_items!
 
-  permit_params *(@resource.column_names)
+  permit_params :id, :question_id, :details, :answer_id, :answer_type, :canonical
 
   show do
     attributes_table do

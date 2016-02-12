@@ -1,7 +1,7 @@
 ActiveAdmin.register Quiz do
 
   menu priority: 2
-  permit_all_params question_ids: []
+  permit_params :id, :title, :creator_id, :creator, question_ids: []
 
   filter :title
   filter :duration
