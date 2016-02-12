@@ -3,12 +3,10 @@ ActiveAdmin.register Question do
   menu priority: 3
   decorate_with QuestionDecorator
 
-  permit_params *(@resource.column_names)
+  permit_all_params
 
   index do
-    column :select do |it|
-      check_box_tag "question", true, false, class: 'question-cbox', 'data-question-id' => it.id
-    end
+    selectable_column
     column :id
     column :title
     column :creator
@@ -57,12 +55,8 @@ ActiveAdmin.register Question do
 
   end
 
-  collection_action :add_to_quiz do
-    render 'admin/questions/add_to_quiz'
-  end
-
-  action_item :add_to_quiz, only: :index do
-    link_to "Add to Quiz", add_to_quiz_admin_questions_path, remote: true
+  batch_action :add_to_quiz do |ids|
+    redirect_to admin_quiz_question_selection_path(question_id: ids)
   end
 
   action_item :view_answers, only: :show do
