@@ -28,6 +28,8 @@ gem 'paper_trail'
 gem 'ruby_gntp'
 gem 'stackprof'
 gem 'opal-jquery'
+gem 'factory_girl_rails'
+gem 'database_cleaner'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
