@@ -30,9 +30,7 @@ gem 'stackprof'
 gem 'opal-jquery'
 gem 'factory_girl_rails'
 gem 'database_cleaner'
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'capybara'
 
 # Use Unicorn as the app server
 gem 'unicorn'
