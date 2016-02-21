@@ -1,10 +1,11 @@
-class OnlineAccountProvider < ActiveRecord::Base
-  validates :root_url, :label, :name, presence: true
+class OnlineResourceProvider < ActiveRecord::Base
+  validates :label, :name, presence: true
+  has_many :online_resources
 end
 
 # == Schema Information
 #
-# Table name: online_account_providers
+# Table name: online_resource_providers
 #
 #  id         :integer          not null, primary key
 #  root_url   :string           not null

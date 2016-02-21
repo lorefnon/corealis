@@ -1,6 +1,6 @@
 class CreateOnlineAccountProviders < ActiveRecord::Migration
   def change
-    create_table :online_account_providers do |t|
+    create_table :online_resource_providers do |t|
       t.string :root_url, null: false
       t.string :label, null: false
       t.string :name, null: false

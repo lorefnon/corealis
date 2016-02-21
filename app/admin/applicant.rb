@@ -34,5 +34,4 @@ end
 #  experience          :decimal(, )
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  resume_url          :string
 #

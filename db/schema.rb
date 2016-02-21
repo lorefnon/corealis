@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221070238) do
+ActiveRecord::Schema.define(version: 20160221074926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 20160221070238) do
     t.decimal  "experience"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.string   "resume_url"
   end
 
   create_table "invitations", force: :cascade do |t|
@@ -84,7 +83,14 @@ ActiveRecord::Schema.define(version: 20160221070238) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "online_account_providers", force: :cascade do |t|
+  create_table "online_resource_applicant_associators", force: :cascade do |t|
+    t.integer  "online_resource_id", null: false
+    t.integer  "applicant_id",       null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "online_resource_providers", force: :cascade do |t|
     t.string   "root_url",   null: false
     t.string   "label",      null: false
     t.string   "name",       null: false
@@ -92,13 +98,13 @@ ActiveRecord::Schema.define(version: 20160221070238) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "online_accounts", force: :cascade do |t|
-    t.integer  "applicant_id", null: false
-    t.string   "url",          null: false
-    t.integer  "provider_id",  null: false
+  create_table "online_resources", force: :cascade do |t|
+    t.string   "url",         null: false
+    t.string   "category"
+    t.integer  "provider_id", null: false
     t.string   "identity"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "questions", force: :cascade do |t|

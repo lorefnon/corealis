@@ -1,6 +1,6 @@
 class Applicant < ActiveRecord::Base
-
-  has_many :online_accounts
+  has_many :online_resource_applicant_associators
+  has_many :online_resources, through: :online_resource_applicant_associators
 end
 
 # == Schema Information
@@ -16,5 +16,4 @@ end
 #  experience          :decimal(, )
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  resume_url          :string
 #
