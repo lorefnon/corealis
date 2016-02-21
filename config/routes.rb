@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   get 'invitations/:invitation_id/quiz/session', to: 'quiz_sessions#new'
