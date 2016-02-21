@@ -4,7 +4,7 @@ class CreateQuizzes < ActiveRecord::Migration
       t.string :title, null: false
       t.integer :creator_id, null: false
       t.integer :duration
-
+      t.string :slug, null: false
       t.timestamps null: false
     end
   end

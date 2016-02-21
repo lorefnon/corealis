@@ -3,6 +3,7 @@ class CreateApplicants < ActiveRecord::Migration
     create_table :applicants do |t|
       t.integer :creator_id
       t.string :name
+      t.string :username
       t.string :email
       t.string :phone_number
       t.integer :quiz_sessions_count

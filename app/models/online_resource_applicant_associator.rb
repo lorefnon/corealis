@@ -14,3 +14,7 @@ end
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
+# Indexes
+#
+#  index_oraa_a_id_o_r_id  (applicant_id,online_resource_id)
+#

@@ -1,5 +1,5 @@
 class OnlineResourceProvider < ActiveRecord::Base
-  validates :label, :name, presence: true
+  validates :name, presence: true
   has_many :online_resources
 end
 
@@ -13,4 +13,8 @@ end
 #  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_online_resource_providers_on_label  (label) UNIQUE
 #

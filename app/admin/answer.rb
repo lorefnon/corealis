@@ -38,12 +38,18 @@ end
 # Table name: answers
 #
 #  id              :integer          not null, primary key
-#  question_id     :integer
+#  question_id     :integer          not null
 #  details         :text
-#  answerer_id     :integer
-#  answerer_type   :integer
+#  answerer_id     :integer          not null
+#  answerer_type   :integer          not null
+#  quiz_session_id :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  canonical       :boolean
-#  quiz_session_id :integer
+#
+# Indexes
+#
+#  index_answers_on_question_id_and_answerer_id_and_answerer_type  (question_id,answerer_id,answerer_type)
+#  index_answers_on_question_id_and_canonical                      (question_id,canonical)
+#  index_answers_on_quiz_session_id_and_question_id                (quiz_session_id,question_id)
 #

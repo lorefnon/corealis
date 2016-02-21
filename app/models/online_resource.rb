@@ -14,3 +14,8 @@ end
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
+# Indexes
+#
+#  index_online_resources_on_category     (category)
+#  index_online_resources_on_provider_id  (provider_id)
+#

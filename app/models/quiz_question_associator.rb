@@ -15,3 +15,7 @@ end
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
+# Indexes
+#
+#  index_quiz_question_associators_on_quiz_id_and_question_id  (quiz_id,question_id)
+#

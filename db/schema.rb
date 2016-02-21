@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221191742) do
+ActiveRecord::Schema.define(version: 20160221192217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,19 +51,24 @@ ActiveRecord::Schema.define(version: 20160221191742) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "answers", force: :cascade do |t|
-    t.integer  "question_id"
+    t.integer  "question_id",     null: false
     t.text     "details"
-    t.integer  "answerer_id"
-    t.integer  "answerer_type"
+    t.integer  "answerer_id",     null: false
+    t.integer  "answerer_type",   null: false
+    t.integer  "quiz_session_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.boolean  "canonical"
-    t.integer  "quiz_session_id"
   end
+
+  add_index "answers", ["question_id", "answerer_id", "answerer_type"], name: "index_answers_on_question_id_and_answerer_id_and_answerer_type", using: :btree
+  add_index "answers", ["question_id", "canonical"], name: "index_answers_on_question_id_and_canonical", using: :btree
+  add_index "answers", ["quiz_session_id", "question_id"], name: "index_answers_on_quiz_session_id_and_question_id", using: :btree
 
   create_table "applicants", force: :cascade do |t|
     t.integer  "creator_id"
     t.string   "name"
+    t.string   "username"
     t.string   "email"
     t.string   "phone_number"
     t.integer  "quiz_sessions_count"
@@ -72,17 +77,27 @@ ActiveRecord::Schema.define(version: 20160221191742) do
     t.datetime "updated_at",          null: false
   end
 
+  add_index "applicants", ["creator_id"], name: "index_applicants_on_creator_id", using: :btree
+  add_index "applicants", ["email"], name: "index_applicants_on_email", unique: true, using: :btree
+  add_index "applicants", ["experience"], name: "index_applicants_on_experience", using: :btree
+  add_index "applicants", ["phone_number"], name: "index_applicants_on_phone_number", using: :btree
+  add_index "applicants", ["username"], name: "index_applicants_on_username", unique: true, using: :btree
+
   create_table "invitations", force: :cascade do |t|
-    t.integer  "invitor_id"
-    t.integer  "invitee_id"
-    t.integer  "quiz_id"
+    t.integer  "invitor_id",             null: false
+    t.integer  "invitee_id",             null: false
+    t.integer  "quiz_id",                null: false
+    t.integer  "status",     default: 0
     t.datetime "valid_from"
     t.datetime "valid_till"
     t.datetime "duration"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "status",     default: 0
   end
+
+  add_index "invitations", ["id", "status"], name: "index_invitations_on_id_and_status", using: :btree
+  add_index "invitations", ["id", "valid_from", "valid_till"], name: "index_invitations_on_id_and_valid_from_and_valid_till", using: :btree
+  add_index "invitations", ["quiz_id"], name: "index_invitations_on_quiz_id", using: :btree
 
   create_table "online_resource_applicant_associators", force: :cascade do |t|
     t.integer  "online_resource_id", null: false
@@ -91,6 +106,8 @@ ActiveRecord::Schema.define(version: 20160221191742) do
     t.datetime "updated_at",         null: false
   end
 
+  add_index "online_resource_applicant_associators", ["applicant_id", "online_resource_id"], name: "index_oraa_a_id_o_r_id", using: :btree
+
   create_table "online_resource_providers", force: :cascade do |t|
     t.string   "root_url",   null: false
     t.string   "label",      null: false
@@ -98,6 +115,8 @@ ActiveRecord::Schema.define(version: 20160221191742) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "online_resource_providers", ["label"], name: "index_online_resource_providers_on_label", unique: true, using: :btree
 
   create_table "online_resources", force: :cascade do |t|
     t.string   "url",         null: false
@@ -108,14 +127,19 @@ ActiveRecord::Schema.define(version: 20160221191742) do
     t.datetime "updated_at",  null: false
   end
 
+  add_index "online_resources", ["category"], name: "index_online_resources_on_category", using: :btree
+  add_index "online_resources", ["provider_id"], name: "index_online_resources_on_provider_id", using: :btree
+
   create_table "questions", force: :cascade do |t|
     t.string   "title",       null: false
     t.text     "description"
     t.integer  "creator_id",  null: false
+    t.string   "slug",        null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.string   "slug",        null: false
   end
+
+  add_index "questions", ["slug"], name: "index_questions_on_slug", unique: true, using: :btree
 
   create_table "quiz_question_associators", force: :cascade do |t|
     t.integer  "question_id"
@@ -125,33 +149,44 @@ ActiveRecord::Schema.define(version: 20160221191742) do
     t.datetime "updated_at",    null: false
   end
 
+  add_index "quiz_question_associators", ["quiz_id", "question_id"], name: "index_quiz_question_associators_on_quiz_id_and_question_id", using: :btree
+
   create_table "quiz_sessions", force: :cascade do |t|
     t.integer  "quiz_id"
     t.integer  "invitation_id"
+    t.integer  "interviewee_id"
+    t.integer  "interviewer_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "interviewer_id"
-    t.integer  "interviewee_id"
     t.datetime "started_at"
     t.datetime "expired_at"
     t.datetime "ended_at"
   end
 
+  add_index "quiz_sessions", ["interviewee_id"], name: "index_quiz_sessions_on_interviewee_id", using: :btree
+  add_index "quiz_sessions", ["interviewer_id", "interviewee_id"], name: "index_quiz_sessions_on_interviewer_id_and_interviewee_id", using: :btree
+  add_index "quiz_sessions", ["invitation_id", "quiz_id"], name: "index_quiz_sessions_on_invitation_id_and_quiz_id", using: :btree
+
   create_table "quizzes", force: :cascade do |t|
     t.string   "title",      null: false
     t.integer  "creator_id", null: false
     t.integer  "duration"
+    t.string   "slug",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "slug",       null: false
   end
 
+  add_index "quizzes", ["creator_id", "slug"], name: "index_quizzes_on_creator_id_and_slug", using: :btree
+  add_index "quizzes", ["slug"], name: "index_quizzes_on_slug", unique: true, using: :btree
+
   create_table "settings", force: :cascade do |t|
-    t.string   "key"
+    t.string   "key",        null: false
     t.jsonb    "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "settings", ["key"], name: "index_settings_on_key", unique: true, using: :btree
 
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",  null: false

@@ -3,8 +3,8 @@ class CreateQuizSessions < ActiveRecord::Migration
     create_table :quiz_sessions do |t|
       t.integer :quiz_id
       t.integer :invitation_id
-      t.integer :user_id
-
+      t.integer :interviewee_id
+      t.integer :interviewer_id
       t.timestamps null: false
     end
   end
