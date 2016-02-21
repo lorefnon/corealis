@@ -32,6 +32,7 @@ gem 'factory_girl_rails'
 gem 'database_cleaner'
 gem 'capybara'
 gem 'friendly_id', '~> 5.1.0'
+gem 'que'
 
 # Use Unicorn as the app server
 gem 'unicorn'
