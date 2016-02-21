@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-AdminUser.create!(name: 'Default Admin User', email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+AdminUser.where(email: 'admin@example.com').first_or_create!(name: 'Default Admin User', password: 'password', password_confirmation: 'password')
 OnlineResourceProvider.where(label: 'github').first_or_create!(name: 'Github', root_url: 'https://github.com')
 OnlineResourceProvider.where(label: 'twitter').first_or_create!(name: 'Twitter', root_url: 'https://twitter.com')
 OnlineResourceProvider.where(label: 'stackoverflow').first_or_create!(name: 'StackOverflow', root_url: 'https://stackoverflow.com')
