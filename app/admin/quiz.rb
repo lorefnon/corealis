@@ -86,8 +86,8 @@ end
 # Table name: quizzes
 #
 #  id         :integer          not null, primary key
-#  title      :string
-#  creator_id :integer
+#  title      :string           not null
+#  creator_id :integer          not null
 #  duration   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

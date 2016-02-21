@@ -1,5 +1,6 @@
 class Quiz < ActiveRecord::Base
 
+  extend FriendlyId
   has_paper_trail
 
   has_many :quiz_sessions
@@ -8,6 +9,9 @@ class Quiz < ActiveRecord::Base
   has_many :answers, through: :questions
 
   belongs_to :creator, class_name: 'AdminUser'
+
+  validates :title, presence: true
+  friendly_id :title, use: :slugged
 
   def associate_questions_through(associator:, question_id:)
     Array(question_id).reduce(
@@ -30,8 +34,8 @@ end
 # Table name: quizzes
 #
 #  id         :integer          not null, primary key
-#  title      :string
-#  creator_id :integer
+#  title      :string           not null
+#  creator_id :integer          not null
 #  duration   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

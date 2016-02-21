@@ -109,9 +109,9 @@ ActiveRecord::Schema.define(version: 20160221191742) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string   "title"
+    t.string   "title",       null: false
     t.text     "description"
-    t.integer  "creator_id"
+    t.integer  "creator_id",  null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "slug",        null: false
@@ -138,8 +138,8 @@ ActiveRecord::Schema.define(version: 20160221191742) do
   end
 
   create_table "quizzes", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "creator_id"
+    t.string   "title",      null: false
+    t.integer  "creator_id", null: false
     t.integer  "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
