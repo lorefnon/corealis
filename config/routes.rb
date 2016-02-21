@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
 
+  get 'invitations/:invitation_id/quiz/:quiz_id/session', to: 'quiz_sessions#new'
+
   ActiveAdmin.routes(self)
 
 end

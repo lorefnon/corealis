@@ -2,6 +2,7 @@ class Invitation < ActiveRecord::Base
 
   has_paper_trail
 
+  belongs_to :quiz
   belongs_to :invitor, class_name: 'AdminUser'
   belongs_to :invitee, class_name: 'User'
 

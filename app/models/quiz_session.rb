@@ -10,6 +10,8 @@ class QuizSession < ActiveRecord::Base
   has_many :answers
 
   scope :recent, -> { where created_at: (DateTime.now - 1.week)..(DateTime.now) }
+  scope :active, -> { where expired_at: nil }
+  scope :expired, -> { where 'expired_at is not null' }
 
 end
 
