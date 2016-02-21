@@ -8,6 +8,8 @@ class Invitation < ActiveRecord::Base
 
   scope :active, -> { where 'valid_from <= :now AND valid_till >= :now', now: Time.zone.now }
 
+  enum status: [:pending, :accepted, :declined]
+
   after_create :send_invitation_mail
 
   private
@@ -30,4 +32,5 @@ end
 #  duration   :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  status     :integer          default(0)
 #
