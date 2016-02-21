@@ -33,6 +33,8 @@ gem 'database_cleaner'
 gem 'capybara'
 gem 'friendly_id', '~> 5.1.0'
 gem 'que'
+gem 'que-web'
+gem 'workflow-orchestrator'
 
 # Use Unicorn as the app server
 gem 'unicorn'
