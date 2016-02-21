@@ -4,9 +4,16 @@ class Invitation < ActiveRecord::Base
 
   belongs_to :quiz
   belongs_to :invitor, class_name: 'AdminUser'
-  belongs_to :invitee, class_name: 'User'
+  belongs_to :invitee, class_name: 'Applicant'
 
   scope :active, -> { where 'valid_from <= :now AND valid_till >= :now', now: Time.zone.now }
+
+  after_create :send_invitation_mail
+
+  private
+
+  def send_invitation_mail
+  end
 
 end
 
