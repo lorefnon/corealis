@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207172546) do
+ActiveRecord::Schema.define(version: 20160221070238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,18 @@ ActiveRecord::Schema.define(version: 20160207172546) do
     t.integer  "quiz_session_id"
   end
 
+  create_table "applicants", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone_number"
+    t.integer  "quiz_sessions_count"
+    t.decimal  "experience"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "resume_url"
+  end
+
   create_table "invitations", force: :cascade do |t|
     t.integer  "invitor_id"
     t.integer  "invitee_id"
@@ -70,6 +82,23 @@ ActiveRecord::Schema.define(version: 20160207172546) do
     t.datetime "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "online_account_providers", force: :cascade do |t|
+    t.string   "root_url",   null: false
+    t.string   "label",      null: false
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "online_accounts", force: :cascade do |t|
+    t.integer  "applicant_id", null: false
+    t.string   "url",          null: false
+    t.integer  "provider_id",  null: false
+    t.string   "identity"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "questions", force: :cascade do |t|
