@@ -80,4 +80,5 @@ end
 #  creator_id  :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  slug        :string           not null
 #
