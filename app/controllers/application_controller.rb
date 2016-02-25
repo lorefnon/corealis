@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def user_for_paper_trail
-    user = current_admin_user || current_user
+    user = current_admin_user
     "#{user.class.to_s}:#{user.id}" rescue nil
   end
 
