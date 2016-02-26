@@ -5,6 +5,8 @@ class Invitation < ApplicationRecord
   belongs_to :quiz
   belongs_to :invitor, class_name: 'AdminUser'
   belongs_to :invitee, class_name: 'Applicant'
+  has_many :invitation_time_slot_associators
+  has_many :time_slots, through: :invitation_time_slot_associators
 
   scope :active, -> { where 'valid_from <= :now AND valid_till >= :now', now: Time.zone.now }
 

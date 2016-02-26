@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226185348) do
+ActiveRecord::Schema.define(version: 20160226212008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,25 @@ ActiveRecord::Schema.define(version: 20160226185348) do
   add_index "applicants", ["experience"], name: "index_applicants_on_experience", using: :btree
   add_index "applicants", ["phone_number"], name: "index_applicants_on_phone_number", using: :btree
   add_index "applicants", ["username"], name: "index_applicants_on_username", unique: true, using: :btree
+
+  create_table "interview_time_slot_associators", force: :cascade do |t|
+    t.integer  "interview_id"
+    t.integer  "time_slot_id"
+    t.integer  "confirmation_status"
+    t.boolean  "custom_slots_allowed"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "invitation_time_slot_associators", force: :cascade do |t|
+    t.integer  "confirmation_status"
+    t.integer  "invitation_id",       null: false
+    t.integer  "proposer_id",         null: false
+    t.string   "proposer_type",       null: false
+    t.integer  "time_slot_id",        null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
 
   create_table "invitations", force: :cascade do |t|
     t.integer  "invitor_id",             null: false
