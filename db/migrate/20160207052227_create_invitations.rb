@@ -7,8 +7,7 @@ class CreateInvitations < ActiveRecord::Migration
       t.integer :status, default: 0
       t.datetime :valid_from
       t.datetime :valid_till
-      t.datetime :duration
-
+      t.integer :duration
       t.timestamps null: false
     end
   end

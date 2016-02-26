@@ -27,6 +27,39 @@ ActiveAdmin.register Invitation do
     render 'admin/versions'
   end
 
+  form do |f|
+    f.inputs "Invitation" do
+
+      if f.object.persisted?
+
+        li do
+          label 'Invitor'
+          div do
+            link_to form.object.invitor.name, admin_admin_user_path(f.object.invitor)
+          end
+        end
+
+        li do
+          label 'Quiz'
+          div do
+            link_to form.object.quiz.title, admin_quiz_path(f.object.quiz)
+          end
+        end
+
+      else
+        f.input :invitor_id, as: :hidden, input_html: { value: current_admin_user.id }
+        f.input :quiz
+        f.input :status
+        f.input :valid_from
+        f.input :valid_till
+        f.input :duration
+
+        f.submit
+      end
+
+    end
+  end
+
 
 end
 

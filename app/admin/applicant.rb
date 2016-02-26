@@ -4,10 +4,22 @@ ActiveAdmin.register Applicant do
   permit_params :id, :creator_id, :name, :username, :email, :phone_number, :experience
 
   filter :email
+  filter :experience
+
+  decorate_with ApplicantDecorator
 
   index do
     column :id
-    column :email
+    column :email do |it|
+      it.email_link
+    end
+    column :experience do |it|
+      it.humanized_experience
+    end
+    column :humanized_experience
+    column :invitations do |applicant|
+      link_to "Schedule Quiz", new_admin_invitation_path(applicant_id: applicant.id)
+    end
     actions
   end
 
