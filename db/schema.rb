@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20160221195508) do
     t.integer  "status",     default: 0
     t.datetime "valid_from"
     t.datetime "valid_till"
-    t.datetime "duration"
+    t.integer  "duration"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

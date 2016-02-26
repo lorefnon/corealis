@@ -14,7 +14,7 @@ end
 #
 # "/Users/lorefnon/Workspace/corealis/spec-opal"
 #                                  Prefix Verb       URI Pattern                                        Controller#Action
-#                                                    /__OPAL_SOURCE_MAPS__                              #<Opal::SourceMapServer:70228791672840>
+#                                                    /__OPAL_SOURCE_MAPS__                              #<Opal::SourceMapServer:70115570571380>
 #                                                    /spec-opal                                         <Opal::RSpec::Rails::Server debug=true use_index=true public_root=>
 #                                    root GET        /                                                  home#index
 #                  new_admin_user_session GET        /admin/login(.:format)                             active_admin/devise/sessions#new

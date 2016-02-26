@@ -31,7 +31,7 @@ end
 #  status     :integer          default(0)
 #  valid_from :datetime
 #  valid_till :datetime
-#  duration   :datetime
+#  duration   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
