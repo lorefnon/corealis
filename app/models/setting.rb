@@ -1,4 +1,16 @@
-class Setting < ActiveRecord::Base
+class Setting < ApplicationRecord
+
+  def self.[](key)
+    where(key: key).first.try(:value)
+  end
+
+  def self.[]=(key, value)
+    where(key: key)
+      .first_or_initialize
+      .tab{|it| it.value = value }
+      .save!
+  end
+
 end
 
 # == Schema Information

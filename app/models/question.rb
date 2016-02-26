@@ -1,13 +1,12 @@
-class Question < ActiveRecord::Base
+class Question < ApplicationRecord
 
   has_paper_trail
-  extend FriendlyId
 
   belongs_to :creator, class_name: 'AdminUser'
   has_many :answers
 
   validates :title, presence: true
-  friendly_id :title, use: :slugged
+  slugify :title
 
 end
 

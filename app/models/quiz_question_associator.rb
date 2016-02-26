@@ -1,4 +1,4 @@
-class QuizQuestionAssociator < ActiveRecord::Base
+class QuizQuestionAssociator < ApplicationRecord
   belongs_to :question
   belongs_to :quiz
   belongs_to :associator, class_name: 'AdminUser'

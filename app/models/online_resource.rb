@@ -1,4 +1,4 @@
-class OnlineResource < ActiveRecord::Base
+class OnlineResource < ApplicationRecord
   belongs_to :provider, class_name: 'OnlineResourceProvider'
 end
 

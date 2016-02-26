@@ -1,4 +1,4 @@
-class OnlineResourceProvider < ActiveRecord::Base
+class OnlineResourceProvider < ApplicationRecord
   validates :name, presence: true
   has_many :online_resources
 end

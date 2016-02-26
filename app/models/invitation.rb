@@ -1,4 +1,4 @@
-class Invitation < ActiveRecord::Base
+class Invitation < ApplicationRecord
 
   has_paper_trail
 
@@ -10,11 +10,12 @@ class Invitation < ActiveRecord::Base
 
   enum status: [:pending, :accepted, :declined]
 
-  after_create :send_invitation_mail
+  after_create :dispatch_notification
 
   private
 
-  def send_invitation_mail
+  def dispatch_notification
+    InvitiationMailer.invitation_mail(self).deliver
   end
 
 end

@@ -1,4 +1,4 @@
-class Applicant < ActiveRecord::Base
+class Applicant < ApplicationRecord
   has_many :online_resource_applicant_associators
   has_many :online_resources, through: :online_resource_applicant_associators
 end

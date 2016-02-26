@@ -1,4 +1,4 @@
-class QuizSession < ActiveRecord::Base
+class QuizSession < ApplicationRecord
 
   has_paper_trail
 

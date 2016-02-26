@@ -1,4 +1,4 @@
-class AdminUser < ActiveRecord::Base
+class AdminUser < ApplicationRecord
 
   has_paper_trail
 
