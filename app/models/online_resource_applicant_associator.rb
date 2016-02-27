@@ -1,7 +1,7 @@
 class OnlineResourceApplicantAssociator < ApplicationRecord
   belongs_to :online_resource
-  belongs_to :provider, through: :online_resource
   belongs_to :applicant
+  has_one :provider, through: :online_resource
 end
 
 # == Schema Information

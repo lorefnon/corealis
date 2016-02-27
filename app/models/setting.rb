@@ -19,7 +19,7 @@ end
 #
 #  id         :integer          not null, primary key
 #  key        :string           not null
-#  value      :jsonb
+#  value      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

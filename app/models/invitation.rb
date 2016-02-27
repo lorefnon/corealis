@@ -7,6 +7,7 @@ class Invitation < ApplicationRecord
   belongs_to :invitee, class_name: 'Applicant'
   has_many :invitation_time_slot_associators
   has_many :time_slots, through: :invitation_time_slot_associators
+  after_initialize :set_defaults
 
   scope :active, -> { where 'valid_from <= :now AND valid_till >= :now', now: Time.zone.now }
 
@@ -18,6 +19,13 @@ class Invitation < ApplicationRecord
 
   def dispatch_notification
     InvitiationMailer.invitation_mail(self).deliver
+  end
+
+  def set_defaults
+    self.duration ||= 45.minutes
+    self.valid_till ||= (Date.today + 3.days).end_of_day
+    self.valid_from ||= DateTime.now
+    self.status ||= :pending
   end
 
 end

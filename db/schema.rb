@@ -83,15 +83,6 @@ ActiveRecord::Schema.define(version: 20160226212008) do
   add_index "applicants", ["phone_number"], name: "index_applicants_on_phone_number", using: :btree
   add_index "applicants", ["username"], name: "index_applicants_on_username", unique: true, using: :btree
 
-  create_table "interview_time_slot_associators", force: :cascade do |t|
-    t.integer  "interview_id"
-    t.integer  "time_slot_id"
-    t.integer  "confirmation_status"
-    t.boolean  "custom_slots_allowed"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
   create_table "invitation_time_slot_associators", force: :cascade do |t|
     t.integer  "confirmation_status"
     t.integer  "invitation_id",       null: false
@@ -211,7 +202,7 @@ ActiveRecord::Schema.define(version: 20160226212008) do
 
   create_table "settings", force: :cascade do |t|
     t.string   "key",        null: false
-    t.jsonb    "value"
+    t.string   "value",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

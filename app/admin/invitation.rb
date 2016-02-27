@@ -1,19 +1,7 @@
 ActiveAdmin.register Invitation do
 
   menu priority: 5
-
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if resource.something?
-#   permitted
-# end
+  permit_params :invitor_id, :status, :valid_from, :valid_till, :duration, :quiz_id, :invitee_id
 
   show do
     attributes_table do
@@ -49,7 +37,7 @@ ActiveAdmin.register Invitation do
       else
         f.input :invitor_id, as: :hidden, input_html: { value: current_admin_user.id }
         f.input :quiz
-        f.input :status
+        f.input :status, as: :select, collection: Invitation.statuses.keys
         f.input :valid_from
         f.input :valid_till
         f.input :duration
