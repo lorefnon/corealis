@@ -3,6 +3,18 @@ ActiveAdmin.register Invitation do
   menu priority: 5
   permit_params :invitor_id, :status, :valid_from, :valid_till, :duration, :quiz_id, :invitee_id
 
+  controller do
+
+    before_action :ensure_applicant_id, only: [:new]
+
+    def ensure_applicant_id
+      unless params.include? :applicant_id
+        redirect_to admin_applicants_path, flash: { info: 'Please select an applicant' }
+      end
+    end
+
+  end
+
   show do
     attributes_table do
       row :id

@@ -33,6 +33,10 @@ ActiveAdmin.register Applicant do
     f.actions
   end
 
+  action_item :send_invitation, only: :show do
+    link_to "Send Invitiation", new_admin_invitation_path(applicant_id: resource.id)
+  end
+
 end
 
 # == Schema Information
