@@ -20,7 +20,7 @@ class Invitation < ApplicationRecord
   private
 
   def dispatch_notification
-    InvitationMailer.invitation_mail(self).deliver
+    InvitationMailer.invitation_mail(self).deliver_now
   end
 
   def set_defaults
