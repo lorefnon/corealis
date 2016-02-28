@@ -5,13 +5,25 @@ class QuizSession < ApplicationRecord
   belongs_to :quiz
   belongs_to :invitation
   belongs_to :interviewer, class_name: 'AdminUser'
-  belongs_to :interviewee, class_name: 'User'
+  belongs_to :interviewee, class_name: 'Applicant'
   has_many :questions, through: :quiz
   has_many :answers
 
-  scope :recent, -> { where created_at: (DateTime.now - 1.week)..(DateTime.now) }
+  scope :recent, -> { where created_at: (DateTime.now - 10.minutes)..(DateTime.now) }
   scope :active, -> { where expired_at: nil }
   scope :expired, -> { where 'expired_at is not null' }
+  scope :for_invitation, ->(iv) { where invitation: iv }
+
+  before_validation :deduce_associations_from_interview
+
+  private
+
+  def deduce_associations_from_interview
+    return unless invitation
+    self.interviewer ||= invitation.invitor
+    self.interviewee ||= invitation.invitee
+    self.quiz ||= invitation.quiz
+  end
 
 end
 

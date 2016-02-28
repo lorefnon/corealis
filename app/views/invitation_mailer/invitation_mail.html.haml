@@ -1,3 +1,3 @@
 %p Hi #{@invitee.name.capitalize},
 %p You have invited to an online quiz on #{@quiz.title}.
-%p= link_to "Take the quiz", interview_session_initiation_url(@invitation)
+%p= link_to "Take the quiz", interview_session_initiation_url(@invitation, token: @invitation.token)

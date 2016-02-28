@@ -21,3 +21,5 @@
 
 en:
   hello: "Hello world"
+  errors:
+    access_violation: 'You seem to have accessed an incorrect page.'
