@@ -1,20 +1,12 @@
 ActiveAdmin.register Invitation do
 
   menu priority: 5
-  permit_params :invitor_id, :status, :valid_from, :valid_till, :duration, :quiz_id, :invitee_id, invitee_attributes: []
+  permit_params :invitor_id, :status, :valid_from, :valid_till, :duration, :quiz_id, :invitee_id,
+                invitee_attributes: [:name, :username, :email, :phone_number, :creator_id]
+
   decorate_with InvitationDecorator
 
   controller do
-
-    # before_action :ensure_applicant_id, only: [:new]
-    #
-    # def ensure_applicant_id
-    #   if applicant_id = params[:applicant_id]
-    #     @applicant = Applicant.find applicant_id
-    #   else
-    #     redirect_to admin_applicants_path, flash: { info: 'Please select an applicant' }
-    #   end
-    # end
 
     after_build :associate_invitee
     after_build :associate_invitor
@@ -22,17 +14,17 @@ ActiveAdmin.register Invitation do
     private
 
     def associate_invitee(resource)
-      return if resource.persisted?
-      resource.invitee ||=
-        if params[:applicant_id]
-          Applicant.find(params[:applicant_id])
-        else
-          Applicant.new
-        end
+      return unless params[:action] == 'new'
+      if params[:invitee_id]
+        resource.invitee_id = params[:invitee_id]
+      else
+        resource.build_invitee(creator: current_admin_user)
+      end
     end
 
     def associate_invitor(resource)
-      reutrn if resource.persisted?
+      return unless params[:action] == 'new'
+      return if resource.persisted?
       resource.invitor ||= current_admin_user
     end
 
@@ -70,21 +62,27 @@ ActiveAdmin.register Invitation do
 
   form do |f|
     invitation = f.object
-
     unless invitation.invitee.persisted?
       f.inputs "Add New Applicant" do
         f.semantic_fields_for :invitee do |f|
+          f.input :creator_id, as: :hidden
           f.input :name
-          f.input :username
           f.input :email
           f.input :phone_number
         end
-
         div link_to "Select Existing Applicant", admin_applicants_path
       end
     end
 
     f.inputs "Add invitation for applicant" do
+
+      f.semantic_errors
+
+      if invitation.invitee.persisted?
+        li do
+          f.input :invitee_id, as: :hidden
+        end
+      end
 
       if f.object.persisted?
 
@@ -105,15 +103,12 @@ ActiveAdmin.register Invitation do
         end
 
         f.input :status, as: :select, collection: Invitation.statuses.keys
-
       else
         f.input :invitor_id, as: :hidden, input_html: { value: current_admin_user.id }
-
       end
 
       f.input :quiz
       f.input :status, as: :select, collection: Invitation.statuses.keys
-
       f.input :valid_from
       f.input :valid_till
       f.input :duration

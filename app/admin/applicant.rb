@@ -18,7 +18,7 @@ ActiveAdmin.register Applicant do
     end
     column :humanized_experience
     column :invitations do |applicant|
-      link_to "Schedule Quiz", new_admin_invitation_path(applicant_id: applicant.id)
+      link_to "Schedule Quiz", new_admin_invitation_path(invitee_id: applicant.id)
     end
     actions
   end
@@ -34,7 +34,7 @@ ActiveAdmin.register Applicant do
   end
 
   action_item :send_invitation, only: :show do
-    link_to "Send Invitiation", new_admin_invitation_path(applicant_id: resource.id)
+    link_to "Send Invitiation", new_admin_invitation_path(invitee_id: resource.id)
   end
 
 end

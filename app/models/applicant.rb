@@ -9,6 +9,8 @@ class Applicant < ApplicationRecord
   validates :creator_id, presence: true
   validates :name, presence: true
 
+  slugify :name, slug_attribute: 'username'
+
 end
 
 # == Schema Information
