@@ -122,7 +122,7 @@ ActiveAdmin.setup do |config|
   # config.comments = false
   #
   # You can disable the menu item for the comments index page:
-  config.show_comments_in_menu = false
+  config.comments_menu = false
   #
   # You can change the name under which comments are registered:
   # config.comments_registration_name = 'AdminComment'
@@ -266,4 +266,17 @@ ActiveAdmin.setup do |config|
   # of those filters by default here.
   #
   # config.include_default_association_filters = true
+end
+
+# Hack until https://github.com/activeadmin/activeadmin/issues/2998 is resolved
+
+ActiveAdmin::Resource.class_eval do
+
+  def batch_actions
+    if batch_actions_enabled? && @batch_actions
+      return @batch_actions.values.sort
+    end
+    []
+  end
+
 end
