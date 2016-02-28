@@ -15,12 +15,17 @@ class Invitation < ApplicationRecord
 
   enum status: [:pending, :accepted, :declined]
 
+  before_create :assign_token
   after_create :dispatch_notification
 
   private
 
   def dispatch_notification
     InvitationMailer.invitation_mail(self).deliver_now
+  end
+
+  def assign_token
+    self.token = SecureRandom.urlsafe_base64
   end
 
   def set_defaults
@@ -46,6 +51,7 @@ end
 #  duration   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  token      :string
 #
 # Indexes
 #
