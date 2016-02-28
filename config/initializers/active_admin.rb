@@ -267,16 +267,3 @@ ActiveAdmin.setup do |config|
   #
   # config.include_default_association_filters = true
 end
-
-# Hack until https://github.com/activeadmin/activeadmin/issues/2998 is resolved
-
-ActiveAdmin::Resource.class_eval do
-
-  def batch_actions
-    if batch_actions_enabled? && @batch_actions
-      return @batch_actions.values.sort
-    end
-    []
-  end
-
-end

@@ -2,10 +2,11 @@ ActiveAdmin.register PaperTrail::Version do
 
   menu label: 'Archives'
   decorate_with PaperTrail::VersionDecorator
+
   config.clear_action_items!
+  config.batch_actions = false
 
   index(title: 'Archives') do
-    selectable_column
     column :id do |it|
       link_to it.id, admin_paper_trail_version_path(it.id)
     end
