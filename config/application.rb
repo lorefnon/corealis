@@ -51,8 +51,6 @@ module Corealis
 
     config.autoload_paths += %w[
       app/decorators/concerns
-      app/workflows
-      app/workflows/concerns
     ]
 
   end
