@@ -60,4 +60,5 @@ group :development do
   gem 'rack-mini-profiler', require: false
   gem 'flamegraph'
   gem 'bullet'
+  gem 'letter_opener'
 end
