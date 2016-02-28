@@ -9,7 +9,7 @@ class Setting < ApplicationRecord
   def self.[]=(key, value)
     where(key: key)
       .first_or_initialize
-      .tab{|it| it.value = value }
+      .tap{|it| it.value = value }
       .save!
   end
 

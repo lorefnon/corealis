@@ -9,6 +9,8 @@ class Invitation < ApplicationRecord
   has_many :time_slots, through: :invitation_time_slot_associators
   after_initialize :set_defaults
 
+  accepts_nested_attributes_for :invitee
+
   scope :active, -> { where 'valid_from <= :now AND valid_till >= :now', now: Time.zone.now }
 
   enum status: [:pending, :accepted, :declined]
@@ -18,7 +20,7 @@ class Invitation < ApplicationRecord
   private
 
   def dispatch_notification
-    InvitiationMailer.invitation_mail(self).deliver
+    InvitationMailer.invitation_mail(self).deliver
   end
 
   def set_defaults

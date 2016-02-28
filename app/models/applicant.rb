@@ -1,6 +1,14 @@
 class Applicant < ApplicationRecord
+
   has_many :online_resource_applicant_associators
   has_many :online_resources, through: :online_resource_applicant_associators
+
+  belongs_to :creator, class_name: 'AdminUser'
+
+  validates :creator, presence: true, on: :create
+  validates :creator_id, presence: true
+  validates :name, presence: true
+
 end
 
 # == Schema Information

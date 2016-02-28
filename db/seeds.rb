@@ -12,3 +12,11 @@ OnlineResourceProvider.where(label: 'stackoverflow').first_or_create!(name: 'Sta
 OnlineResourceProvider.where(label: 'dribble').first_or_create!(name: 'Dribble', root_url: 'https://dribbble.com/')
 OnlineResourceProvider.where(label: 'behance').first_or_create!(name: 'Behance', root_url: 'https://www.behance.net')
 OnlineResourceProvider.where(label: 'behance').first_or_create!(name: 'Behance', root_url: 'https://www.behance.net')
+Setting['organization.name'] = 'Umbrella Corporation'
+Setting['organization.description'] = (<<-DESC).gsub("\n", ' ')
+Founded in the late 1960s by prominent British royal descendants Ozwell E. Spencer and Edward Ashford,
+the Umbrella Corporation is a major international player in pharmaceutical goods and medical supplies,
+along with more clandestine operations utilizing genetic engineering, our legitimate status being only
+a front for our secret research of "bio-organic weapons" (BOWs), developed through the use of a unique
+virus discovered by the company founders shortly after World War II.
+DESC
