@@ -1,6 +1,9 @@
 ActiveAdmin.register PaperTrail::Version do
 
-  index do
+  menu label: 'Archives'
+  config.clear_action_items!
+
+  index(title: 'Archives') do
     column :id
     column :item_type
     column :event
