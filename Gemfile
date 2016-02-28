@@ -34,6 +34,8 @@ gem 'capybara'
 gem 'que'
 gem 'que-web'
 gem 'babosa'
+gem 'abstract_method'
+gem 'activerecord-immutable'
 
 # Use Unicorn as the app server
 gem 'unicorn'
@@ -43,11 +45,12 @@ gem 'capistrano-rails', group: :development
 gem 'high_voltage', '~> 2.4.0'
 
 group :development, :test do
-  gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'pry-rails'
   gem 'pry-doc'
-  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
+  gem 'pry-byebug'
+  gem 'web-console', '~> 3.0'
 end
 
 group :development do
