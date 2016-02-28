@@ -2,13 +2,16 @@ ActiveAdmin.register Invitation do
 
   menu priority: 5
   permit_params :invitor_id, :status, :valid_from, :valid_till, :duration, :quiz_id, :invitee_id
+  decorate_with InvitationDecorator
 
   controller do
 
     before_action :ensure_applicant_id, only: [:new]
 
     def ensure_applicant_id
-      unless params.include? :applicant_id
+      if applicant_id = params[:applicant_id]
+        @applicant = Applicant.find applicant_id
+      else
         redirect_to admin_applicants_path, flash: { info: 'Please select an applicant' }
       end
     end
@@ -28,39 +31,44 @@ ActiveAdmin.register Invitation do
   end
 
   form do |f|
+    invitation = f.object
     f.inputs "Invitation" do
-
       if f.object.persisted?
 
         li do
           label 'Invitor'
-          div do
-            link_to form.object.invitor.name, admin_admin_user_path(f.object.invitor)
+          if invitor = invitation.invitor
+            div "User could not be found"
+          else
+            link_to invitor.name, admin_admin_user_path(invitor)
           end
         end
 
         li do
           label 'Quiz'
           div do
-            link_to form.object.quiz.title, admin_quiz_path(f.object.quiz)
+            link_to f.object.quiz.title, admin_quiz_path(f.object.quiz)
           end
         end
 
+        f.input :status, as: :select, collection: Invitation.statuses.keys
+
       else
         f.input :invitor_id, as: :hidden, input_html: { value: current_admin_user.id }
-        f.input :quiz
-        f.input :status, as: :select, collection: Invitation.statuses.keys
-        f.input :valid_from
-        f.input :valid_till
-        f.input :duration
 
-        f.submit
       end
+
+      f.input :quiz
+      f.input :status, as: :select, collection: Invitation.statuses.keys
+
+      f.input :valid_from
+      f.input :valid_till
+      f.input :duration
+
+      f.submit
 
     end
   end
-
-
 end
 
 # == Schema Information
