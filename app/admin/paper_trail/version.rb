@@ -1,15 +1,20 @@
 ActiveAdmin.register PaperTrail::Version do
 
   menu label: 'Archives'
+  decorate_with PaperTrail::VersionDecorator
   config.clear_action_items!
 
   index(title: 'Archives') do
-    column :id
+    selectable_column
+    column :id do |it|
+      link_to it.id, admin_paper_trail_version_path(it.id)
+    end
     column :item_type
     column :event
-    column :whodunnit
+    column :committer do |it|
+      it.committer_admin_link
+    end
     column :created_at
-    actions
   end
 
   show do
