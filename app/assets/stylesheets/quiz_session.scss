@@ -1,3 +1,24 @@
-// Place all the styles related to the quiz_session controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.page-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.sidebar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    background: #ddd;
+}
+
+.qs-body {
+    position: absolute;
+    left: 300px;
+    bottom: 0;
+    right: 0;
+    top: 0;
+}

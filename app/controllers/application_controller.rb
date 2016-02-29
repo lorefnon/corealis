@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
     "#{user.class.to_s}:#{user.id}" rescue nil
   end
 
+  def handle_access_violation
+    redirect_to root_path, flash: { error: I18n.t('error.access_violation') }
+  end
+
 end

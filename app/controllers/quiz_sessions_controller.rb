@@ -1,6 +1,8 @@
 class QuizSessionsController < ApplicationController
 
-  before_action :ensure_token_matches, only: :new
+  before_action :load_invitation, only: :new
+  before_action :load_quiz_session, only: :show
+  before_action :ensure_token_matches
   before_action :use_existing_session, only: :new
 
   def new
@@ -11,9 +13,8 @@ class QuizSessionsController < ApplicationController
   private
 
   def ensure_token_matches
-    @invitation = Invitation.find params[:invitation_id]
     unless @invitation.token == params[:token]
-      redirect_to root_path, flash: { error: I18n.t('error.access_violation') }
+      handle_access_violation
     end
   end
 
@@ -28,7 +29,17 @@ class QuizSessionsController < ApplicationController
   end
 
   def redirect_to_quiz_session
-    redirect_to quiz_session_path @quiz_session
+    redirect_to quiz_session_path(@quiz_session, token: params[:token])
+  end
+
+  def load_quiz_session
+    @quiz_session = QuizSession.find params[:id]
+    @invitation = @quiz_session.invitation
+    @applicant = @quiz_session.interviewee
+  end
+
+  def load_invitation
+    @invitation = Invitation.find params[:invitation_id]
   end
 
 end
