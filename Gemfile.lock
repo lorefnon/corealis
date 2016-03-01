@@ -118,6 +118,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    clearwater (0.3.1)
+      opal (~> 0.7)
+      opal-browser
     coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -223,11 +226,15 @@ GEM
       tilt (>= 1.4)
     opal-activesupport (0.3.0)
       opal (>= 0.5.0, < 1.0.0)
+    opal-browser (0.2.0)
+      opal
+      paggio
     opal-jquery (0.4.1)
       opal (>= 0.7.0, < 0.10.0)
     opal-rspec (0.5.0)
       opal (>= 0.8.0, < 0.10)
     orm_adapter (0.5.0)
+    paggio (0.2.6)
     paper_trail (4.1.0)
       activerecord (>= 3.0, < 6.0)
       activesupport (>= 3.0, < 6.0)
@@ -384,6 +391,7 @@ DEPENDENCIES
   bullet
   capistrano-rails
   capybara
+  clearwater
   database_cleaner
   devise
   draper (~> 1.3)
