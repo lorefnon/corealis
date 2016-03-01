@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :quiz do
-    
+    creator
+    sequence(:title) {|i| "quiz#{i}" }
+    sequence(:duration){|i| i }
   end
 end
 

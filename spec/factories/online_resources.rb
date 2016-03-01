@@ -1,6 +1,13 @@
 FactoryGirl.define do
   factory :online_resource do
-    
+    sequence(:url) {|i| "example#{i}.com" }
+    sequence(:category) {|i| "category#{i}" }
+
+    association :provider, factory: :online_resource_provider
+
+    factory(:online_identity) do
+      sequence(:identity) {|i| "identity#{i}"}
+    end
   end
 end
 

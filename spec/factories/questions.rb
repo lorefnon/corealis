@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :question do
-    
+    sequence(:title) {|i| "question#{i}" }
+    sequence(:description) {|i| "description#{i}" }
+    creator
   end
 end
 

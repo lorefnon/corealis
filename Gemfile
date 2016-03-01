@@ -50,7 +50,6 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-stack_explorer'
   gem 'pry-byebug'
-  gem 'web-console', '~> 3.0'
 end
 
 group :development do
@@ -61,4 +60,5 @@ group :development do
   gem 'flamegraph'
   gem 'bullet'
   gem 'letter_opener'
+  gem 'web-console', '~> 3.0'
 end

@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :online_resource_applicant_associator do
-    
+    applicant
+    online_resource
   end
 end
 

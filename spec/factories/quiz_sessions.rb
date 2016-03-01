@@ -1,6 +1,9 @@
 FactoryGirl.define do
   factory :quiz_session do
-    
+    quiz
+    invitation
+    interviewee
+    interviewer
   end
 end
 

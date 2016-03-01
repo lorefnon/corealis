@@ -1,6 +1,8 @@
 FactoryGirl.define do
-  factory :applicant do
-    
+  factory :applicant, aliases: [:interviewee, :invitee] do
+    creator
+    sequence(:name) {|i| "applicant#{i}"}
+    email { "#{name}@corealis.in" }
   end
 end
 
