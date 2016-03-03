@@ -8,6 +8,8 @@ class Question < ApplicationRecord
   validates :title, presence: true
   slugify :title
 
+  validates :creator_id, presence: true
+
 end
 
 # == Schema Information

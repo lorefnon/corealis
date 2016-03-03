@@ -8,6 +8,23 @@ class Answer < ApplicationRecord
 
   scope :canonical, -> { where canonical: true }
 
+  validates :question_id,
+            :answerer_id,
+            :answerer_type,
+            :canonical,
+            presence: true
+
+  validates :canonical,
+            inclusion: { in: [false] },
+            if: -> { answerer_type == 'Applicant' }
+
+  validates :answerer_type,
+            inclusion: { in: %w[Applicant AdminUser] }
+
+  validates :quiz_session_id,
+            presence: true,
+            if: -> { answerer_type == 'Applicant' }
+
 end
 
 # == Schema Information

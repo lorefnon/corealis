@@ -1,7 +1,14 @@
 class QuizQuestionAssociator < ApplicationRecord
+
   belongs_to :question
   belongs_to :quiz
   belongs_to :associator, class_name: 'AdminUser'
+
+  validates :question_id,
+            :quiz_id,
+            :associator_id,
+            presence: true
+
 end
 
 # == Schema Information

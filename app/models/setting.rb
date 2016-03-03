@@ -2,6 +2,8 @@ class Setting < ApplicationRecord
 
   has_paper_trail
 
+  validates :key, presence: true
+
   def self.[](key)
     where(key: key).first.try(:value)
   end

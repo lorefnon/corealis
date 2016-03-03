@@ -19,6 +19,12 @@ class Invitation < ApplicationRecord
   before_create :assign_token
   after_create :dispatch_notification
 
+  validates :invitor_id,
+            :invitee_id,
+            :quiz_id,
+            :status,
+            presence: true
+
   private
 
   def dispatch_notification

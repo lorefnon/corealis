@@ -1,5 +1,9 @@
 class OnlineResource < ApplicationRecord
+
   belongs_to :provider, class_name: 'OnlineResourceProvider'
+
+  validates :url, presence: true
+
 end
 
 # == Schema Information

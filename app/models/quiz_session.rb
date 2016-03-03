@@ -16,6 +16,8 @@ class QuizSession < ApplicationRecord
 
   before_validation :deduce_associations_from_interview
 
+  validates :quiz_id, presence: true
+
   private
 
   def deduce_associations_from_interview

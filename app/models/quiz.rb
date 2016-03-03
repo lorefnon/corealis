@@ -10,6 +10,7 @@ class Quiz < ApplicationRecord
   belongs_to :creator, class_name: 'AdminUser'
 
   validates :title, presence: true
+  validates :creator_id, presence: true
   slugify :title
 
   def associate_questions_through(associator:, question_id:)
