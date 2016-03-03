@@ -53,5 +53,7 @@ module Corealis
       app/decorators/concerns
     ]
 
+    config.browserify_rails.commandline_options = "-t babelify"
+
   end
 end
