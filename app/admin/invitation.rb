@@ -4,7 +4,17 @@ ActiveAdmin.register Invitation do
   permit_params :invitor_id, :status, :valid_from, :valid_till, :duration, :quiz_id, :invitee_id,
                 invitee_attributes: [:name, :username, :email, :phone_number, :creator_id]
 
+  scope :active
+
   decorate_with InvitationDecorator
+
+  filter :status,
+         collection: -> { Invitation.statuses },
+         as: :check_boxes
+  filter :invitor_email_eq, label: 'Invitor Email'
+  filter :invitee_email_eq, label: 'Invitee Email'
+  filter :invitee_experience_eq, label: 'Invitee Experience'
+  filter :invitee_phone_number_eq, label: 'Invitee Phone Number'
 
   controller do
 
