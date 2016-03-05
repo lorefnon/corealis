@@ -1,21 +1,72 @@
-// SASS variable overrides must be declared before loading up Active Admin's styles.
-//
-// To view the variables that Active Admin provides, take a look at
-// `app/assets/stylesheets/active_admin/mixins/_variables.scss` in the
-// Active Admin source.
-//
-// For example, to change the sidebar width:
-// $sidebar-width: 242px;
+$primary-color: #1D4F83;
+$secondary-color: #F0F7FC;
+$page-header-text-color: #55AEE3;
+$secondary-gradient-start: #DFF2FF;
+$secondary-gradient-stop: #DFF2FF;
 
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
 
-// Overriding any non-variable SASS must be done after the fact.
-// For example, to change the default status-tag color:
-//
-//   .status_tag { background: #6090DB; }
+#header {
+    background-image: none;
+}
+
+* {
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
 
 #footer {
     display: none;
+}
+
+.section > h3, .panel > h3 {
+    border: none;
+    border-bottom: 1px solid #236BB7;
+}
+
+.panel {
+    background: #F0F7FC;
+}
+
+#title_bar .action_items span.action_item > a, #title_bar .action_items span.action_item > .dropdown_menu > a  {
+    background: #9EC900;
+    color: #D8EF74;
+    border: 1px solid #D8EF74;
+}
+#title_bar .action_items span.action_item > a:hover, #title_bar .action_items span.action_item > .dropdown_menu > a:hover  {
+    color: #9EC900;
+    background: #D8EF74;
+    border: 1px solid #D8EF74;
+}
+
+.panel_contents table tr.odd td {
+    background: #DFEAF6;
+}
+
+table.index_table tr.even td {
+    background: rgba(206, 225, 244, 0.26);
+}
+
+form input[type=submit], form input[type=button], form button {
+    background: #2b75c2;
+    border: none;
+}
+
+#title_bar {
+    border-bottom: #99CCEE 1px solid;
+}
+
+table.index_table th {
+    border: #99CCEE 1px solid;
+}
+
+a, a:link, a:visited {
+               color: #1E5B9A;
+               text-decoration: none;
+           }
+
+a:hover {
+    border-bottom: 1px dashed #1E5B9A;
 }
