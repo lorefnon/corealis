@@ -8,6 +8,9 @@ class QuizSession < ApplicationRecord
   belongs_to :interviewee, class_name: 'Applicant'
   has_many :questions, through: :quiz
   has_many :answers
+  has_many :submitted_questions,
+           through: :answers,
+           source: :question
 
   scope :recent, -> { where created_at: (DateTime.now - 10.minutes)..(DateTime.now) }
   scope :active, -> { where expired_at: nil }
@@ -25,6 +28,10 @@ class QuizSession < ApplicationRecord
     self.interviewer ||= invitation.invitor
     self.interviewee ||= invitation.invitee
     self.quiz ||= invitation.quiz
+  end
+
+  def next_question
+
   end
 
 end

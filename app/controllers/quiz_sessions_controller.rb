@@ -11,6 +11,10 @@ class QuizSessionsController < ApplicationController
   end
 
   def show
+    @submitted_questions = @quiz_session.submitted_questions
+    if @submitted_questions.blank?
+      @next_question = @quiz_session.next_question
+    end
   end
 
   private
