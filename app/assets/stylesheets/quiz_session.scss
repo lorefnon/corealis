@@ -1,11 +1,8 @@
 //= require codemirror
 //= require codemirror/themes/night
 //= require normalize-rails
-//= require ./utils
-
-body * {
-    font-family: arial;
-}
+//= require ./common/page
+//= require ./common/utils
 
 .page-container {
     position: absolute;

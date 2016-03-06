@@ -1,4 +1,12 @@
-%h1 #{Setting['organization.name']}
-%h2 is using Corealis to manage its online interviews
+- content_for :body do
 
-%p #{Setting['organization.description']}
+  .page-container
+
+    = render 'devise_notifications'
+
+    .header-container
+      %h1 #{Setting['organization.name']}
+      %h2 is using Corealis to manage its online interviews
+
+    .description-container.h-sym-pad
+      %p #{Setting['organization.description']}

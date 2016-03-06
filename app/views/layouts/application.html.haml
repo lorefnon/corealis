@@ -13,6 +13,5 @@
     - if content_for? :body
       = yield :body
     - else
-      %p.notice= notice
-      %p.alert= alert
+      = render 'devise_notifications'
       = yield
