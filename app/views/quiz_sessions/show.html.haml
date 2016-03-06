@@ -18,6 +18,8 @@
           = f.hidden_field :quiz_session_id
           = f.hidden_field :question_id
           .answer-details-container
-            = f.text_area :details, placeholder: 'Enter your answer here'
+            = f.trix_editor :details, placeholder: 'Enter your answer here'
           .answer-footer
-            = f.submit
+            .progress-status
+              You have attempted #{@quiz_session.submitted_questions_count} of #{@quiz_session.questions_count} questions.
+            = f.submit 'Submit', class: 'ans-submit-btn'

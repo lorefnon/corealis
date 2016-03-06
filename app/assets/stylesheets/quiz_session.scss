@@ -1,6 +1,5 @@
-//= require codemirror
-//= require codemirror/themes/night
 //= require normalize-rails
+//= require trix
 //= require ./common/page
 //= require ./common/utils
 
@@ -21,6 +20,7 @@
     width: 300px;
     background: #DEF2FF;
     border-right: 2px solid #195A9C;
+    overflow: auto;
 }
 
 .nav-container {
@@ -55,6 +55,7 @@
     right: 0;
     top: 0;
     height: 250px;
+    overflow: auto;
 }
 
 .answer-container {
@@ -63,6 +64,7 @@
     right: 0;
     bottom: 0;
     top: 254px;
+    overflow: auto;
 }
 
 .answer-details-container {
@@ -71,6 +73,7 @@
     right: 0;
     top: 0;
     bottom: 40px;
+    overflow: auto;
 }
 
 .answer-details-container textarea {
@@ -95,4 +98,14 @@
     font-size: 1.2em;
     font-weight: 100;
     line-height: 1.5em;
+}
+
+.answer-details-container {
+    padding-top: 8px;
+    overflow: auto;
+}
+
+.answer-details-container > trix-toolbar {
+    margin-left: 8px;
+    text-align: center;
 }

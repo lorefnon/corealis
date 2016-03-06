@@ -11,5 +11,6 @@
  * file per style scope.
  *
  *= require_tree ./common
+ *= require trix
  *= require_self
  */

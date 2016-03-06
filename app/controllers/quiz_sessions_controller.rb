@@ -11,15 +11,9 @@ class QuizSessionsController < ApplicationController
   end
 
   def show
-    @submitted_questions = @quiz_session.submitted_questions
     @show_welcome_popup = params[:first_visit]
-    if @submitted_questions.blank?
-      @current_question = @quiz_session.next_question.decorate
-      @current_answer = @current_question.answers.where(quiz_session: @quiz_session).build
-    else
-      @current_answer = @quiz_session.answers.includes(:question).last
-      @current_question = @current_answer.question.decorate
-    end
+    @current_question = @quiz_session.current_question
+    @current_answer = @quiz_session.current_answer
   end
 
   private
