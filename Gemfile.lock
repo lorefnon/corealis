@@ -121,6 +121,8 @@ GEM
     clearwater (0.3.1)
       opal (~> 0.7)
       opal-browser
+    codemirror-rails (5.11)
+      railties (>= 3.0, < 5)
     coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -392,6 +394,7 @@ DEPENDENCIES
   capistrano-rails
   capybara
   clearwater
+  codemirror-rails
   database_cleaner
   devise
   draper (~> 1.3)

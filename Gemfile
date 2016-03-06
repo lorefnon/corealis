@@ -37,6 +37,7 @@ gem 'que-web'
 gem 'babosa'
 gem 'abstract_method'
 gem 'activerecord-immutable'
+gem 'codemirror-rails'
 
 # Use Unicorn as the app server
 gem 'unicorn'

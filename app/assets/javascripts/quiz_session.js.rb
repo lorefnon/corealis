@@ -1,5 +1,6 @@
 require_relative './application'
 require 'clearwater'
+require 'codemirror'
 
 router = Clearwater::Router.new do
   route 'question'
