@@ -10,6 +10,9 @@ class QuizSessionsController < ApplicationController
     redirect_to_quiz_session
   end
 
+  def show
+  end
+
   private
 
   def ensure_token_matches

@@ -1,3 +1,7 @@
+body * {
+    font-family: arial;
+}
+
 .page-container {
     position: absolute;
     top: 0;
@@ -12,13 +16,48 @@
     top: 0;
     bottom: 0;
     width: 300px;
-    background: #ddd;
+    background: #DEF2FF;
+    border-right: 2px solid #195A9C;
+}
+
+.nav-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    background: #1E5B9A;
+}
+
+.question-list-container {
+    position: absolute;
+    left: 50px;
+    top: 0;
+    bottom: 0;
+    right: 0;
 }
 
 .qs-body {
     position: absolute;
-    left: 300px;
+    left: 302px;
     bottom: 0;
     right: 0;
     top: 0;
+}
+
+.question-container {
+    border-bottom: 4px solid #DDF2FF;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 250px;
+}
+
+.answer-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 104px;
 }
