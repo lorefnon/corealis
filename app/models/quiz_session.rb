@@ -22,6 +22,14 @@ class QuizSession < ApplicationRecord
 
   validates :quiz_id, presence: true
 
+  def next_question
+    quiz
+      .questions
+      .where('questions.id not in (?)', submitted_questions.pluck(:id))
+      .order('quiz_question_associators.ordering')
+      .first
+  end
+
   private
 
   def deduce_associations_from_interview
@@ -29,14 +37,6 @@ class QuizSession < ApplicationRecord
     self.interviewer ||= invitation.invitor
     self.interviewee ||= invitation.invitee
     self.quiz ||= invitation.quiz
-  end
-
-  def next_question
-    quiz
-      .questions
-      .where('id not in (?)', submitted_questions.pluck(:id))
-      .order(:ordering)
-      .first
   end
 
 end
