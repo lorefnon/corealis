@@ -6,7 +6,10 @@
 
     .header-container
       %h1 #{Setting['organization.name']}
-      %h2 is using Corealis to manage its online interviews
+      %h2
+        is using
+        = link_to 'Corealis', "https://github.com/lorefnon/corealis"
+        to manage its online interviews
 
     .description-container.h-sym-pad
       %p #{Setting['organization.description']}
