@@ -13,7 +13,10 @@ class QuizSessionsController < ApplicationController
   def show
     @submitted_questions = @quiz_session.submitted_questions
     if @submitted_questions.blank?
-      @next_question = @quiz_session.next_question
+      @current_question = @quiz_session.next_question
+    else
+      @current_answer = @quiz_session.answers.includes(:question).last
+      @current_question = @current_answer.question.decorate
     end
   end
 

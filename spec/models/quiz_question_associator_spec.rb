@@ -14,6 +14,7 @@ end
 #  associator_id :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  ordering      :integer
 #
 # Indexes
 #

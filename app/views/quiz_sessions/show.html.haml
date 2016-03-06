@@ -10,4 +10,6 @@
         %h1 Questions
     .qs-body
       .question-container
+        - if @current_question
+          = @current_question.rendered_description
       .answer-container

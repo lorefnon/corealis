@@ -9,6 +9,22 @@ class QuizQuestionAssociator < ApplicationRecord
             :associator_id,
             presence: true
 
+  validates :ordering,
+            uniqueness: { scope: :quiz_id },
+            presence: true
+
+  before_validation :assign_ordering
+
+  private
+
+  def assign_ordering
+    self.ordering ||= max_ordering_for_quiz + 1
+  end
+
+  def max_ordering_for_quiz
+    quiz.quiz_question_associators.pluck('MAX(ordering)').first || 0
+  end
+
 end
 
 # == Schema Information
@@ -21,6 +37,7 @@ end
 #  associator_id :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  ordering      :integer
 #
 # Indexes
 #
