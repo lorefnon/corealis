@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   devise_for :admin_users, ActiveAdmin::Devise.config
-  resources :quiz_sessions
+  resources :quiz_sessions do
+    resources :answers
+  end
 
   get 'invitations/:invitation_id/quiz/session', to: 'quiz_sessions#new', as: :interview_session_initiation
 

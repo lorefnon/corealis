@@ -14,3 +14,10 @@
           .section-title= @current_question.title
           = @current_question.rendered_description
       .answer-container
+        = form_for @current_answer, url: quiz_session_answers_path(@quiz_session) do |f|
+          = f.hidden_field :quiz_session_id
+          = f.hidden_field :question_id
+          .answer-details-container
+            = f.text_area :details, placeholder: 'Enter your answer here'
+          .answer-footer
+            = f.submit

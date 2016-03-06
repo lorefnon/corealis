@@ -25,6 +25,16 @@ class Answer < ApplicationRecord
             presence: true,
             if: -> { answerer_type == 'Applicant' }
 
+  before_validation :deduce_applicant_from_quiz_session
+
+  private
+
+  def deduce_answerer_from_quiz_session
+    return if answerer
+    return unless quiz_session
+    self.answerer = quiz_session.interviewee
+  end
+
 end
 
 # == Schema Information

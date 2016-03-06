@@ -7,8 +7,7 @@ class QuizSession < ApplicationRecord
   belongs_to :interviewer, class_name: 'AdminUser'
   belongs_to :interviewee, class_name: 'Applicant'
   has_many :questions, through: :quiz
-  has_many :answers,
-           -> { order(:created_at) }
+  has_many :answers, -> { order(:created_at) }
   has_many :submitted_questions,
            through: :answers,
            source: :question
@@ -23,11 +22,11 @@ class QuizSession < ApplicationRecord
   validates :quiz_id, presence: true
 
   def next_question
-    quiz
-      .questions
-      .where('questions.id not in (?)', submitted_questions.pluck(:id))
-      .order('quiz_question_associators.ordering')
-      .first
+    if submitted_questions.count == 0
+      questions
+    else
+      questions.where('questions.id not in (?)', submitted_questions.pluck(:id))
+    end.first
   end
 
   private

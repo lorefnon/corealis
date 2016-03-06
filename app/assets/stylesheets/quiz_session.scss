@@ -62,7 +62,29 @@
     left: 0;
     right: 0;
     bottom: 0;
-    top: 104px;
+    top: 254px;
+}
+
+.answer-details-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 40px;
+}
+
+.answer-details-container textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.answer-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 40px;
 }
 
 .section-title {
