@@ -1,5 +1,7 @@
 //= require codemirror
 //= require codemirror/themes/night
+//= require normalize-rails
+//= require ./utils
 
 body * {
     font-family: arial;
@@ -63,4 +65,14 @@ body * {
     right: 0;
     bottom: 0;
     top: 104px;
+}
+
+.section-title {
+    background: #87D0FD;
+    margin: 0;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 100;
+    line-height: 1.5em;
 }

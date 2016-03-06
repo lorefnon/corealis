@@ -38,6 +38,7 @@ gem 'babosa'
 gem 'abstract_method'
 gem 'activerecord-immutable'
 gem 'codemirror-rails'
+gem 'normalize-rails'
 
 # Use Unicorn as the app server
 gem 'unicorn'

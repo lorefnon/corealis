@@ -7,11 +7,12 @@ class QuizSessionsController < ApplicationController
 
   def new
     create_quiz_session_for_interview
-    redirect_to_quiz_session
+    redirect_to_quiz_session first_visit: true
   end
 
   def show
     @submitted_questions = @quiz_session.submitted_questions
+    @show_welcome_popup = params[:first_visit]
     if @submitted_questions.blank?
       @current_question = @quiz_session.next_question
     else
@@ -38,8 +39,8 @@ class QuizSessionsController < ApplicationController
     @quiz_session = @invitation.quiz_sessions.create!
   end
 
-  def redirect_to_quiz_session
-    redirect_to quiz_session_path(@quiz_session, token: params[:token])
+  def redirect_to_quiz_session(options={})
+    redirect_to quiz_session_path(@quiz_session, options.merge(token: params[:token]))
   end
 
   def load_quiz_session

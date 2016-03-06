@@ -7,9 +7,10 @@
     .sidebar
       .nav-container
       .question-list-container
-        %h1 Questions
+        .section-title.centered Questions
     .qs-body
       .question-container
         - if @current_question
+          .section-title= @current_question.title
           = @current_question.rendered_description
       .answer-container
