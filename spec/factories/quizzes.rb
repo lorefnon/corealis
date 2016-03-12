@@ -3,6 +3,23 @@ FactoryGirl.define do
     creator
     sequence(:title) {|i| "quiz#{i}" }
     sequence(:duration){|i| i }
+
+    trait :having_many_questions do
+      after(:create) do |quiz|
+        100.times do
+          quiz.questions << create(:question)
+        end
+      end
+    end
+
+    trait :having_answers do
+      after(:create) do |quiz|
+        quiz.questions.each do |question|
+          question.answers << create(:answer)
+        end
+      end
+    end
+
   end
 end
 

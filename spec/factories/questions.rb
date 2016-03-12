@@ -3,6 +3,18 @@ FactoryGirl.define do
     sequence(:title) {|i| "question#{i}" }
     sequence(:description) {|i| "description#{i}" }
     creator
+
+    trait :having_answers do
+
+      transient do
+        answers_count 10
+      end
+
+      after(:create) do |question, evaluator|
+        create_list :answer, evaluator.answers_count, question: question
+      end
+    end
+
   end
 end
 
