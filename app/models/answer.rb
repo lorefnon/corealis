@@ -11,7 +11,6 @@ class Answer < ApplicationRecord
   validates :question_id,
             :answerer_id,
             :answerer_type,
-            :canonical,
             presence: true
 
   validates :canonical,
@@ -25,7 +24,7 @@ class Answer < ApplicationRecord
             presence: true,
             if: -> { answerer_type == 'Applicant' }
 
-  before_validation :deduce_applicant_from_quiz_session
+  before_validation :deduce_answerer_from_quiz_session
 
   private
 
