@@ -25,13 +25,14 @@ class QuizSessionsController < ApplicationController
   end
 
   def use_existing_session
-    if @quiz_session = @invitation.quiz_sessions.recent.first
+    if quiz_session = @invitation.quiz_sessions.recent.first
+      @quiz_session = quiz_session.decorate
       redirect_to_quiz_session
     end
   end
 
   def create_quiz_session_for_interview
-    @quiz_session = @invitation.quiz_sessions.create!
+    @quiz_session = @invitation.quiz_sessions.create!.decorate
   end
 
   def redirect_to_quiz_session(options={})
@@ -39,7 +40,7 @@ class QuizSessionsController < ApplicationController
   end
 
   def load_quiz_session
-    @quiz_session = QuizSession.find params[:id]
+    @quiz_session = QuizSession.find(params[:id]).decorate
     @invitation = @quiz_session.invitation
     @applicant = @quiz_session.interviewee
   end

@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_access_violation
-    redirect_to root_path, flash: { error: I18n.t('error.access_violation') }
+    redirect_to root_path, flash: { error: I18n.t('errors.access_violation') }
   end
 
 end
