@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   resources :quiz_sessions do
-    resources :answers
+    resources :answers, controller: 'quiz_sessions/answers'
   end
 
   get 'invitations/:invitation_id/quiz/session', to: 'quiz_sessions#new', as: :interview_session_initiation
