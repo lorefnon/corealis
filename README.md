@@ -1,6 +1,6 @@
 # Corealis
 
-Minimal Rails application for managing web based programming interviews,
+Minimal Rails application for managing and orchestrating web based programming interviews.
 
 ## Status
 
@@ -8,7 +8,7 @@ Work in Progress
 
 ## Setting up development environment
 
-- PostgreSQL is the only supported database (Default settings work out of the box with [Postgres.app](http://postgresapp.com/))
+- PostgreSQL is the only supported database currently (Default settings work out of the box with [Postgres.app](http://postgresapp.com/))
 
 ## Credits
 
