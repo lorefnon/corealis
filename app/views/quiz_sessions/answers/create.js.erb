@@ -1,7 +1,0 @@
-<% if @current_question %>
-  $('.question-container .section-title').html('<%= @current_question.title %>')
-  $('.question-container .section-description').html('<%= @current_question.rendered_description %>')
-  $('.question-container .answer-container').html('<%= render 'quiz_sessions/answers/edit' %>')
-<% else %>
-  $('.qs-body').html('<%= render 'quiz_sessions/completion' %>')
-<% end %>

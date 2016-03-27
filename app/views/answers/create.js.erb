@@ -1,0 +1,6 @@
+<% if @current_question %>
+  $('.question-container').html('<%= j render 'quiz_sessions/question_description', question: @current_question %>')
+  $('.answer-container').html('<%= j render 'answers/edit', answer: @current_answer, quiz_session: @quiz_session %>')
+<% else %>
+  $('.qs-body').html('<%= render 'quiz_sessions/completion' %>')
+<% end %>

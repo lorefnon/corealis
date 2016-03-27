@@ -1,9 +1,9 @@
-= form_for @current_answer, url: answers_path, remote: true do |f|
+= form_for answer, url: answers_path, remote: true do |f|
   = f.hidden_field :quiz_session_id
   = f.hidden_field :question_id
   .answer-details-container
     = f.trix_editor :details, placeholder: 'Enter your answer here'
   .answer-footer
     .progress-status
-      You have attempted #{@quiz_session.submitted_questions_count} of #{@quiz_session.questions_count} questions.
+      You have attempted #{quiz_session.submitted_questions_count} of #{quiz_session.questions_count} questions.
     = f.submit 'Submit', class: 'ans-submit-btn'

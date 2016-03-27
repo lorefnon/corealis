@@ -7,14 +7,14 @@
     .sidebar
       .nav-container
       .question-list-container
-        .section-title.centered Questions
+        .section-title.centered Answered Questions
+        %ol.submitted-question-list
+          - @quiz_session.submitted_questions.each do |question|
+            %li
+              %h2.question-title= question.title
     .qs-body
       .question-container
         - if @current_question
-          .section-title
-            Current Question
-          .section-description
-            %h1= @current_question.title
-            %div= @current_question.rendered_description
+          = render 'quiz_sessions/question_description', question: @current_question
       .answer-container
-        = render 'quiz_sessions/answers/edit'
+        = render 'answers/edit', answer: @current_answer, quiz_session: @quiz_session

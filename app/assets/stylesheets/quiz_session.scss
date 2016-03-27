@@ -38,6 +38,7 @@
     top: 0;
     bottom: 0;
     right: 0;
+    overflow: auto;
 }
 
 .qs-body {
@@ -132,4 +133,11 @@ trix-editor {
 .answer-details-container > trix-toolbar {
     margin-left: 8px;
     text-align: center;
+}
+
+.submitted-question-list {
+    .question-title {
+        font-size: 1em;
+        padding-right: 1em;
+    }
 }
