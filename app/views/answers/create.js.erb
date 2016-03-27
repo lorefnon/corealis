@@ -1,6 +1,7 @@
 <% if @current_question %>
+  $('.submitted-question-list').html('<%= j render 'quiz_sessions/submitted_question_list', quiz_session: @quiz_session %>')
   $('.question-container').html('<%= j render 'quiz_sessions/question_description', question: @current_question %>')
   $('.answer-container').html('<%= j render 'answers/edit', answer: @current_answer, quiz_session: @quiz_session %>')
 <% else %>
-  $('.qs-body').html('<%= render 'quiz_sessions/completion' %>')
+  $('.qs-body').html('<%= j render 'quiz_sessions/completion' %>')
 <% end %>

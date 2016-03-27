@@ -9,9 +9,7 @@
       .question-list-container
         .section-title.centered Answered Questions
         %ol.submitted-question-list
-          - @quiz_session.submitted_questions.each do |question|
-            %li
-              %h2.question-title= question.title
+          = render 'quiz_sessions/submitted_question_list', quiz_session: @quiz_session
     .qs-body
       .question-container
         - if @current_question

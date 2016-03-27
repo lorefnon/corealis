@@ -32,7 +32,6 @@ class Answer < ApplicationRecord
     return if answerer
     return unless quiz_session
     self.answerer = quiz_session.interviewee
-    binding.pry
   end
 
 end
