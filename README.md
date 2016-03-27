@@ -2,6 +2,8 @@
 
 Minimal Rails application for managing and orchestrating web based programming interviews.
 
+![Screenshot](https://raw.githubusercontent.com/lorefnon/corealis/master/docs/corealis_quiz_mgmt_screenshot.png)
+
 ## Status
 
 Work in Progress
