@@ -1,4 +1,4 @@
-= form_for @current_answer, url: quiz_session_answers_path(@quiz_session) do |f|
+= form_for @current_answer, url: answers_path, remote: true do |f|
   = f.hidden_field :quiz_session_id
   = f.hidden_field :question_id
   .answer-details-container

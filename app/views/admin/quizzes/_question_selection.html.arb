@@ -1,12 +1,13 @@
 panel title do
-  table_for questions do
+  table_for associators do
     column "Select" do |it|
-      check_box_tag "question_id[#{it.id}]", it.id, true
+      check_box_tag "question_id[#{it.id}]", it.question.id, true
     end
-    column :id do |it|
-      link_to it.id, admin_question_path(it)
-    end
-    column :title
+    column(:id){|it| it.question.id  }
+    column(:ordering){|it| it.ordering }
+    column(:title){|it| it.question.title }
+    column(:view){|it| link_to 'View', admin_question_path(it.question) }
+    column(:edit){|it| link_to 'Edit', edit_admin_question_path(it.question) }
   end
 
   div do

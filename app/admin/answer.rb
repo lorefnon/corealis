@@ -41,11 +41,11 @@ end
 #  question_id     :integer          not null
 #  details         :text
 #  answerer_id     :integer          not null
-#  answerer_type   :integer          not null
+#  answerer_type   :string           not null
 #  quiz_session_id :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  canonical       :boolean
+#  canonical       :boolean          default(FALSE), not null
 #
 # Indexes
 #

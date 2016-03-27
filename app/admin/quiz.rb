@@ -61,8 +61,12 @@ ActiveAdmin.register Quiz do
     end
   end
 
+  action_item :add_question, only: :show do
+    link_to 'Add Question', new_admin_question_path('quiz_id' => params[:id])
+  end
+
   action_item :view_invitations, only: :show do
-    link_to 'Invitations', admin_invitations_path('q[quiz_id_eq]' => params[:id])
+    link_to 'View Invitations', admin_invitations_path('q[quiz_id_eq]' => params[:id])
   end
 
   collection_action :associate_questions, method: :post do

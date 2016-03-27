@@ -67,6 +67,10 @@
     overflow: auto;
 }
 
+trix-editor {
+    border: none;
+}
+
 .answer-details-container {
     position: absolute;
     left: 0;
@@ -88,6 +92,22 @@
     right: 0;
     bottom: 0;
     height: 40px;
+
+    .progress-status {
+        float: right;
+        color: #ddd;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+
+    .ans-submit-btn {
+        margin-left: 10px;
+        border-radius: 20px;
+        background: #195A9C;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+    }
 }
 
 .section-title {
@@ -98,6 +118,10 @@
     font-size: 1.2em;
     font-weight: 100;
     line-height: 1.5em;
+}
+
+.section-description {
+    padding: 10px;
 }
 
 .answer-details-container {

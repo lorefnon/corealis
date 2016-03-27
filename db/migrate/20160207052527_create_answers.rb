@@ -4,7 +4,7 @@ class CreateAnswers < ActiveRecord::Migration
       t.integer :question_id, null: false
       t.text :details
       t.integer :answerer_id, null: false
-      t.integer :answerer_type, null: false
+      t.string :answerer_type, null: false
       t.integer :quiz_session_id
       t.timestamps null: false
     end

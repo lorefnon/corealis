@@ -22,7 +22,11 @@ class QuizQuestionAssociator < ApplicationRecord
   end
 
   def max_ordering_for_quiz
-    quiz.quiz_question_associators.pluck('MAX(ordering)').first || 0
+    quiz
+      .quiz_question_associators
+      .reorder(false)
+      .pluck('MAX(ordering)')
+      .first || 0
   end
 
 end

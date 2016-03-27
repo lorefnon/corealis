@@ -11,7 +11,10 @@
     .qs-body
       .question-container
         - if @current_question
-          .section-title= @current_question.title
-          .section-description= @current_question.rendered_description
+          .section-title
+            Current Question
+          .section-description
+            %h1= @current_question.title
+            %div= @current_question.rendered_description
       .answer-container
         = render 'quiz_sessions/answers/edit'

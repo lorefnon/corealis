@@ -27,7 +27,7 @@ module SlugSupport
   end
 
   def slug_for(attribute)
-    send(attribute).to_slug.to_s
+    send(attribute).to_slug.normalize.to_s
   end
 
 end

@@ -1,6 +1,7 @@
 class QuizSession < ApplicationRecord
 
   has_paper_trail
+  extend Memoist
 
   belongs_to :quiz
   belongs_to :invitation
@@ -28,6 +29,18 @@ class QuizSession < ApplicationRecord
       questions.where('questions.id not in (?)', submitted_questions.pluck(:id))
     end.first
   end
+
+  def submitted_questions_count
+    submitted_questions.count
+  end
+
+  memoize :submitted_questions_count
+
+  def questions_count
+    questions.count
+  end
+
+  memoize :questions_count
 
   private
 

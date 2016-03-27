@@ -12,8 +12,10 @@ class QuizSessionsController < ApplicationController
 
   def show
     @show_welcome_popup = params[:first_visit]
-    @current_question = @quiz_session.current_question
-    @current_answer = @quiz_session.current_answer
+    if next_question = @quiz_session.next_question
+      @current_question = next_question.decorate
+      @current_answer = @current_question.answers.build(quiz_session_id: @quiz_session.id)
+    end
   end
 
   private
@@ -25,14 +27,13 @@ class QuizSessionsController < ApplicationController
   end
 
   def use_existing_session
-    if quiz_session = @invitation.quiz_sessions.recent.first
-      @quiz_session = quiz_session.decorate
+    if @quiz_session = @invitation.quiz_sessions.recent.first
       redirect_to_quiz_session
     end
   end
 
   def create_quiz_session_for_interview
-    @quiz_session = @invitation.quiz_sessions.create!.decorate
+    @quiz_session = @invitation.quiz_sessions.create!
   end
 
   def redirect_to_quiz_session(options={})
@@ -40,7 +41,7 @@ class QuizSessionsController < ApplicationController
   end
 
   def load_quiz_session
-    @quiz_session = QuizSession.find(params[:id]).decorate
+    @quiz_session = QuizSession.find(params[:id])
     @invitation = @quiz_session.invitation
     @applicant = @quiz_session.interviewee
   end

@@ -1,2 +1,2 @@
 = form_tag remove_questions_admin_quiz_path(quiz), method: :delete do
-  = render 'admin/quizzes/question_selection', questions: quiz.questions, title: "Questions", cta: "Remove Selected"
+  = render 'admin/quizzes/question_selection', associators: quiz.quiz_question_associators.includes(:question), title: "Questions", cta: "Remove Selected"

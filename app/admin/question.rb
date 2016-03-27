@@ -10,6 +10,18 @@ ActiveAdmin.register Question do
 
   permit_params :id, :title, :description, :creator, :creator_id
 
+  controller do
+    after_create :associate_quiz
+
+    def associate_quiz(resource)
+      QuizQuestionAssociator.create!(
+        question: resource,
+        quiz_id: params[:quiz_id],
+        associator: current_admin_user
+      )
+    end
+  end
+
   index do
     selectable_column
     column :id
@@ -22,6 +34,11 @@ ActiveAdmin.register Question do
 
   form do |f|
     inputs 'Question' do
+      if params[:quiz_id]
+        li class: 'hidden input' do
+          hidden_field_tag :quiz_id, params[:quiz_id]
+        end
+      end
       input :title
       input :description, as: :markdown
       render 'admin/creator_form_entry', form: f
