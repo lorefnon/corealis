@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327191953) do
+ActiveRecord::Schema.define(version: 20160327201140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20160327191953) do
     t.boolean  "canonical",       default: false, null: false
   end
 
+  add_index "answers", ["id", "question_id", "quiz_session_id"], name: "index_answers_on_id_and_question_id_and_quiz_session_id", unique: true, using: :btree
   add_index "answers", ["question_id", "answerer_id", "answerer_type"], name: "index_answers_on_question_id_and_answerer_id_and_answerer_type", using: :btree
   add_index "answers", ["question_id", "canonical"], name: "index_answers_on_question_id_and_canonical", using: :btree
   add_index "answers", ["quiz_session_id", "question_id"], name: "index_answers_on_quiz_session_id_and_question_id", using: :btree

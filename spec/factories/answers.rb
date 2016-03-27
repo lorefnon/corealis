@@ -34,6 +34,7 @@ end
 #
 # Indexes
 #
+#  index_answers_on_id_and_question_id_and_quiz_session_id         (id,question_id,quiz_session_id) UNIQUE
 #  index_answers_on_question_id_and_answerer_id_and_answerer_type  (question_id,answerer_id,answerer_type)
 #  index_answers_on_question_id_and_canonical                      (question_id,canonical)
 #  index_answers_on_quiz_session_id_and_question_id                (quiz_session_id,question_id)
