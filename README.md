@@ -1,5 +1,7 @@
 # Corealis
 
+[![Code Climate](https://codeclimate.com/github/lorefnon/corealis/badges/gpa.svg)](https://codeclimate.com/github/lorefnon/corealis) [![Issue Count](https://codeclimate.com/github/lorefnon/corealis/badges/issue_count.svg)](https://codeclimate.com/github/lorefnon/corealis)
+
 Minimal Rails application for managing and orchestrating web based programming interviews.
 
 ![Screenshot](https://raw.githubusercontent.com/lorefnon/corealis/master/docs/corealis_quiz_mgmt_screenshot.png)
