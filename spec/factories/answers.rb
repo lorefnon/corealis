@@ -7,8 +7,8 @@ FactoryGirl.define do
       association :answerer, factory: :admin_user
     end
 
-    trait :answered_by_candidate do
-      association :answerer, factory: :admin_user
+    trait :answered_by_applicant do
+      association :answerer, factory: :applicant
     end
 
     factory :canonical, traits: [:answered_by_admin] do

@@ -1,7 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe AdminUser, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  context 'validations' do
+    it { is_expected.to validate_presence_of :name }
+    it { is_expected.to validate_presence_of :email }
+  end
+
+  context 'modules' do
+    subject { AdminUser }
+    it { is_expected.to include PaperTrail::Model }
+  end
+
 end
 
 # == Schema Information
