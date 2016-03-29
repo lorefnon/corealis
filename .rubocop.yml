@@ -29,3 +29,5 @@ Style/PercentLiteralDelimiters:
     '%w': '[]'
     '%W': '[]'
     '%x': '[]'
+Documentation:
+    Enabled: false
