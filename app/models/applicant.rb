@@ -2,6 +2,10 @@ class Applicant < ApplicationRecord
 
   has_many :online_resource_applicant_associators
   has_many :online_resources, through: :online_resource_applicant_associators
+  has_many :application_submissions
+  has_many :applied_openings,
+    through: :application_submissions,
+    source: :opening
 
   belongs_to :creator, class_name: 'AdminUser'
 
@@ -9,7 +13,9 @@ class Applicant < ApplicationRecord
   validates :creator_id, presence: true
   validates :name, presence: true
 
-  slugify :name, slug_attribute: 'username', allow_override: true
+  slugify :name,
+    slug_attribute: 'username',
+    allow_override: true
 
   validates :creator_id, presence: true
   validates :email, presence: true
