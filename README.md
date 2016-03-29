@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/lorefnon/corealis.png?label=ready&title=Ready)](https://waffle.io/lorefnon/corealis)
 # Corealis
 
 [![Code Climate](https://codeclimate.com/github/lorefnon/corealis/badges/gpa.svg)](https://codeclimate.com/github/lorefnon/corealis) [![Issue Count](https://codeclimate.com/github/lorefnon/corealis/badges/issue_count.svg)](https://codeclimate.com/github/lorefnon/corealis)
