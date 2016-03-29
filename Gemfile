@@ -48,6 +48,19 @@ gem 'unicorn'
 gem 'capistrano-rails', group: :development
 gem 'high_voltage', '~> 2.4.0'
 
+group :development do
+  # Spring speeds up development by keeping your application running in the
+  # background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'quiet_assets'
+  gem 'rack-mini-profiler', require: false
+  gem 'flamegraph'
+  gem 'bullet'
+  gem 'letter_opener'
+  gem 'web-console', '~> 3.0'
+  gem 'rubocop', '~> 0.39.0', require: false
+end
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails'
@@ -57,13 +70,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
 end
 
-group :development do
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'quiet_assets'
-  gem 'rack-mini-profiler', require: false
-  gem 'flamegraph'
-  gem 'bullet'
-  gem 'letter_opener'
-  gem 'web-console', '~> 3.0'
+group :test do
+  gem "codeclimate-test-reporter", require: false
 end
+

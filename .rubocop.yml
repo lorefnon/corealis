@@ -4,8 +4,28 @@ Rails:
 AllCops:
   TargetRubyVersion: 2.3
 
-checks:
-  Rubocop/Lint/AssignmentInCondition:
-    enabled: false
-  Rubocop/Lint/ShadowingOuterLocalVariable:
-    enabled: false
+Lint/AssignmentInCondition:
+  Enabled: false
+Lint/ShadowingOuterLocalVariable:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/EmptyLinesAroundBlockBody:
+  EnforcedStyle: empty_lines
+Style/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines
+Style/EmptyLinesAroundModuleBody:
+  EnforcedStyle: empty_lines
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%':  '[]'
+    '%i': '[]'
+    '%q': '[]'
+    '%Q': '[]'
+    '%r': '[]'
+    '%s': '[]'
+    '%w': '[]'
+    '%W': '[]'
+    '%x': '[]'
