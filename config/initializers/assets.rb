@@ -13,4 +13,5 @@ Rails.application.config.assets.precompile += %w[
   quiz_session.css
   codemirror*
   codemirror/**/*
+  home.css
 ]

@@ -1,3 +1,71 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+//= require normalize-rails
+
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+.home-primary-banner {
+  background-image: asset_url('background_road.jpeg');
+  min-height: 500px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-top: #E7E0A5 4px solid;
+}
+
+.page-inner-container {
+  width: 60%;
+  margin: auto;
+}
+
+.header-container {
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  padding: 20px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  font-weight: 800;
+  text-align: center;
+}
+
+.openings-list-container {
+  background: white;
+  position: relative;
+  margin-top: -50px;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.openings-list-header {
+  background: #DEF2FF;
+  text-align: center;
+  padding: 20px;
+}
+
+.openings-list-inner {
+  padding: 20px;
+}
+
+.description-container {
+  margin: 60px 0;
+  color: silver;
+}
+
+.openings-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.openings-list-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.openings-list-item:last-child {
+  border-bottom: none;
+}
+
+.opening-link {
+  text-decoration: none;
+  color: #1E5B9A;
+  font-weight: 800;
+}

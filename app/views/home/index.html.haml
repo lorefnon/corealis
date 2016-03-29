@@ -1,15 +1,28 @@
+- content_for :head do
+  = stylesheet_link_tag 'home'
+  = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Raleway:400,900,800'
+
 - content_for :body do
 
   .page-container
 
     = render 'devise_notifications'
 
-    .header-container
-      %h1 #{Setting['organization.name']}
-      %h2
-        is using
-        = link_to 'Corealis', "https://github.com/lorefnon/corealis"
-        to manage its online interviews
+    .home-primary-banner
+      .header-container
+        %h1 #{Setting['organization.name']}
 
-    .description-container.h-sym-pad
-      %p #{Setting['organization.description']}
+    .page-inner-container
+      .openings-list-container
+        .openings-list-header
+          %h2 Current Openings
+        .openings-list-inner
+          %ul.openings-list
+            - @openings.each do |opening|
+              %li.openings-list-item
+                = link_to '#', class: 'opening-link' do
+                  %h1= opening.title
+                %p= opening.description
+
+      .description-container.h-sym-pad
+        %p #{Setting['organization.description']}
