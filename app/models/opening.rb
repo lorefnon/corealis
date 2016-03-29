@@ -1,4 +1,15 @@
-class Opening < ActiveRecord::Base
+class Opening < ApplicationRecord
+
+  scope :showcased, -> { where showcased: true }
+  scope :current, -> { where current: true }
+
+  slugify :title
+
+  belongs_to :creator, class_name: 'AdminUser'
+
+  validates :title, :current, :showcased, :creator_id, presence: true
+  validates :creator, presence: true, on: :create
+
 end
 
 # == Schema Information
