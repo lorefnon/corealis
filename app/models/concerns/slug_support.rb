@@ -19,10 +19,10 @@ module SlugSupport
   end
 
   def assign_slug(attribute, options)
-    send slug_setter_for(attribute, options), slug_for(attribute)
+    send slug_setter_for(options), slug_for(attribute)
   end
 
-  def slug_setter_for(attribute, options)
+  def slug_setter_for(options)
     "#{options[:slug_attribute]}="
   end
 
