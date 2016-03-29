@@ -1,13 +1,9 @@
 class HomeController < ApplicationController
 
-  before_action :redirect_to_home_url, only: :index
+  before_action :load_openings, only: :index
 
-  private
-
-  def redirect_to_home_url
-    if home_url = Setting['organization.home_url']
-      redirect_to home_url
-    end
+  def load_openings
+    @openings = Opening.showcased
   end
 
 end
