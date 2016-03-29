@@ -1,4 +1,13 @@
 language: ruby
-rvm:
- - "2.3.0"
 
+rvm:
+  - "2.3.0"
+
+env:
+  - DB=postgresql
+
+script:
+  - RAILS_ENV=test bundle exec rake --trace db:migrate test
+
+before_script:
+  - psql -c 'create database corealis_test' -U postgres
