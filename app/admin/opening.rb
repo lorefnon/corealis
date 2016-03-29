@@ -12,8 +12,18 @@ ActiveAdmin.register Opening do
 
     private
 
-    def associate_creator
+    def associate_creator(resource)
       resource.creator = current_admin_user
+    end
+  end
+
+  form do |f|
+    f.inputs "Opening" do
+      input :title
+      input :description
+      input :current
+      input :showcased
+      actions
     end
   end
 
