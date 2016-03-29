@@ -7,7 +7,7 @@ class TimeSlot < ActiveRecord::Base
   scope :starts_before, -> (ts) { where 'starts_at <= ?', ts }
   scope :ends_before, -> (ts) { where 'ends_at <= ?', ts }
   scope :ends_after, -> (ts) { where 'ends_at >= ?', ts }
-  scope :active, -> (ts) { starts_before(DateTime.now).ends_after(DateTime.now) }
+  scope :active, -> { starts_before(DateTime.now).ends_after(DateTime.now) }
 
 end
 
