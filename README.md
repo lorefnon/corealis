@@ -1,5 +1,7 @@
 # Corealis
 
+[![Join the chat at https://gitter.im/lorefnon/corealis](https://badges.gitter.im/lorefnon/corealis.svg)](https://gitter.im/lorefnon/corealis?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Code Climate](https://codeclimate.com/github/lorefnon/corealis/badges/gpa.svg)](https://codeclimate.com/github/lorefnon/corealis) [![Issue Count](https://codeclimate.com/github/lorefnon/corealis/badges/issue_count.svg)](https://codeclimate.com/github/lorefnon/corealis)
 
 Minimal Rails application for managing and orchestrating web based programming interviews.
