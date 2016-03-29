@@ -20,15 +20,15 @@ ActiveAdmin.register Answer do
 
   form do |f|
     inputs "Question" do
-    if f.object.persisted?
-      input :canonical
-    else
-      input :canonical, as: :hidden, input_html: { value: params[:canonical] }
-      input :question_id, as: :hidden, input_html: { value: params[:question_id] }
+      if f.object.persisted?
+        input :canonical
+      else
+        input :canonical, as: :hidden, input_html: { value: params[:canonical] }
+        input :question_id, as: :hidden, input_html: { value: params[:question_id] }
+      end
+      input :details
+      actions
     end
-    input :details
-    actions
-  end
   end
 
 end
