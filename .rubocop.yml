@@ -7,3 +7,5 @@ AllCops:
 checks:
   Rubocop/Lint/AssignmentInCondition:
     enabled: false
+  Rubocop/Lint/ShadowingOuterLocalVariable:
+    enabled: false
