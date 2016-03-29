@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def user_for_paper_trail
     user = current_admin_user
-    "#{user.class.to_s}:#{user.id}" rescue nil
+    "#{user.class}:#{user.id}" rescue nil
   end
 
   def handle_access_violation
