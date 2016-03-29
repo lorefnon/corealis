@@ -3,27 +3,23 @@ module SlugSupport
   extend ActiveSupport::Concern
 
   DEFAULT_OPTIONS = {
-    slug_attribute: 'slug'
-  }
+    slug_attribute: 'slug',
+    allow_override: false
+  }.freeze
 
   class_methods do
-    def slugify(attribute, options={})
-
+    def slugify(attribute, options = {})
       options.reverse_merge!(DEFAULT_OPTIONS)
 
       before_save do
         assign_slug attribute, options
       end
-
     end
   end
 
   def assign_slug(attribute, options)
-    send slug_setter_for(options), slug_for(attribute)
-  end
-
-  def slug_setter_for(options)
-    "#{options[:slug_attribute]}="
+    return if send(options[:slug_attribute]) && !options[:allow_override]
+    send "#{options[:slug_attribute]}=", slug_for(attribute)
   end
 
   def slug_for(attribute)

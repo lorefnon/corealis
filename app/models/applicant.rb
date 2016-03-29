@@ -9,7 +9,7 @@ class Applicant < ApplicationRecord
   validates :creator_id, presence: true
   validates :name, presence: true
 
-  slugify :name, slug_attribute: 'username'
+  slugify :name, slug_attribute: 'username', allow_override: true
 
   validates :creator_id, presence: true
   validates :email, presence: true
