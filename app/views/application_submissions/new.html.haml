@@ -1,0 +1,12 @@
+- content_for :head do
+  = stylesheet_link_tag 'home'
+  = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Raleway:400,900,800'
+
+= semantic_form_for @application_submission do |f|
+  = f.input :cover_letter
+  = f.semantic_fields_for :applicant do |f|
+    = f.input :name
+    = f.input :email
+    = f.input :phone_number
+  = f.submit
+

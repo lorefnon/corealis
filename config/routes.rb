@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   resources :quiz_sessions
   resources :answers
   resources :openings do
-    resources :application_submissions
+    resources :application_submissions, only: [:new]
   end
+  resources :application_submissions, only: [:create]
 
   get 'invitations/:invitation_id/quiz/session',
     to: 'quiz_sessions#new',

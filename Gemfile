@@ -41,6 +41,7 @@ gem 'codemirror-rails'
 gem 'normalize-rails'
 gem 'trix'
 gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'formtastic-bootstrap'
 
 # Use Unicorn as the app server
 gem 'unicorn'
