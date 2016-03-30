@@ -5,8 +5,13 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   resources :quiz_sessions
   resources :answers
+  resources :openings do
+    resources :application_submissions
+  end
 
-  get 'invitations/:invitation_id/quiz/session', to: 'quiz_sessions#new', as: :interview_session_initiation
+  get 'invitations/:invitation_id/quiz/session',
+    to: 'quiz_sessions#new',
+    as: :interview_session_initiation
 
   ActiveAdmin.routes(self)
 
