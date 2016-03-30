@@ -11,7 +11,6 @@ end
 #  id                  :integer          not null, primary key
 #  creator_id          :integer
 #  name                :string
-#  username            :string
 #  email               :string
 #  phone_number        :string
 #  quiz_sessions_count :integer
@@ -25,5 +24,4 @@ end
 #  index_applicants_on_email         (email) UNIQUE
 #  index_applicants_on_experience    (experience)
 #  index_applicants_on_phone_number  (phone_number)
-#  index_applicants_on_username      (username) UNIQUE
 #
