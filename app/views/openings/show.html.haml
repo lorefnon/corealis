@@ -2,8 +2,8 @@
   = stylesheet_link_tag 'home'
   = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Raleway:400,900,800'
 
-.opening-container
-  %h1= @opening.title
-  %p= @opening.description
-  .btn-container
-    = link_to "Apply Now", new_opening_application_submission_path(@opening)
+%h1= @opening.title
+%p= @opening.description
+%hr
+.tcenter
+  = link_to "Apply Now", new_opening_application_submission_path(@opening), class: 'btn btn-primary'

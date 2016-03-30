@@ -5,6 +5,8 @@ class ApplicationSubmission < ApplicationRecord
   belongs_to :applicant
   belongs_to :opening
 
+  accepts_nested_attributes_for :applicant
+
   validates :applicant_id, presence: true
   validates :applicant, presence: true, on: :create
 

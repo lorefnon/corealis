@@ -8,9 +8,6 @@ class Applicant < ApplicationRecord
     source: :opening
 
   belongs_to :creator, class_name: 'AdminUser'
-
-  validates :creator, presence: true, on: :create
-  validates :creator_id, presence: true
   validates :name, presence: true
 
   slugify :name,
