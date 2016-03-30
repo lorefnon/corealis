@@ -1,4 +1,5 @@
 @import "./common";
+@import "./page";
 
 * {
   font-family: 'Raleway', sans-serif;
@@ -11,11 +12,6 @@
   background-position: center;
   position: relative;
   border-top: #E7E0A5 4px solid;
-}
-
-.page-inner-container {
-  width: 60%;
-  margin: auto;
 }
 
 .header-container {
@@ -36,11 +32,7 @@
 }
 
 .home-page-container .openings-list-container {
-  margin-top: -50px;
-}
-
-.single-panel-page-container .openings-list-container {
-  margin-top: 50px;
+  margin-top: -100px;
 }
 
 .openings-list-header {
