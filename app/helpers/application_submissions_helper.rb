@@ -1,0 +1,2 @@
+module ApplicationSubmissionsHelper
+end
