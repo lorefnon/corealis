@@ -1,4 +1,4 @@
-//= require normalize-rails
+@import "./common";
 
 * {
   font-family: 'Raleway', sans-serif;
@@ -31,9 +31,16 @@
 .openings-list-container {
   background: white;
   position: relative;
-  margin-top: -50px;
   border: 1px solid #ddd;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.home-page-container .openings-list-container {
+  margin-top: -50px;
+}
+
+.openings-page-container .openings-list-container {
+  margin-top: 50px;
 }
 
 .openings-list-header {
@@ -58,14 +65,25 @@
 
 .openings-list-item {
   border-bottom: 1px solid #ddd;
-}
-
-.openings-list-item:last-child {
-  border-bottom: none;
+  padding: 20px;
 }
 
 .opening-link {
   text-decoration: none;
   color: #1E5B9A;
   font-weight: 800;
+}
+
+.openings-view-all-btn {
+    background: #195A9C;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    position: relative;
+    top: 3px;
+}
+
+.openings-footer {
+  text-align: center;
 }

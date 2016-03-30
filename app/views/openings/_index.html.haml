@@ -1,0 +1,16 @@
+.openings-list-container
+  .openings-list-header
+    %h2 Current Openings
+  .openings-list-inner
+    %ul.openings-list
+      - @openings.each do |opening|
+        %li.openings-list-item
+          = link_to opening_path(opening), class: 'opening-link' do
+            %h1= opening.title
+          %p= opening.description
+    .openings-footer
+      - if footer_link == :openings
+        = link_to "View All", openings_path, class: 'openings-view-all-btn'
+      - elsif footer_link == :paginator
+        = paginate @openings
+

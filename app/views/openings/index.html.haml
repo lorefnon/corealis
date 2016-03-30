@@ -1,0 +1,13 @@
+- content_for :head do
+  = stylesheet_link_tag 'home'
+  = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Raleway:400,900,800'
+
+- content_for :body do
+
+  .page-container.openings-page-container
+
+    = render 'devise_notifications'
+    = render 'public_navbar'
+
+    .page-inner-container
+      = render 'openings/index', footer_link: :paginator
