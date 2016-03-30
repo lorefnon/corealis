@@ -10,6 +10,13 @@ class ApplicationSubmission < ApplicationRecord
   validates :applicant_id, presence: true
   validates :applicant, presence: true, on: :create
 
+  def save_or_populate_applicant
+    return false unless applicant
+    applicant.save!
+  rescue ActiveRecord::RecordNotUnique
+    self.applicant = Applicant.where(email: applicant.email).first
+  end
+
 end
 
 # == Schema Information

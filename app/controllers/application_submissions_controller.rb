@@ -10,7 +10,7 @@ class ApplicationSubmissionsController < ApplicationController
 
   def create
     @submission = ApplicationSubmission.new(application_submission_attributes)
-    @submission.applicant.save!
+    @submission.save_or_populate_applicant
     @submission.save!
     redirect_to application_submission_verdict_path(verdict: 'success')
   end
