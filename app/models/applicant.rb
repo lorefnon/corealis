@@ -14,7 +14,6 @@ class Applicant < ApplicationRecord
     slug_attribute: 'username',
     allow_override: true
 
-  validates :creator_id, presence: true
   validates :email, presence: true
 
 end
