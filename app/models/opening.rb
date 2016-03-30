@@ -1,5 +1,7 @@
 class Opening < ApplicationRecord
 
+  has_paper_trail
+
   scope :showcased, -> { where showcased: true }
   scope :current, -> { where current: true }
 
