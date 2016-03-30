@@ -1,0 +1,9 @@
+.verdict-container
+  - if @verdict == 'success'
+    %h1 Congratulations !
+    %h2 Your application was successfully submitted
+  - else
+    %h1 We are Sorry!
+    %h2 Your application could not be submitted
+    %p.error-explanation
+      = flash[:error]

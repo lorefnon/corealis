@@ -14,6 +14,11 @@ Rails.application.routes.draw do
     to: 'quiz_sessions#new',
     as: :interview_session_initiation
 
+  get 'application-submission/:verdict',
+    to: 'application_submission_verdicts#show',
+    as: :application_submission_verdict,
+    constraints: { vedict: /^(success|failure)$/ }
+
   ActiveAdmin.routes(self)
 
 end

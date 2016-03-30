@@ -11,6 +11,7 @@ class ApplicationSubmissionsController < ApplicationController
   def create
     @application_submission = ApplicationSubmission.new(application_submission_attributes)
     @application_submission.save!
+    redirect_to application_submission_verdict_path(verdict: 'success')
   end
 
   private
