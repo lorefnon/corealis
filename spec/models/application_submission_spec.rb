@@ -15,3 +15,7 @@ end
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
+# Indexes
+#
+#  index_application_submissions_on_applicant_id_and_opening_id  (applicant_id,opening_id) UNIQUE
+#
