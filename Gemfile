@@ -42,6 +42,7 @@ gem 'normalize-rails'
 gem 'trix'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'formtastic-bootstrap'
+gem 'active_model-errors_details'
 
 # Use Unicorn as the app server
 gem 'unicorn'
