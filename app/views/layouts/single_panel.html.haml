@@ -1,0 +1,11 @@
+- content_for :body do
+
+  .page-container.single-panel-page-container
+
+    = render 'devise_notifications'
+    = render 'public_navbar'
+
+    .page-inner-container
+      = yield
+
+= render template: 'layouts/application'
