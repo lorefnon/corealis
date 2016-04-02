@@ -1,8 +1,8 @@
-RSpec::Matchers.define :have_flash_message do |expected|
-  match do |actual|
-    actual
+RSpec::Matchers.define :have_flash_message do |message|
+  match do |page|
+    page
       .find_all('.flash')
-      .find {|it| it.has_content? expected }
+      .find {|it| it.has_content? message }
       .present?
   end
 end
