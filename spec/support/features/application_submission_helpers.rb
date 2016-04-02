@@ -1,16 +1,6 @@
 module Features
   module ApplicationSubmissionHelpers
 
-    def fill_applicant_details(applicant)
-      fill_in 'application_submission_applicant_attributes_name', with: applicant.name
-      fill_in 'application_submission_applicant_attributes_email', with: applicant.email
-      fill_in 'application_submission_applicant_attributes_phone_number', with: applicant.phone_number
-    end
-
-    def fill_submission_details(submission)
-      fill_in 'application_submission_cover_letter', with: submission.cover_letter
-    end
-
     def expect_submission_success
       expect(current_path).to eq application_submission_verdict_path(verdict: 'success')
       expect(page).to have_content "Congratulations !"
@@ -28,6 +18,16 @@ module Features
       fill_applicant_details submission.applicant
       fill_submission_details submission
       click_on 'Create Application submission'
+    end
+
+    def fill_applicant_details(applicant)
+      fill_in 'application_submission_applicant_attributes_name', with: applicant.name
+      fill_in 'application_submission_applicant_attributes_email', with: applicant.email
+      fill_in 'application_submission_applicant_attributes_phone_number', with: applicant.phone_number
+    end
+
+    def fill_submission_details(submission)
+      fill_in 'application_submission_cover_letter', with: submission.cover_letter
     end
 
   end
