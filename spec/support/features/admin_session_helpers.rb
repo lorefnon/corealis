@@ -1,8 +1,6 @@
 module Features
   module AdminSessionHelpers
 
-    extend ActiveSupport::Concern
-
     def sign_in(email, password)
       visit new_admin_user_session_path
       fill_in :admin_user_email, with: email
@@ -18,13 +16,9 @@ module Features
       visit destroy_admin_user_session
     end
 
-    module ClassMethods
-      def ensure_admin_signed_in
-        before do
-          @admin = create(:admin_user)
-          sign_in @admin.email, "password"
-        end
-      end
+    def ensure_admin_signed_in
+      @admin = create(:admin_user)
+      sign_in @admin.email, "password"
     end
 
   end

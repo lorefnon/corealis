@@ -1,8 +1,6 @@
 module Features
   module OpeningHelpers
 
-    extend ActiveSupport::Concern
-
     def create_openings_of_all_variants
       {
         [:current, :showcased]      => FactoryGirl.create(:opening, :showcased),

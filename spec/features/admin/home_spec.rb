@@ -5,7 +5,9 @@ feature 'Admin Home Page' do
 
   include Features::AdminSessionHelpers
 
-  ensure_admin_signed_in
+  before(:each) do
+    ensure_admin_signed_in
+  end
 
   scenario 'Visited' do
     visit admin_root_path
