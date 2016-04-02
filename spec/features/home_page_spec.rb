@@ -14,26 +14,39 @@ feature 'Home Page' do
     expect(page).to have_content @organization_description
   end
 
-  context 'Openings are available' do
-    before(:all) do
-      @current_openings = 10.times.map { create(:opening) }
-      @expired_openings = 10.times.map { create(:opening, :expired) }
-      @showcased_openings = 10.times.map { create(:opening, :showcased) }
+  scenario 'Openings are available' do
+
+    @openings = {
+      current: {
+        showcased: create(:opening, :showcased),
+        non_showcased: create(:opening)
+      },
+      expired: {
+        showcased: create(:opening, :showcased, :expired),
+        non_showcased: create(:opening, :expired)
+      }
+    }
+
+    visit root_path
+
+    opening = @openings[:current][:showcased]
+    expect(page).to have_link opening.title, href: opening_path(opening)
+
+    [
+      [:current, :non_showcased],
+      [:expired, :showcased],
+      [:expired, :non_showcased]
+    ].each do |(current_status, showcased_status)|
+      opening = @openings[current_status][showcased_status]
+      expect(page).to_not have_link opening.title, href: opening_path(opening)
     end
-    scenario 'Showcased openings are presented' do
-      visit root_path
-      @showcased_openings.each {|opening| expect(page).to have_content opening.title }
-    end
+
   end
 
-  context 'No openings are available' do
-    before(:all) do
-      Opening.destroy_all
-    end
-    scenario 'Information about absence of openings is presented' do
-      visit root_path
-      expect(find('.zilch-container')).to have_content 'There are no open positions right now'
-    end
+  scenario 'No openings are available' do
+    Opening.destroy_all
+    visit root_path
+    expect(find('.zilch-container')).to have_content 'There are no open positions right now'
   end
 
 end
