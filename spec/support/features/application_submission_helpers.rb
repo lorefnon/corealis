@@ -24,5 +24,11 @@ module Features
       expect(page).to have_content "You have already applied for this position"
     end
 
+    def submit_application(submission)
+      fill_applicant_details submission.applicant
+      fill_submission_details submission
+      click_on 'Create Application submission'
+    end
+
   end
 end

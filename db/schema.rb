@@ -68,13 +68,13 @@ ActiveRecord::Schema.define(version: 20160330210850) do
 
   create_table "applicants", force: :cascade do |t|
     t.integer  "creator_id"
-    t.string   "name"
-    t.string   "email"
+    t.string   "name",                            null: false
+    t.string   "email",                           null: false
     t.string   "phone_number"
-    t.integer  "quiz_sessions_count"
+    t.integer  "quiz_sessions_count", default: 0, null: false
     t.decimal  "experience"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "applicants", ["creator_id"], name: "index_applicants_on_creator_id", using: :btree

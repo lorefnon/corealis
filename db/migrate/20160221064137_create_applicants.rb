@@ -1,7 +1,7 @@
 class CreateApplicants < ActiveRecord::Migration
   def change
     create_table :applicants do |t|
-      t.integer :creator_id, null: false
+      t.integer :creator_id
       t.string :name, null: false
       t.string :username
       t.string :email, null: false

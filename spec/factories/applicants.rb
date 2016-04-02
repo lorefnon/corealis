@@ -12,10 +12,10 @@ end
 #
 #  id                  :integer          not null, primary key
 #  creator_id          :integer
-#  name                :string
-#  email               :string
+#  name                :string           not null
+#  email               :string           not null
 #  phone_number        :string
-#  quiz_sessions_count :integer
+#  quiz_sessions_count :integer          default(0), not null
 #  experience          :decimal(, )
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null

@@ -14,6 +14,15 @@ module Features
 
     def visit_opening_from_home_page(opening)
       visit root_path
+      visit_opening_from_list opening
+    end
+
+    def visit_opening_from_careers_page(opening)
+      visit openings_path
+      visit_opening_from_list opening
+    end
+
+    def visit_opening_from_list(opening)
       click_on opening.title
       expect(current_path).to eq opening_path(opening)
       click_on 'Apply Now'
