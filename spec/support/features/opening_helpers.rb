@@ -12,5 +12,12 @@ module Features
       }
     end
 
+    def visit_opening_from_home_page(opening)
+      visit root_path
+      click_on opening.title
+      expect(current_path).to eq opening_path(opening)
+      click_on 'Apply Now'
+    end
+
   end
 end

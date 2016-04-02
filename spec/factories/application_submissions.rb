@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :application_submission do
-    applicant_id 1
-    opening_id 1
-    cover_letter ""
+    cover_letter "Lorem ipsum dolor sit amet"
+    applicant
+    opening
   end
 end
 

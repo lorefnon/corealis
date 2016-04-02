@@ -5,9 +5,10 @@ class ApplicationSubmission < ApplicationRecord
   belongs_to :applicant
   belongs_to :opening
 
+  attr_readonly :applicant_id
+
   accepts_nested_attributes_for :applicant
 
-  validates :applicant_id, presence: true
   validates :applicant, presence: true, on: :create
 
   def save_or_populate_applicant
