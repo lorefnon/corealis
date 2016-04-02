@@ -1,6 +1,14 @@
 FactoryGirl.define do
   factory :opening do
-    
+    sequence(:title) {|i| "Position #{i}" }
+    description "Lorem ipsum dolor sit amet"
+    current true
+    showcased false
+
+    association :creator, factory: :admin_user
+
+    trait(:showcased) { showcased true }
+    trait(:expired) { current false }
   end
 end
 

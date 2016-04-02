@@ -8,11 +8,31 @@ feature 'Home Page' do
     Setting['organization.description'] = @organization_description = 'Lorem ipsum dolor sit amet'
   end
 
-  context 'Redirection rule is not specified' do
-    scenario 'Company information is presented' do
+  scenario 'Company information is presented' do
+    visit root_path
+    expect(page).to have_content @organization_name
+    expect(page).to have_content @organization_description
+  end
+
+  context 'Openings are available' do
+    before(:all) do
+      @current_openings = 10.times.map { create(:opening) }
+      @expired_openings = 10.times.map { create(:opening, :expired) }
+      @showcased_openings = 10.times.map { create(:opening, :showcased) }
+    end
+    scenario 'Showcased openings are presented' do
       visit root_path
-      expect(find_all('h1')).to have_node_with_content @organization_name
-      expect(find_all('p')).to have_node_with_content @organization_description
+      @showcased_openings.each {|opening| expect(page).to have_content opening.title }
+    end
+  end
+
+  context 'No openings are available' do
+    before(:all) do
+      Opening.destroy_all
+    end
+    scenario 'Information about absence of openings is presented' do
+      visit root_path
+      expect(find('.zilch-container')).to have_content 'There are no open positions right now'
     end
   end
 

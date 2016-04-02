@@ -11,8 +11,9 @@ class Opening < ApplicationRecord
   has_many :application_submissions
   has_many :applicants, through: :application_submissions
 
-  validates :title, :current, :showcased, :creator_id, presence: true
+  validates :title, :creator_id, presence: true
   validates :creator, presence: true, on: :create
+  validates :current, :showcased, inclusion: { in: [true, false] }
 
 end
 
