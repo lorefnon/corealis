@@ -58,6 +58,8 @@ feature 'Opening Management' do
 
   context 'Current Opening' do
     scenario 'Updated to be showcased' do
+      opening = create :opening
+      visit opening_path(opening)
     end
 
     scenario 'Updated to be unshowcased' do
