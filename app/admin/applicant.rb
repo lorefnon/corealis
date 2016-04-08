@@ -24,11 +24,11 @@ ActiveAdmin.register Applicant do
   end
 
   form do |f|
-    f.inputs "User" do
+    f.inputs "Applicant" do
       render 'admin/creator_form_entry', form: f
       f.input :email
       f.input :phone_number
-      f.input :experience
+      f.input :experience, label: 'Experience in Years'
     end
     f.actions
   end
