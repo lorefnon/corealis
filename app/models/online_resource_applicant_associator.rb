@@ -3,7 +3,8 @@ class OnlineResourceApplicantAssociator < ApplicationRecord
   belongs_to :online_resource
   belongs_to :applicant
   has_one :provider, through: :online_resource
-
+  validates :online_resource_id, :applicant_id,
+    presence: true
 end
 
 # == Schema Information

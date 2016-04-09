@@ -5,9 +5,14 @@ class Invitation < ApplicationRecord
   belongs_to :quiz
   belongs_to :invitor, class_name: 'AdminUser'
   belongs_to :invitee, class_name: 'Applicant'
-  has_many :quiz_sessions
-  has_many :invitation_time_slot_associators
-  has_many :time_slots, through: :invitation_time_slot_associators
+  has_many :quiz_sessions,
+    dependent: :destroy
+  has_many :invitation_time_slot_associators,
+    dependent: :destroy
+  has_many :time_slots,
+    through: :invitation_time_slot_associators,
+    dependent: :destroy
+
   after_initialize :set_defaults
 
   accepts_nested_attributes_for :invitee

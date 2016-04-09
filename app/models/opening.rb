@@ -8,7 +8,7 @@ class Opening < ApplicationRecord
   slugify :title
 
   belongs_to :creator, class_name: 'AdminUser'
-  has_many :application_submissions
+  has_many :application_submissions, dependent: :destroy
   has_many :applicants, through: :application_submissions
 
   validates :title, :creator_id, presence: true

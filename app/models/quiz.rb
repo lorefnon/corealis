@@ -5,7 +5,7 @@ class Quiz < ApplicationRecord
   has_many :quiz_sessions
   has_many :quiz_question_associators, -> { order(:ordering) }
   has_many :questions, through: :quiz_question_associators
-  has_many :answers, through: :questions
+  has_many :answers, through: :quiz_sessions
 
   belongs_to :creator, class_name: 'AdminUser'
 

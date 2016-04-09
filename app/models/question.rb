@@ -3,7 +3,7 @@ class Question < ApplicationRecord
   has_paper_trail
 
   belongs_to :creator, class_name: 'AdminUser'
-  has_many :answers
+  has_many :answers, dependent: :destroy
 
   validates :title, presence: true
   slugify :title

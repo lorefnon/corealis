@@ -1,6 +1,6 @@
 class OnlineResourceProvider < ApplicationRecord
   validates :name, presence: true
-  has_many :online_resources
+  has_many :online_resources, dependent: :destroy
 end
 
 # == Schema Information

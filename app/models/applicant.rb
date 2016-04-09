@@ -1,8 +1,12 @@
 class Applicant < ApplicationRecord
 
-  has_many :online_resource_applicant_associators
-  has_many :online_resources, through: :online_resource_applicant_associators
-  has_many :application_submissions
+  has_many :online_resource_applicant_associators,
+    dependent: :destroy
+  has_many :online_resources,
+    through: :online_resource_applicant_associators,
+    dependent: :destroy
+  has_many :application_submissions,
+    dependent: :destroy
   has_many :applied_openings,
     through: :application_submissions,
     source: :opening
