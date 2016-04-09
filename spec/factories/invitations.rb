@@ -21,6 +21,11 @@ FactoryGirl.define do
       valid_till DateTime.now + 1.day
     end
 
+    trait :long_spanning do
+      valid_from DateTime.now - 1.year
+      valid_till DateTime.now + 1.year
+    end
+
   end
 end
 
