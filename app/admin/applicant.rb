@@ -1,7 +1,7 @@
 ActiveAdmin.register Applicant do
 
   menu priority: 4
-  permit_params :id, :creator_id, :name, :username, :email, :phone_number, :experience
+  permit_params :creator_id, :name, :username, :email, :phone_number, :experience
 
   filter :email
   filter :experience
@@ -26,6 +26,7 @@ ActiveAdmin.register Applicant do
   form do |f|
     f.inputs "Applicant" do
       render 'admin/creator_form_entry', form: f
+      f.input :name
       f.input :email
       f.input :phone_number
       f.input :experience, label: 'Experience in Years'
