@@ -5,6 +5,22 @@ FactoryGirl.define do
     quiz
 
     Invitation.statuses.each {|i| trait(i) { status i } }
+
+    trait :scheduled_for_future do
+      valid_from DateTime.now + 1.day
+      valid_till DateTime.now + 2.day
+    end
+
+    trait :expired do
+      valid_from DateTime.now - 2.day
+      valid_till DateTime.now - 1.day
+    end
+
+    trait :current do
+      valid_from DateTime.now - 1.day
+      valid_till DateTime.now + 1.day
+    end
+
   end
 end
 

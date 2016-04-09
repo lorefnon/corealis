@@ -16,7 +16,7 @@ class Invitation < ApplicationRecord
 
   enum status: [:pending, :accepted, :declined]
 
-  before_create :assign_token
+  before_validation :assign_token
   after_create :dispatch_notification
 
   validates :invitor_id,

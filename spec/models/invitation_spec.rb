@@ -1,7 +1,38 @@
 require 'rails_helper'
 
 RSpec.describe Invitation, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:all) do
+    @invitation = build(:invitation)
+  end
+  before(:each) do
+    allow(@invitation).to receive(:dispatch_notification) { true }
+  end
+  describe 'token' do
+    it 'is auto assigned before creation' do
+      @invitation.valid?
+      expect(@invitation.token).to_not be nil
+    end
+  end
+  describe 'active' do
+    context 'scheduled to be valid in future' do
+      subject { create(:invitation, :scheduled_for_future) }
+      it 'is not included' do
+        expect(Invitation.active).to_not include subject
+      end
+    end
+    context 'expired' do
+      subject { create(:invitation, :expired) }
+      it 'is not included' do
+        expect(Invitation.active).to_not include subject
+      end
+    end
+    context 'current' do
+      subject { create(:invitation, :current) }
+      it 'is included' do
+        expect(Invitation.active).to include subject
+      end
+    end
+  end
 end
 
 # == Schema Information
