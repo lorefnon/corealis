@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Opening, type: :model do
-  context 'showcased' do
-    it 'has to be current' do
-      expect do
-        create(:opening, showcased: true, current: false)
-      end.to raise_error(ActiveRecord::RecordInvalid, /current must be true in order to be showcased/i)
-    end
-  end
 end
 
 # == Schema Information
