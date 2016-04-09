@@ -30,18 +30,6 @@ class QuizSession < ApplicationRecord
     end.first
   end
 
-  def submitted_questions_count
-    submitted_questions.count
-  end
-
-  memoize :submitted_questions_count
-
-  def questions_count
-    questions.count
-  end
-
-  memoize :questions_count
-
   private
 
   def deduce_associations_from_interview
