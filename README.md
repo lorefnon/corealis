@@ -10,11 +10,7 @@ Minimal Rails application for managing openings, applications and orchestrating 
 
 ## Status
 
-Work in Progress
-
-## Setting up development environment
-
-- PostgreSQL is the only supported database currently (Default settings work out of the box with [Postgres.app](http://postgresapp.com/))
+While Corealis is not yet feature complete - the core functionalities are stable and usable.
 
 ## Credits
 
