@@ -22,6 +22,7 @@ ratings:
   - "**.py"
   - "**.rb"
 exclude_paths:
-- test/
-- app/admin/
-- config/initializers/
+- spec/**/*
+- app/admin/**/*
+- config/initializers/**/*
+
