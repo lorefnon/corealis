@@ -5,5 +5,5 @@
     = f.trix_editor :details, placeholder: 'Enter your answer here'
   .answer-footer
     .progress-status
-      You have attempted #{quiz_session.submitted_questions_count} of #{quiz_session.questions_count} questions.
+      You have attempted #{quiz_session.submitted_questions.count} of #{quiz_session.questions.count} questions.
     = f.submit 'Submit', class: 'ans-submit-btn'
