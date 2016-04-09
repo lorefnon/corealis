@@ -1,7 +1,7 @@
 ActiveAdmin.register Quiz do
 
   menu priority: 2
-  permit_params :id, :title, :creator_id, :creator, question_ids: []
+  permit_params :id, :title, :creator_id, :creator, :duration, question_ids: []
 
   filter :title
   filter :duration
@@ -12,10 +12,10 @@ ActiveAdmin.register Quiz do
 
     def create
       super
-      associate_questions
+      associate_questions_from_params
     end
 
-    def associate_questions
+    def associate_questions_from_params
       if resource && resource.persisted? && ! params[:question_id].blank?
         resource.associate_questions_through(
           associator: current_admin_user,
@@ -48,7 +48,7 @@ ActiveAdmin.register Quiz do
   form do |f|
     inputs 'Quiz' do
       input :title
-      input :duration
+      input :duration, label: 'Duration of quiz in seconds'
       render 'admin/creator_form_entry', form: f
       if params[:question_id]
         Array(params[:question_id]).each do |question_id|

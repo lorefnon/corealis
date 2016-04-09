@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :quiz do
     creator
+    duration 3600
     sequence(:title) {|i| "quiz#{i}" }
-    sequence(:duration){|i| i }
 
     trait :having_many_questions do
       after(:create) do |quiz|
