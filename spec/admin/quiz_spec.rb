@@ -1,11 +1,11 @@
 require 'rails_helper'
-require 'support/features/admin_session_helpers'
+require 'support/features/admin/session_helpers'
 require 'support/finders/active_admin'
 require 'support/matchers/active_admin'
 
 feature 'Quiz' do
 
-  include Features::AdminSessionHelpers
+  include Features::Admin::SessionHelpers
 
   before(:each) do
     @quiz = create(:quiz)

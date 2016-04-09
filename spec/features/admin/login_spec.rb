@@ -1,10 +1,10 @@
 require 'rails_helper'
 require 'support/matchers/have_flash_message'
-require 'support/features/admin_session_helpers'
+require 'support/features/admin/session_helpers'
 
 feature 'Admin Login page' do
 
-  include Features::AdminSessionHelpers
+  include Features::Admin::SessionHelpers
 
   scenario 'contains a login form' do
     visit new_admin_user_session_path

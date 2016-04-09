@@ -1,7 +1,7 @@
 panel title do
   table_for associators do
     column "Select" do |it|
-      check_box_tag "question_id[#{it.id}]", it.question.id, true
+      check_box_tag "question_id[#{it.question.id}]"
     end
     column(:id){|it| it.question.id  }
     column(:ordering){|it| it.ordering }

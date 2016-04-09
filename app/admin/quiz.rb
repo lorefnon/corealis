@@ -82,8 +82,9 @@ ActiveAdmin.register Quiz do
   member_action :remove_questions, method: :delete do
     resource
       .quiz_question_associators
-      .where(question_id: params[:question_id])
+      .where(question_id: params[:question_id].select{|k,v| v == '1' }.keys)
       .destroy_all
+    flash[:success] = 'Selected questions have been removed from quiz'
     redirect_to admin_quiz_path resource
   end
 

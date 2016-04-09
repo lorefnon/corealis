@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'support/features/admin_session_helpers'
+require 'support/features/admin/session_helpers'
 require 'support/features/opening_helpers'
 require 'support/features/admin/opening_helpers'
 require 'support/matchers/have_opening_listed'
@@ -7,7 +7,7 @@ require 'support/matchers/have_flash_message'
 
 feature 'Opening Management' do
 
-  include Features::AdminSessionHelpers
+  include Features::Admin::SessionHelpers
   include Features::OpeningHelpers
   include Features::Admin::OpeningHelpers
 

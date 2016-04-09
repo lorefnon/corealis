@@ -1,9 +1,9 @@
 require 'rails_helper'
-require 'support/features/admin_session_helpers'
+require 'support/features/admin/session_helpers'
 
 feature 'Admin Home Page' do
 
-  include Features::AdminSessionHelpers
+  include Features::Admin::SessionHelpers
 
   before(:each) do
     ensure_admin_signed_in

@@ -21,3 +21,11 @@ RSpec::Matchers.define :have_index_column do |field|
   end
 end
 
+
+RSpec::Matchers.define :have_attributes do |attributes|
+  match do |table|
+    attributes.reduce(true) do |result, (field, val)|
+      result &&= (table.find(:attribute_value, field).text == val.to_s)
+    end
+  end
+end

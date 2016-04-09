@@ -1,10 +1,10 @@
 require 'rails_helper'
-require 'support/features/admin_session_helpers'
+require 'support/features/admin/session_helpers'
 require 'support/finders/active_admin'
 
 feature 'Root' do
 
-  include Features::AdminSessionHelpers
+  include Features::Admin::SessionHelpers
 
   before(:each) do
     ensure_admin_signed_in
