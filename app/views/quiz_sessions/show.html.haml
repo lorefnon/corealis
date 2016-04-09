@@ -11,8 +11,10 @@
         %ol.submitted-question-list
           = render 'quiz_sessions/submitted_question_list', quiz_session: @quiz_session
     .qs-body
-      .question-container
-        - if @current_question
-          = render 'quiz_sessions/question_description', question: @current_question
-      .answer-container
-        = render 'answers/edit', answer: @current_answer, quiz_session: @quiz_session
+      - if @current_question.present?
+        = render 'quiz_sessions/question_body',
+          question: @current_question,
+          answer: @current_answer,
+          quiz_session: @quiz_session
+      - else
+        = render 'quiz_sessions/completion'

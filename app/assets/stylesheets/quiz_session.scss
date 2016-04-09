@@ -47,6 +47,7 @@
     bottom: 0;
     right: 0;
     top: 0;
+    overflow: auto;
 }
 
 .question-container {
@@ -141,3 +142,26 @@ trix-editor {
         padding-right: 1em;
     }
 }
+
+.completion-message-container {
+
+    text-align: center;
+    margin: 100px auto;
+    max-width: 60%;
+
+    .primary-msg {
+        font-weight: 900;
+        color: #073908;
+        font-size: 3rem;
+        padding: 0;
+        margin: 0;
+        line-height: 6rem;
+    }
+
+    .secondary-msg {
+        color: silver;
+        font-size: 1.5rem;
+    }
+}
+
+
