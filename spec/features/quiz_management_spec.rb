@@ -45,7 +45,7 @@ feature 'Quiz management' do
     expect { quiz_question_row question }.to_not raise_error
   end
 
-  scenario 'Admin User removes question to quiz' do
+  scenario 'Admin user removes question from quiz' do
     quiz = create :quiz
     question = create :question
     quiz.quiz_question_associators.create!(question: question, associator: @admin)
