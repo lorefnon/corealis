@@ -66,6 +66,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'rspec-mocks'
   gem 'pry-rails'
   gem 'pry-doc'
   gem 'pry-stack_explorer'

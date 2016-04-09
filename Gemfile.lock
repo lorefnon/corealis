@@ -464,6 +464,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (= 4.2.5.2)
   redcarpet
+  rspec-mocks
   rspec-rails
   rubocop (~> 0.39.0)
   ruby_gntp
