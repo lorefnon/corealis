@@ -49,6 +49,7 @@ ActiveAdmin.register Question do
   show do
 
     attributes_table do
+      row :id
       row :title
       row :description do |it|
         it.rendered_description.html_safe
