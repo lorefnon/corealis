@@ -7,9 +7,7 @@ RSpec.describe Quiz, type: :model do
       it 'is ordered' do
         quiz = create :quiz
         admin = create :admin_user
-        map_question_id_to_ordering = 100
-          .times
-          .sort_by{ rand(100) }
+        map_question_id_to_ordering = 100.times.to_a.shuffle
           .map{|ordering| [create(:question).id, ordering] }
           .to_h
         map_question_id_to_ordering.each do |id, ordering|
@@ -30,6 +28,32 @@ RSpec.describe Quiz, type: :model do
       end
     end
   end
+
+  context 'associate_questions_through'  do
+    before(:each) do
+      @quiz = create :quiz
+      @question = create :question
+      @admin = create :admin_user
+    end
+    context 'question not already associated' do
+      it 'associates questions through provided associator' do
+        @quiz.associate_questions_through associator: @admin, question_id: @question.id
+        expect(@quiz.questions).to include @question
+      end
+    end
+    context 'question already associated' do
+      before(:each) do
+        @quiz.associate_questions_through associator: @admin, question_id: @question.id
+      end
+      it 'does nothing' do
+        expect do
+          @quiz.associate_questions_through associator: @admin, question_id: @question.id
+        end.to_not raise_error
+        expect(@quiz.questions).to include @question
+      end
+    end
+  end
+
 end
 
 # == Schema Information
