@@ -1,7 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe Quiz, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  context 'associations' do
+    context 'questions' do
+      it 'is ordered' do
+        quiz = create :quiz
+        admin = create :admin_user
+        map_question_id_to_ordering = 100
+          .times
+          .sort_by{ rand(100) }
+          .map{|ordering| [create(:question).id, ordering] }
+          .to_h
+        map_question_id_to_ordering.each do |id, ordering|
+          quiz.quiz_question_associators.create!(
+            question_id: id,
+            ordering: ordering,
+            associator: admin
+          )
+        end
+        prev_ordering = nil
+        quiz.questions.each do |question|
+          ordering = map_question_id_to_ordering[question.id]
+          if prev_ordering
+            expect(ordering >= prev_ordering).to be true
+          end
+          prev_ordering = ordering
+        end
+      end
+    end
+  end
 end
 
 # == Schema Information
