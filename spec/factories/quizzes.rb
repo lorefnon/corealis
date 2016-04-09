@@ -6,9 +6,10 @@ FactoryGirl.define do
 
     trait :having_many_questions do
       after(:create) do |quiz|
-        100.times do
-          quiz.questions << create(:question)
-        end
+        quiz.associate_questions_through(
+          associator: create(:admin_user),
+          question_id: 10.times.map { create :question }.map(&:id)
+        )
       end
     end
 

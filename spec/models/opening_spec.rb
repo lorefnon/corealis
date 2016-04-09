@@ -1,7 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Opening, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'showcased' do
+    it 'has to be current' do
+      expect do
+        create(:opening, showcased: true, current: false)
+      end.to raise_error(ActiveRecord::RecordInvalid, /current must be true in order to be showcased/i)
+    end
+  end
 end
 
 # == Schema Information

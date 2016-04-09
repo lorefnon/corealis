@@ -1,7 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe QuizQuestionAssociator, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'auto populates ordering incrementally' do
+    orderings = create(:quiz, :having_many_questions)
+      .quiz_question_associators
+      .pluck(:ordering)
+    expect(orderings).to eq orderings.sort
+  end
 end
 
 # == Schema Information

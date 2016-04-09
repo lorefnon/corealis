@@ -52,6 +52,13 @@ RSpec.describe Quiz, type: :model do
         expect(@quiz.questions).to include @question
       end
     end
+    it 'allows association of multiple questions' do
+      question_ids = Set.new 10.times.map { create :question }.map(&:id)
+      2.times do
+        @quiz.associate_questions_through associator: @admin, question_id: question_ids.to_a
+      end
+      expect(question_ids.intersection(@quiz.questions.pluck(:id))).to eq question_ids
+    end
   end
 
 end

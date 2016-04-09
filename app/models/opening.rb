@@ -15,6 +15,13 @@ class Opening < ApplicationRecord
   validates :creator, presence: true, on: :create
   validates :current, :showcased, inclusion: { in: [true, false] }
 
+  validates :current,
+    inclusion: {
+      in: [true],
+      message: "must be true in order to be showcased"
+    },
+    if: -> (opening) { opening.showcased? }
+
 end
 
 # == Schema Information
