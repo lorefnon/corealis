@@ -1,3 +1,4 @@
-- quiz_session.submitted_questions.each do |question|
+- quiz_session.answers.each do |answer|
   %li
-    %h2.question-title= question.title
+    = link_to answer_path(answer), remote: true do
+      %h2.question-title= answer.question.title

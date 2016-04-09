@@ -4,12 +4,7 @@
 
 - content_for :body do
   .page-container
-    .sidebar
-      .nav-container
-      .question-list-container
-        .section-title.centered Answered Questions
-        %ol.submitted-question-list
-          = render 'quiz_sessions/submitted_question_list', quiz_session: @quiz_session
+    = render 'quiz_sessions/sidebar', quiz_session: @quiz_session
     .qs-body
       - if @current_question.present?
         = render 'quiz_sessions/question_body',

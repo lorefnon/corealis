@@ -18,7 +18,7 @@
     top: 0;
     bottom: 0;
     width: 300px;
-    background: #DEF2FF;
+    background: #F0F7FC;
     border-right: 2px solid #195A9C;
     overflow: auto;
 }
@@ -115,11 +115,12 @@ trix-editor {
 .section-title {
     background: #87D0FD;
     margin: 0;
+    padding: 10px;
     color: white;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     font-weight: 100;
-    line-height: 1.5em;
+    line-height: 1.5rem;
 }
 
 .section-description {
@@ -137,9 +138,19 @@ trix-editor {
 }
 
 .submitted-question-list {
+    list-style-type: none;
+    padding: 0;
+
+    a {
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
     .question-title {
-        font-size: 1em;
-        padding-right: 1em;
+        font-size: 1rem;
+        padding-right: 1rem;
+        color: #1D4F83;
     }
 }
 

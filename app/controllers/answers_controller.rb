@@ -1,5 +1,10 @@
 class AnswersController < ApplicationController
 
+  def show
+    @answer = Answer.find params[:id]
+    @question = @answer.question.decorate
+  end
+
   def create
     @answer = Answer.create!(answer_params)
     @quiz_session = @answer.quiz_session
