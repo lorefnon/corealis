@@ -10,7 +10,9 @@ ActiveAdmin.register Answer do
     attributes_table do
       row :id
       row :question_id
-      row :details
+      row :details do |answer|
+        answer.details.to_s.html_safe
+      end
       row :answerer
       row :created_at
       row :updated_at
