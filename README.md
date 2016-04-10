@@ -12,6 +12,8 @@ Minimal Rails application for managing openings, applications and orchestrating 
 
 While Corealis is not yet feature complete - the core functionalities are stable and usable.
 
+A demo app hosted on heroku is available [here](http://corealis-demo.herokuapp.com/).
+
 ## Key Features
 
 - A careers page with a listing of Showcased openings
@@ -22,6 +24,7 @@ While Corealis is not yet feature complete - the core functionalities are stable
 
 - A Dockerfile will shortly be made available for deploying on Docker
 - Corealis is Heroku friendly. You can deploy directly to heroku using this button:
+
   [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Credits
