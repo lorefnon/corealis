@@ -65,7 +65,10 @@
 }
 
 .opening-link {
-  text-decoration: none;
+
+  &, &:hover {
+    text-decoration: none;
+  }
   color: #1E5B9A;
   font-weight: 800;
 }
@@ -75,9 +78,17 @@
     padding: 10px 20px;
     color: white;
     text-decoration: none;
-    border-radius: 20px;
+    border: 4px solid #195A9C;
+    border-radius: 30px;
     position: relative;
     top: 3px;
+
+    &:hover {
+      text-decoration: none;
+
+      color: #195A9C;
+      background: transparent;
+    }
 }
 
 .openings-footer {
