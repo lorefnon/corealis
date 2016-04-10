@@ -12,6 +12,18 @@ Minimal Rails application for managing openings, applications and orchestrating 
 
 While Corealis is not yet feature complete - the core functionalities are stable and usable.
 
+## Key Features
+
+- A careers page with a listing of Showcased openings
+- A paginated view of all current openings with option to apply to openings.
+- Backend admin interface to manage openings, view applications and schedule interviews and dispatch invitations
+
+## Deployment
+
+- A Dockerfile will shortly be made available for deploying on Docker
+- Corealis is Heroku friendly. You can deploy directly to heroku using this button:
+  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Credits
 
 This project would not be possible without these amazing open source projects
