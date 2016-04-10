@@ -14,6 +14,8 @@ While Corealis is not yet feature complete - the core functionalities are stable
 
 A demo app hosted on heroku is available [here](http://corealis-demo.herokuapp.com/).
 
+Admin interface is available at `/admin` and can be accessed with username: `admin@corealis.in` and password: `password`
+
 ## Key Features
 
 - A careers page with a listing of Showcased openings
