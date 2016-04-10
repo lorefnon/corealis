@@ -12,6 +12,7 @@ class AnswersController < ApplicationController
       @current_question = next_question.decorate
       @current_answer = @quiz_session.answers.new(question: @current_question)
     end
+    @quiz_session.answers.reload
   end
 
   private

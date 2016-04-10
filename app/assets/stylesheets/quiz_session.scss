@@ -3,6 +3,8 @@
 //= require ./common/page
 //= require ./common/utils
 
+@import "./common";
+
 .page-container {
     position: absolute;
     top: 0;
@@ -28,13 +30,13 @@
     left: 0;
     top: 0;
     bottom: 0;
-    width: 50px;
+    width: 4px;
     background: #1E5B9A;
 }
 
 .question-list-container {
     position: absolute;
-    left: 50px;
+    left: 4px;
     top: 0;
     bottom: 0;
     right: 0;
@@ -93,21 +95,23 @@ trix-editor {
     left: 0;
     right: 0;
     bottom: 0;
-    height: 40px;
+    height: 45px;
+    background: #F5F5F5;
 
     .progress-status {
         float: right;
-        color: #ddd;
+        color: gray;
         margin-top: 10px;
         margin-right: 10px;
     }
 
     .ans-submit-btn {
+        margin-top: 5px;
         margin-left: 10px;
         border-radius: 20px;
         background: #195A9C;
         color: white;
-        padding: 10px 20px;
+        padding: 5px 20px;
         border: none;
     }
 }

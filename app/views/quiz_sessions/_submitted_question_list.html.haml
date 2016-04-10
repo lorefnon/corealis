@@ -1,4 +1,13 @@
-- quiz_session.answers.each do |answer|
-  %li
-    = link_to answer_path(answer), remote: true do
-      %h2.question-title= answer.question.title
+- if quiz_session.answers.count == 0
+  .zilch-container
+    After you have answered atleast one question, you will be able to
+    preview them using the links in this section.
+
+- else
+  - quiz_session.answers.each do |answer|
+    %li
+      = link_to answer_path(answer), remote: true do
+        %h2.question-title= answer.question.title
+  - if @current_question
+    %li
+      = link_to 'Current Question', ''
