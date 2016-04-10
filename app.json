@@ -2,5 +2,11 @@
   "name": "Corealis",
   "description": "Minimal solution for managing careers and interviews",
   "repository": "https://github.com/lorefnon/corealis",
-  "keywords": ["corealis", "ruby", "rails"]
+  "keywords": ["corealis", "ruby", "rails"],
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ],
+  "scripts": {
+    "postdeploy": "bundle exec rake db:schema:load db:seed"
+  }
 }
