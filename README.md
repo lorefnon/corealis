@@ -25,7 +25,7 @@ Admin interface is available at `/admin` and can be accessed with username: `adm
 ## Deployment
 
 - A Dockerfile will shortly be made available for deploying on Docker
-- Corealis is Heroku friendly. You can deploy directly to heroku using this button:
+- Corealis is [Heroku](https://heroku.com) friendly. You can deploy directly to heroku using this button:
 
   [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
