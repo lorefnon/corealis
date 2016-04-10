@@ -6,6 +6,10 @@ FactoryGirl.define do
 
     Invitation.statuses.each {|i| trait(i) { status i } }
 
+    before(:create) do |invitation|
+      invitation.notification_dispatch_skipped
+    end
+
     trait :scheduled_for_future do
       valid_from DateTime.now + 1.day
       valid_till DateTime.now + 2.day

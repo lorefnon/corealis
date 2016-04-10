@@ -13,6 +13,8 @@ class Invitation < ApplicationRecord
     through: :invitation_time_slot_associators,
     dependent: :destroy
 
+  attr_accessor :notification_dispatch_skipped
+
   after_initialize :set_defaults
 
   accepts_nested_attributes_for :invitee
@@ -33,6 +35,7 @@ class Invitation < ApplicationRecord
   private
 
   def dispatch_notification
+    return if notification_dispatch_skipped
     InvitationMailer.invitation_mail(self).deliver_now
   end
 
