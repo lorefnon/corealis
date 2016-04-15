@@ -137,7 +137,7 @@ end
 #  invitor_id :integer          not null
 #  invitee_id :integer          not null
 #  quiz_id    :integer          not null
-#  status     :integer          default(0)
+#  status     :integer          default("pending")
 #  valid_from :datetime
 #  valid_till :datetime
 #  duration   :integer
