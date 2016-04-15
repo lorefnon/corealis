@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe OnlineResourceApplicantAssociator, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { is_expected.to belong_to :online_resource }
+  it { is_expected.to belong_to :applicant }
+  it { is_expected.to have_one :provider }
+  it { is_expected.to validate_presence_of :online_resource_id }
+  it { is_expected.to validate_presence_of :applicant_id }
 end
 
 # == Schema Information

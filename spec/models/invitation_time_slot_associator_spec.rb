@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe InvitationTimeSlotAssociator, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { is_expected.to belong_to :invitation }
+  it { is_expected.to belong_to :time_slot }
+  it { is_expected.to belong_to :proposer }
 end
 
 # == Schema Information

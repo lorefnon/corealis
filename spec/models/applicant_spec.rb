@@ -1,7 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Applicant, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { is_expected.to have_many :online_resource_applicant_associators }
+  it { is_expected.to have_many :online_resources }
+  it { is_expected.to have_many :application_submissions }
+  it { is_expected.to have_many :applied_openings }
+  it { is_expected.to belong_to :creator }
+  it { is_expected.to validate_presence_of :name }
+  it { is_expected.to validate_presence_of :email }
 end
 
 # == Schema Information

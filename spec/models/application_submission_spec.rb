@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationSubmission, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { is_expected.to belong_to :applicant }
+  it { is_expected.to belong_to :opening }
+  it { is_expected.to validate_presence_of :applicant }
+  # TODO Add additional specs
 end
 
 # == Schema Information
