@@ -24,7 +24,7 @@ class Invitation < ApplicationRecord
   enum status: [:pending, :accepted, :declined]
 
   before_validation :assign_token
-  after_create :dispatch_notification
+  after_create :dispatch_notification, unless: :notification_dispatch_skipped
 
   validates :invitor_id,
             :invitee_id,
@@ -32,12 +32,11 @@ class Invitation < ApplicationRecord
             :status,
             presence: true
 
-  private
-
   def dispatch_notification
-    return if notification_dispatch_skipped
     InvitationMailer.invitation_mail(self).deliver_now
   end
+
+  private
 
   def assign_token
     self.token = SecureRandom.urlsafe_base64

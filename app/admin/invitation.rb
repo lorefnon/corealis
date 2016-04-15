@@ -127,6 +127,17 @@ ActiveAdmin.register Invitation do
 
     end
   end
+
+  member_action :dispatch_notification do
+    resource.dispatch_notification
+    flash[:success] = 'Invitation has been resent to the applicant.'
+    redirect_to action: :show
+  end
+
+  action_item :dispatch_notification, only: :show do
+    link_to 'Resend Notification', dispatch_notification_admin_invitation_path
+  end
+
 end
 
 # == Schema Information
