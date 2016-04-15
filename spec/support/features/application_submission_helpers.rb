@@ -17,7 +17,7 @@ module Features
     def submit_application(submission)
       fill_applicant_details submission.applicant
       fill_submission_details submission
-      click_on 'Create Application submission'
+      click_on 'Submit Application'
     end
 
     def fill_applicant_details(applicant)
