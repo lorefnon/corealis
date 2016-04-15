@@ -7,7 +7,7 @@ feature 'Careers Page' do
   include Features::OpeningHelpers
 
   context 'Openings are available' do
-    feature 'User vists careers page' do
+    scenario 'User vists careers page' do
       openings = create_openings_of_all_variants
       visit openings_path
       openings.each do |(current_status, showcased_status), opening|
@@ -22,7 +22,7 @@ feature 'Careers Page' do
   end
 
   context 'No openings are available' do
-    feature 'User visits careers page' do
+    scenario 'User visits careers page' do
       Opening.destroy_all
       visit openings_path
       expect(find('.zilch-container')).to have_content 'There are no open positions right now'
