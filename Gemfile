@@ -14,13 +14,14 @@ gem 'uglifier', '>= 1.3.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-gem 'devise'
+gem 'devise', github: 'plataformatec/devise'
 gem 'activeadmin', github: 'activeadmin'
 gem 'haml-rails', '~> 0.9'
 gem 'annotate'
 gem 'redcarpet'
 gem 'memoist'
-gem 'draper', '~> 1.3'
+gem 'activemodel-serializers-xml'
+gem 'draper'
 gem 'paper_trail'
 gem 'stackprof'
 gem 'factory_girl_rails'
@@ -45,8 +46,8 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'rspec-mocks'
+  gem 'rspec-rails', '~> 3.5.0beta3'
+  gem 'rspec-mocks', '~> 3.5.0beta3'
   gem 'pry-rails'
   gem 'pry-doc'
   gem 'pry-stack_explorer'
