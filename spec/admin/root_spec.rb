@@ -13,7 +13,7 @@ feature 'Root' do
 
   subject { page }
 
-  it { is_expected.to have_link 'Logout', destroy_admin_user_session_path }
+  it { is_expected.to have_link 'Logout', href: destroy_admin_user_session_path }
 
   context 'Navbar' do
     subject { page.find '#header #tabs' }
