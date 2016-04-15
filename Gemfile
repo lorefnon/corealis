@@ -17,7 +17,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
 gem 'haml-rails', '~> 0.9'
-gem 'annotate', '2.6.10'
+gem 'annotate'
 gem 'redcarpet'
 gem 'memoist'
 gem 'draper', '~> 1.3'
@@ -30,7 +30,6 @@ gem 'normalize-rails'
 gem 'trix'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'formtastic-bootstrap'
-gem 'unicorn'
 
 group :development do
   # Spring speeds up development by keeping your application running in the
