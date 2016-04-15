@@ -1,4 +1,4 @@
-class CreateOnlineResourceApplicantAssociators < ActiveRecord::Migration
+class CreateOnlineResourceApplicantAssociators < ActiveRecord::Migration[4.2]
   def change
     create_table :online_resource_applicant_associators do |t|
       t.integer :online_resource_id, null: false

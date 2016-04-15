@@ -1,4 +1,4 @@
-class CreateApplicationSubmissions < ActiveRecord::Migration
+class CreateApplicationSubmissions < ActiveRecord::Migration[4.2]
   def change
     create_table :application_submissions do |t|
       t.integer :applicant_id, null: false

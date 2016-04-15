@@ -1,4 +1,4 @@
-class CreateQuizSessions < ActiveRecord::Migration
+class CreateQuizSessions < ActiveRecord::Migration[4.2]
   def change
     create_table :quiz_sessions do |t|
       t.integer :quiz_id
