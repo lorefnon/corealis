@@ -132,6 +132,9 @@ GEM
     capybara-email (2.5.0)
       capybara (~> 2.4)
       mail
+    capybara-webkit (1.10.1)
+      capybara (>= 2.3.0, < 2.8.0)
+      json
     codeclimate-test-reporter (0.5.0)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
@@ -378,6 +381,7 @@ DEPENDENCIES
   capistrano-rails
   capybara
   capybara-email
+  capybara-webkit
   codeclimate-test-reporter
   database_cleaner
   devise!

@@ -60,4 +60,5 @@ group :test do
   gem 'codeclimate-test-reporter', require: false
   gem 'capybara'
   gem 'capybara-email'
+  gem 'capybara-webkit'
 end
