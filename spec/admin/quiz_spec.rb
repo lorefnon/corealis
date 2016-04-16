@@ -10,7 +10,7 @@ feature 'Quiz' do
   before(:each) do
     @quiz = create(:quiz)
     ensure_admin_signed_in
-    visit admin_quizzes_path
+    visit admin_quizzes_url
   end
 
   context "Index table" do

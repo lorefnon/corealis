@@ -3,7 +3,7 @@ module Features
     module SessionHelpers
 
       def sign_in(email, password)
-        visit new_admin_user_session_path
+        visit new_admin_user_session_url
         fill_in :admin_user_email, with: email
         fill_in :admin_user_password, with: "password"
         click_on 'Login'

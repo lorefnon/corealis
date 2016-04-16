@@ -10,7 +10,7 @@ feature 'Admin Home Page' do
   end
 
   scenario 'Visited' do
-    visit admin_root_path
+    visit admin_root_url
     expect(page).to have_content 'Active Invitations'
     expect(page).to have_content 'Recent Quiz Sessions'
   end

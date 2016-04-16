@@ -13,14 +13,14 @@ feature 'Opening Management' do
 
   before(:each) do
     ensure_admin_signed_in
-    visit admin_openings_path
+    visit admin_openings_url
   end
 
   context 'New Opening' do
 
     before(:each) do
       click_on 'New Opening'
-      expect(current_path).to eq new_admin_opening_path
+      expect(current_url).to eq new_admin_opening_url
     end
 
     scenario 'created' do
@@ -28,9 +28,9 @@ feature 'Opening Management' do
       submit_opening opening
       expect(page).to have_flash_message('Opening was successfully created.')
       opening = shown_opening
-      visit root_path
+      visit root_url
       expect(page).to_not have_opening_listed opening
-      visit openings_path
+      visit openings_url
       expect(page).to have_opening_listed opening
     end
 
@@ -39,9 +39,9 @@ feature 'Opening Management' do
       submit_opening opening
       expect(page).to have_flash_message('Opening was successfully created.')
       opening = shown_opening
-      visit root_path
+      visit root_url
       expect(page).to have_opening_listed opening
-      visit openings_path
+      visit openings_url
       expect(page).to have_opening_listed opening
     end
 
@@ -49,9 +49,9 @@ feature 'Opening Management' do
       submit_opening build :opening, :expired
       expect(page).to have_flash_message('Opening was successfully created.')
       opening = shown_opening
-      visit root_path
+      visit root_url
       expect(page).to_not have_opening_listed opening
-      visit openings_path
+      visit openings_url
       expect(page).to_not have_opening_listed opening
     end
   end
@@ -59,7 +59,7 @@ feature 'Opening Management' do
   context 'Current Opening' do
     scenario 'Updated to be showcased' do
       opening = create :opening
-      visit opening_path(opening)
+      visit opening_url(opening)
     end
 
     scenario 'Updated to be unshowcased' do

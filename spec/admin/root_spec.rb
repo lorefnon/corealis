@@ -8,7 +8,7 @@ feature 'Root' do
 
   before(:each) do
     ensure_admin_signed_in
-    visit admin_root_path
+    visit admin_root_url
   end
 
   subject { page }

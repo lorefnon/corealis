@@ -7,7 +7,7 @@ feature 'Admin Login page' do
   include Features::Admin::SessionHelpers
 
   scenario 'contains a login form' do
-    visit new_admin_user_session_path
+    visit new_admin_user_session_url
     form = find 'form#session_new.admin_user'
     expect(form).to_not be_nil
     expect(form).to have_field :admin_user_email
