@@ -19,6 +19,12 @@
 
 require "codeclimate-test-reporter"
 
+SimpleCov.start do
+  add_filter "/vendor/"
+  add_filter "/db/migrate/"
+  add_filter "/db/schema.rb"
+end
+
 CodeClimate::TestReporter.start
 
 RSpec.configure do |config|
