@@ -24,8 +24,11 @@ Admin interface is available at `/admin` and can be accessed with username: `adm
 ## Key Features
 
 - A careers page with a listing of Showcased openings
-- A paginated view of all current openings with option to apply to openings.
+- Facility to apply to open positions.
 - Backend admin interface to manage openings, view applications and schedule interviews and dispatch invitations
+- Conduct pre-scripted preliminary interviews online
+- View user submissions replayed the way applicant had entered the answer -
+giving full visibility into the process of deduction of the solution.
 
 ## Deployment
 
@@ -41,3 +44,24 @@ This project would not be possible without these amazing open source projects
 - [ActiveAdmin](https://github.com/activeadmin/activeadmin)
 - [Ruby on Rails](https://github.com/rails/rails)
 - [Ruby](https://github.com/ruby/ruby)
+
+## License
+
+[![GPL V3](http://www.gnu.org/graphics/gplv3-88x31.png)](http://www.gnu.org/licenses/quick-guide-gplv3.pdf)
+
+Corealis is made available under GPL V3 License.
+
+    Copyright (C) 2016 Gaurab Paul
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
