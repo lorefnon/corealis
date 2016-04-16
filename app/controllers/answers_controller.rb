@@ -18,7 +18,9 @@ class AnswersController < ApplicationController
   private
 
   def answer_params
-    params.require(:answer).permit(:quiz_session_id, :question_id, :details, :history)
+    params
+      .require(:answer)
+      .permit(:quiz_session_id, :question_id, :details, :history)
   end
 
 end
