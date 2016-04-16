@@ -23,6 +23,7 @@ ratings:
   - "**.rb"
 exclude_paths:
 - spec/**/*
-- app/admin/**/*
 - config/initializers/**/*
-
+- db/migrate/**/*
+- db/schema.rb
+- vendor/**/*
