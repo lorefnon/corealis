@@ -1,3 +1,37 @@
-%p Hi #{@invitee.name.capitalize},
-%p You have invited to an online quiz on #{@quiz.title}.
-%p= link_to "Take the quiz", interview_session_initiation_url(@invitation, token: @invitation.token)
+%table{style: "border: 1px solid #99CCEE; font-family: arial;"}
+  %tr{style: "color: #1D4F83; background: #DFF2FF; border-bottom: 1px solid #DFF2FF;"}
+    %td
+      %h1{style: "padding: 0 20px;text-align: center;"}= @subject
+  %tr
+    %td
+      &nbsp;
+  %tr
+    %td{style: "padding: 0 10px"}
+      Hi #{@invitee.name.capitalize},
+  %tr
+    %td{style: "padding: 0 10px"}
+      You have invited to an online quiz on #{@quiz.title}.
+  %tr
+    %td
+      &nbsp;
+  %tr
+    %td{style: "padding: 10px"}
+      = link_to "Take the quiz", interview_session_initiation_url(@invitation, token: @invitation.token), style: 'color: #DFF2FF;text-decoration: none; background: #1D4F83;padding: 10px 20px;'
+  %tr
+    %td
+      &nbsp;
+  %tr
+    %td{style: "border-top: 1px solid silver;"}
+      &nbsp;
+  %tr
+    %td{style: "color: silver; padding: 0 10px"}
+      = "About #{Setting['organization.name']}:"
+  %tr
+    %td
+      &nbsp;
+  %tr
+    %td{style: "color: silver; padding: 0 10px"}
+      = Setting['organization.description']
+  %tr
+    %td
+      &nbsp;
