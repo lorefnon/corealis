@@ -1,4 +1,4 @@
-class CreateOnlineResourceProviders < ActiveRecord::Migration
+class CreateOnlineResourceProviders < ActiveRecord::Migration[4.2]
   def change
     create_table :online_resource_providers do |t|
       t.string :root_url, null: false

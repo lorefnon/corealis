@@ -8,12 +8,12 @@ feature 'Root' do
 
   before(:each) do
     ensure_admin_signed_in
-    visit admin_root_path
+    visit admin_root_url
   end
 
   subject { page }
 
-  it { is_expected.to have_link 'Logout', destroy_admin_user_session_path }
+  it { is_expected.to have_link 'Logout', href: destroy_admin_user_session_path }
 
   context 'Navbar' do
     subject { page.find '#header #tabs' }

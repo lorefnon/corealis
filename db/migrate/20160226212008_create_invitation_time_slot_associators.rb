@@ -1,4 +1,4 @@
-class CreateInvitationTimeSlotAssociators < ActiveRecord::Migration
+class CreateInvitationTimeSlotAssociators < ActiveRecord::Migration[4.2]
   def change
     create_table :invitation_time_slot_associators do |t|
       t.integer :confirmation_status

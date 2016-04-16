@@ -1,4 +1,4 @@
-class CreateQuizQuestionAssociators < ActiveRecord::Migration
+class CreateQuizQuestionAssociators < ActiveRecord::Migration[4.2]
   def change
     create_table :quiz_question_associators do |t|
       t.integer :question_id

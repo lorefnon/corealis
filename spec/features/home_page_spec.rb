@@ -12,7 +12,7 @@ feature 'Home Page' do
   end
 
   scenario 'User visits home page' do
-    visit root_path
+    visit root_url
     expect(page).to have_content @organization_name
     expect(page).to have_content @organization_description
   end
@@ -20,7 +20,7 @@ feature 'Home Page' do
   context 'Openings are available' do
     scenario 'User browses openings on home page' do
       openings = create_openings_of_all_variants
-      visit root_path
+      visit root_url
       openings.each do |(current_status, showcased_status), opening|
         if current_status == :current && showcased_status == :showcased
           expect(page).to have_link opening.title, href: opening_path(opening)
@@ -35,7 +35,7 @@ feature 'Home Page' do
   context 'No openings are available' do
     scenario 'User browses openings on home page' do
       Opening.destroy_all
-      visit root_path
+      visit root_url
       expect(find('.zilch-container')).to have_content 'There are no open positions right now'
     end
   end

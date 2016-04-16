@@ -1,4 +1,4 @@
-class CreateOnlineAccounts < ActiveRecord::Migration
+class CreateOnlineAccounts < ActiveRecord::Migration[4.2]
   def change
     create_table :online_resources do |t|
       t.string :url, null: false

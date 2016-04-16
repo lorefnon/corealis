@@ -1,4 +1,4 @@
-class AddIndexes < ActiveRecord::Migration
+class AddIndexes < ActiveRecord::Migration[4.2]
   def change
     add_index :settings, :key, unique: true
     add_index :quizzes, :slug, unique: true

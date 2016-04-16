@@ -7,7 +7,9 @@ FactoryGirl.define do
     Invitation.statuses.each {|i| trait(i) { status i } }
 
     before(:create) do |invitation|
-      invitation.notification_dispatch_skipped
+      if invitation.notification_dispatch_skipped.nil?
+        invitation.notification_dispatch_skipped = true
+      end
     end
 
     trait :scheduled_for_future do

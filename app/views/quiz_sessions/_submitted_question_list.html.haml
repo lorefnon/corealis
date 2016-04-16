@@ -5,9 +5,9 @@
 
 - else
   - quiz_session.answers.each do |answer|
-    %li
+    %li.submitted-que-list-entry
       = link_to answer_path(answer), remote: true do
         %h2.question-title= answer.question.title
   - if @current_question
-    %li
+    %li.submitted-que-list-entry
       = link_to 'Current Question', ''

@@ -11,12 +11,12 @@ module Features
     end
 
     def visit_opening_from_home_page(opening)
-      visit root_path
+      visit root_url
       visit_opening_from_list opening
     end
 
     def visit_opening_from_careers_page(opening)
-      visit openings_path
+      visit openings_url
       visit_opening_from_list opening
     end
 
