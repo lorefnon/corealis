@@ -1,9 +1,10 @@
 require 'rails_helper'
+require 'support/finders/toast_message'
 
 @javascript
 feature 'Quiz Session participation' do
 
-  before(:all) do
+  before(:each) do
     Capybara.current_driver = :webkit
   end
 
@@ -45,6 +46,7 @@ feature 'Quiz Session participation' do
     answer = build(:answer, question: question)
     editor.set(answer.details)
     click_on 'Submit'
+    expect(page).to have_selector :toast_message, 'Question submitted successfully'
     expect(@quiz_session.answers.count).to eq 1
     expect(page).to have_selector '.submitted-que-list-entry'
     expect(page.find('.progress-status')).to have_content "You have attempted 1 of #{@quiz_session.questions.count} questions"
