@@ -5,6 +5,8 @@ class QuizSessionsController < ApplicationController
   before_action :ensure_token_matches, unless: :current_admin_user
   before_action :use_existing_session, only: :new
 
+  helper QuizSessionHelpers
+
   def new
     create_quiz_session_for_interview
     redirect_to_quiz_session first_visit: true

@@ -1,10 +1,12 @@
-.section-title
-  - if current_admin_user
-    Submitted Answer
-  - else
-    You answered
-.section-description
-  - if answer.details
-    = answer.details.html_safe
-  - else
-    Applicant has not yet submitted an answer
+.panel
+  %h3.section-title
+    - if current_admin_user
+      Submitted Answer
+    - else
+      You answered
+  .panel-contents.section-description
+    - if answer.details
+      = answer.details.html_safe
+    - else
+      .zilch-container
+        Applicant has not yet submitted an answer
