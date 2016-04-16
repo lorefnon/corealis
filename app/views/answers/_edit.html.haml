@@ -1,6 +1,7 @@
-= form_for answer, url: answers_path, remote: true do |f|
+= form_for answer, url: answers_path, remote: true, class: 'answer-form' do |f|
   = f.hidden_field :quiz_session_id
   = f.hidden_field :question_id
+  = f.hidden_field :history
   .answer-details-container
     = f.trix_editor :details, placeholder: 'Enter your answer here'
   .answer-footer
