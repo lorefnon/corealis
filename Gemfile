@@ -31,6 +31,7 @@ gem 'normalize-rails'
 gem 'trix'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'formtastic-bootstrap'
+gem 'puma'
 
 group :development do
   # Spring speeds up development by keeping your application running in the
