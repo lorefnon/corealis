@@ -1,8 +1,12 @@
 require 'rails_helper'
 require 'support/finders/toast_message'
+require 'support/features/quiz_session_helpers'
+require 'support/matchers/have_quiz_session_progress'
 
 @javascript
 feature 'Quiz Session participation' do
+
+  include Features::QuizSessionHelpers
 
   before(:each) do
     Capybara.current_driver = :webkit
@@ -10,10 +14,10 @@ feature 'Quiz Session participation' do
 
   before(:each) do
     clear_emails
-    @invitation = build(:invitation, quiz: create(:quiz, :having_many_questions))
+    @invitation = build :invitation, quiz: create(:quiz, :having_many_questions)
     @invitation.notification_dispatch_skipped = false
     @invitation.save!
-    open_email(@invitation.invitee.email)
+    open_email @invitation.invitee.email
   end
 
   scenario 'User visits quiz session from invitation email' do
@@ -26,9 +30,8 @@ feature 'Quiz Session participation' do
     description_container = page.find('.question-container .section-description')
     expect(description_container.text).to include question.title
     expect(description_container.text).to include question.description
-    # TODO FIXME
     expect(page.find('.submitted-question-list')).to have_selector '.zilch-container'
-    expect(page.find('.progress-status')).to have_content "You have attempted 0 of #{@quiz_session.questions.count} questions"
+    expect(page).to have_quiz_session_progress current: 0, total: @quiz_session.questions.count
   end
 
   scenario 'User revisits quiz session from invitation email' do
@@ -49,23 +52,21 @@ feature 'Quiz Session participation' do
     expect(page).to have_selector :toast_message, 'Question submitted successfully'
     expect(@quiz_session.answers.count).to eq 1
     expect(page).to have_selector '.submitted-que-list-entry'
-    expect(page.find('.progress-status')).to have_content "You have attempted 1 of #{@quiz_session.questions.count} questions"
+    expect(page).to have_quiz_session_progress current: 1, total: @quiz_session.questions.count
   end
 
   scenario 'User completes interview' do
     current_email.click_link 'Take the quiz'
     @quiz_session = @invitation.quiz_sessions.first
     @quiz_session.questions.count.times do
-      editor = page.find('.answer-details-container trix-editor')
-      answer = build(:answer)
-      editor.set(answer.details)
-      click_on 'Submit'
+      submit_answer_to_presented_question
     end
     expect(page).to have_content 'All Done'
     expect(page).to have_content 'Thank you for participating in this quiz session. We will get back to you shortly.'
   end
 
   scenario 'User revisits previous question' do
+    current_email.click_link 'Take the quiz'
   end
 
 end
