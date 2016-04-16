@@ -1,4 +1,5 @@
-.question-container
+.question-container{data: { 'question-id' => @question.id }}
   = render 'quiz_sessions/question_description', question: @question
-.answer-container
+.answer-container{data: { 'answer-id' => @answer.id }}
   = render 'answers/submitted_answer', answer: @answer
+

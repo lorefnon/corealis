@@ -1,7 +1,8 @@
 require 'rails_helper'
 require 'support/finders/toast_message'
+require 'support/finders/quiz_session'
 require 'support/features/quiz_session_helpers'
-require 'support/matchers/have_quiz_session_progress'
+require 'support/matchers/quiz_session'
 
 @javascript
 feature 'Quiz Session participation' do
@@ -43,15 +44,11 @@ feature 'Quiz Session participation' do
   scenario 'User answers questions' do
     current_email.click_link 'Take the quiz'
     @quiz_session = @invitation.quiz_sessions.first
-    expect(page).to have_selector '.answer-details-container trix-editor'
-    editor = page.find('.answer-details-container trix-editor')
+    expect { answer_editor }.to_not raise_error
     question = @quiz_session.questions.first
-    answer = build(:answer, question: question)
-    editor.set(answer.details)
-    click_on 'Submit'
+    submit_answer_to_presented_question
     expect(page).to have_selector :toast_message, 'Question submitted successfully'
     expect(@quiz_session.answers.count).to eq 1
-    expect(page).to have_selector '.submitted-que-list-entry'
     expect(page).to have_quiz_session_progress current: 1, total: @quiz_session.questions.count
   end
 
@@ -67,6 +64,16 @@ feature 'Quiz Session participation' do
 
   scenario 'User revisits previous question' do
     current_email.click_link 'Take the quiz'
+    @quiz_session = @invitation.quiz_sessions.first
+    submit_answer_to_presented_question
+    expect(page).to have_selector :toast_message, 'Question submitted successfully'
+    question = @quiz_session.submitted_questions.first
+    answer = @quiz_session.answers.first
+    page.find(:link_to_previous_answer, question).click
+    expect(page).to have_selector ".question-container[data-question-id='#{question.id}']"
+    expect(presented_question_title).to include question.title
+    expect(presented_question_description).to include question.description
+    expect(presented_answer_description).to include answer.details
   end
 
 end

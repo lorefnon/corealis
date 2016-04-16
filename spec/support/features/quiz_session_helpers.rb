@@ -14,5 +14,25 @@ module Features
       answer
     end
 
+    def presented_question_title
+      page.find('.question-container .que-title').text
+    end
+
+    def presented_question_description
+      page.find('.question-container .que-description').text
+    end
+
+    def presented_answer_description
+      page.find('.answer-container .section-description').text
+    end
+
+    def answer_editor
+      page.find '.answer-details-container trix-editor'
+    end
+
+    def toast_messages
+      page.find_all('.toast-message').map(&:text)
+    end
+
   end
 end
