@@ -1,3 +1,4 @@
+toastr.success('Question submitted successfully')
 $('.submitted-question-list').html('<%= j render 'quiz_sessions/submitted_question_list', quiz_session: @quiz_session %>')
 <% if @current_question %>
   $('.question-container').html('<%= j render 'quiz_sessions/question_description', question: @current_question %>')
