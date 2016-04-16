@@ -108,9 +108,10 @@ trix-editor {
     position: absolute;
     left: 0;
     right: 0;
-    top: 0;
+    top: 30px;
     bottom: 40px;
     overflow: auto;
+    padding: 0;
 }
 
 .answer-details-container textarea {
@@ -163,6 +164,19 @@ trix-editor {
 .answer-details-container {
     padding-top: 8px;
     overflow: auto;
+}
+
+.new_answer .answer-details-container {
+    padding-top: 0;
+    background: white;
+
+    trix-toolbar {
+        background: white;
+        button, button:hover {
+            border: none;
+            background: none;
+        }
+    }
 }
 
 .answer-details-container > trix-toolbar {

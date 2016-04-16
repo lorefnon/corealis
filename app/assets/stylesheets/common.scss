@@ -5,6 +5,14 @@
   text-align: center;
 }
 
+.rfloat {
+  float: right;
+}
+
+.lfloat {
+  float: left;
+}
+
 .zilch-container {
   margin: 20px;
   border: 2px dashed#ddd;
@@ -16,3 +24,4 @@
   text-transform: capitalize;
   background: whitesmoke;
 }
+

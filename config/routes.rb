@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     as: :application_submission_verdict,
     constraints: { vedict: /^(success|failure)$/ }
 
+  get 'question-submissions/:id/preview',
+    to: 'question_submission_preview#show',
+    as: :question_submission_preview
+
   ActiveAdmin.routes(self)
 
 end
