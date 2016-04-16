@@ -1,4 +1,10 @@
 .section-title
-  You answered
+  - if current_admin_user
+    Submitted Answer
+  - else
+    You answered
 .section-description
-  = answer.details.html_safe
+  - if answer.details
+    = answer.details.html_safe
+  - else
+    Applicant has not yet submitted an answer
