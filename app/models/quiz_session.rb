@@ -3,20 +3,23 @@ class QuizSession < ApplicationRecord
   has_paper_trail
   extend Memoist
 
+  scope :recent, -> { where created_at: (DateTime.now - 10.minutes)..(DateTime.now) }
+  scope :active, -> { where expired_at: nil }
+  scope :expired, -> { where 'expired_at is not null' }
+  scope :for_invitation, ->(iv) { where invitation: iv }
+
   belongs_to :quiz
   belongs_to :invitation
   belongs_to :interviewer, class_name: 'AdminUser'
   belongs_to :interviewee, class_name: 'Applicant'
   has_many :questions, through: :quiz
   has_many :answers, -> { order(:created_at) }
+  has_many :submitted_answers,
+    class_name: 'Answer',
+    -> { submitted.order(:created_at) }
   has_many :submitted_questions,
-           through: :answers,
-           source: :question
-
-  scope :recent, -> { where created_at: (DateTime.now - 10.minutes)..(DateTime.now) }
-  scope :active, -> { where expired_at: nil }
-  scope :expired, -> { where 'expired_at is not null' }
-  scope :for_invitation, ->(iv) { where invitation: iv }
+    through: :submitted_answers,
+    source: :question
 
   before_validation :deduce_associations_from_interview
 
