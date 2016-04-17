@@ -4,8 +4,8 @@ class InvitationMailer < ApplicationMailer
     @invitation = invitation
     @quiz = invitation.quiz
     @invitee = invitation.invitee
-    mail to: @invitee.email,
-         subject: "Career opportunity at #{Setting['organization.name']}"
+    @subject = "Career opportunity at #{Setting['organization.name']}"
+    mail to: @invitee.email, subject: @subject
   end
 
 end
