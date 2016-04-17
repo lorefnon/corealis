@@ -36,7 +36,7 @@ module Corealis
     ]
 
     config.action_controller.include_all_helpers = false
-    config.action_cable.mount_path = '/cable'
+    config.action_cable.disable_request_forgery_protection = true
 
   end
 end

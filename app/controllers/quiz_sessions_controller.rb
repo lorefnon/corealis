@@ -46,6 +46,7 @@ class QuizSessionsController < ApplicationController
     @quiz_session = QuizSession.find(params[:id])
     @invitation = @quiz_session.invitation
     @applicant = @quiz_session.interviewee
+    cookies.signed[:quiz_session_id] = @quiz_session.id
   end
 
   def load_invitation

@@ -20,8 +20,7 @@ CableManager = {
 
       setupEvents: function() {
         var _this = this
-        $('body').on('c-editor-change', function(patchSet) {
-          debugger
+        $('body').on('c-editor-change', function(event, patchSet) {
           _this.perform('update_answer', patchSet)
         })
       }

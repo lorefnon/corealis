@@ -11,7 +11,7 @@ module ApplicationCable
 
     # TODO FIXME
     def find_quiz_session
-      if qs = QuizSession.find_by id: cookies.signed[:quiz_session_id]
+      if qs = QuizSession.find_by(id: cookies.signed[:quiz_session_id])
         qs
       else
         reject_unauthorized_connection

@@ -2,6 +2,7 @@
   = stylesheet_link_tag "quiz_session"
   = javascript_include_tag "quiz_session"
   = action_cable_meta_tag
+  %meta{name: 'quiz-session-id', content: @quiz_session.id}
 
 - content_for :body do
   .page-container
