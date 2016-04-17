@@ -32,6 +32,7 @@ end
 # == Route Map
 #
 #                                     Prefix Verb       URI Pattern                                                 Controller#Action
+#                                                       /cable                                                      #<ActionCable::Server::Base:0x007f95bba9e590 @mutex=#<Thread::Mutex:0x007f95bba9e568>, @pubsub=nil, @channel_classes=nil, @worker_pool=nil, @stream_event_loop=nil, @remote_connections=nil>
 #                                       root GET        /                                                           home#index
 #                     new_admin_user_session GET        /admin/login(.:format)                                      active_admin/devise/sessions#new
 #                         admin_user_session POST       /admin/login(.:format)                                      active_admin/devise/sessions#create
@@ -69,6 +70,7 @@ end
 #                    application_submissions POST       /application_submissions(.:format)                          application_submissions#create
 #               interview_session_initiation GET        /invitations/:invitation_id/quiz/session(.:format)          quiz_sessions#new
 #             application_submission_verdict GET        /application-submission/:verdict(.:format)                  application_submission_verdicts#show
+#                question_submission_preview GET        /question-submissions/:id/preview(.:format)                 question_submission_preview#show
 #                                 admin_root GET        /admin(.:format)                                            admin/dashboard#index
 #             batch_action_admin_admin_users POST       /admin/admin_users/batch_action(.:format)                   admin/admin_users#batch_action
 #                          admin_admin_users GET        /admin/admin_users(.:format)                                admin/admin_users#index

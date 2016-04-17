@@ -7,6 +7,8 @@ class Answer < ApplicationRecord
   belongs_to :quiz_session
 
   scope :canonical, -> { where canonical: true }
+  scope :submitted, -> { where 'submitted_at is not null' }
+  scope :pending_submission, -> { where(canonical: false, submitted_at: nil) }
 
   validates :question_id,
             :answerer_id,
@@ -50,6 +52,7 @@ end
 #  updated_at      :datetime         not null
 #  canonical       :boolean          default(FALSE), not null
 #  history         :jsonb
+#  submitted_at    :datetime
 #
 # Indexes
 #

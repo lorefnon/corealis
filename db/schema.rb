@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416133614) do
+ActiveRecord::Schema.define(version: 20160417081753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160416133614) do
     t.datetime "updated_at",                      null: false
     t.boolean  "canonical",       default: false, null: false
     t.jsonb    "history"
+    t.datetime "submitted_at"
   end
 
   add_index "answers", ["id", "question_id", "quiz_session_id"], name: "index_answers_on_id_and_question_id_and_quiz_session_id", unique: true, using: :btree
