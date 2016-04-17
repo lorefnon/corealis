@@ -15,8 +15,8 @@ class QuizSession < ApplicationRecord
   has_many :questions, through: :quiz
   has_many :answers, -> { order(:created_at) }
   has_many :submitted_answers,
-    class_name: 'Answer',
-    -> { submitted.order(:created_at) }
+    -> { submitted.order(:created_at) },
+    class_name: 'Answer'
   has_many :submitted_questions,
     through: :submitted_answers,
     source: :question
