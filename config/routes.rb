@@ -25,6 +25,11 @@ Rails.application.routes.draw do
     to: 'question_submission_preview#show',
     as: :question_submission_preview
 
+  post 'quiz_sessions/:id/complete',
+    to: 'quiz_sessions#update',
+    params: -> {{ quiz_session: { ended_at: DateTime.now }}}
+    as: :quiz_session_completion
+
   ActiveAdmin.routes(self)
 
 end

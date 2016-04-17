@@ -4,8 +4,9 @@ class QuizSession < ApplicationRecord
   extend Memoist
 
   scope :recent, -> { where created_at: (DateTime.now - 10.minutes)..(DateTime.now) }
-  scope :active, -> { where expired_at: nil }
+  scope :active, -> { where expired_at: nil, ended_at: nil }
   scope :expired, -> { where 'expired_at is not null' }
+  scope :ended, -> { where 'ended_at is not null' }
   scope :for_invitation, ->(iv) { where invitation: iv }
 
   belongs_to :quiz
@@ -26,11 +27,23 @@ class QuizSession < ApplicationRecord
   validates :quiz_id, presence: true
 
   def next_question
-    if submitted_questions.count == 0
+    if submitted_questions.count.zero?
       questions
     else
       questions.where('questions.id not in (?)', submitted_questions.pluck(:id))
     end.first
+  end
+
+  def expired?
+    expired_at.present?
+  end
+
+  def ended?
+    ended_at.present?
+  end
+
+  def active?
+    ! expired? and ! ended?
   end
 
   private

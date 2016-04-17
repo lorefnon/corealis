@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, flash: { error: I18n.t('errors.access_violation') }
   end
 
+  def ensure_admin_user
+    handle_access_violation unless admin_user
+  end
+
 end

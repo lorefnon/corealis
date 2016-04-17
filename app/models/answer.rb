@@ -15,18 +15,24 @@ class Answer < ApplicationRecord
             :answerer_type,
             presence: true
 
-  validates :canonical,
-            inclusion: { in: [false] },
-            if: -> { answerer_type == 'Applicant' }
+  with_options if: :answered_by_applicant? do
+    validates :canonical, inclusion: { in: [false] }
+    validates :quiz_session_id, presence: true
+    validate  :ensure_quiz_session_active, on: :create
+    validate  :ensure_unsubmitted, on: :update
+  end
 
-  validates :answerer_type,
-            inclusion: { in: %w[Applicant AdminUser] }
-
-  validates :quiz_session_id,
-            presence: true,
-            if: -> { answerer_type == 'Applicant' }
+  validates :answerer_type, inclusion: { in: %w[Applicant AdminUser] }
 
   before_validation :deduce_answerer_from_quiz_session
+
+  def answered_by_applicant?
+    answerer_type == 'Applicant'
+  end
+
+  def submitted?
+    submitted_at.present?
+  end
 
   private
 
@@ -34,6 +40,18 @@ class Answer < ApplicationRecord
     return if answerer
     return unless quiz_session
     self.answerer = quiz_session.interviewee
+  end
+
+  def ensure_quiz_session_active
+    unless quiz_session.active?
+      errors[:base] << 'Quiz session is no longer active'
+    end
+  end
+
+  def ensure_unsubmitted
+    if submitted?
+      errors[:base] << 'Answer has already been submitted'
+    end
   end
 
 end

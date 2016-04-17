@@ -12,4 +12,8 @@ module QuizSessionHelpers
     end
   end
 
+  def can_end?
+    preview? && ! @quiz_session.ended?
+  end
+
 end

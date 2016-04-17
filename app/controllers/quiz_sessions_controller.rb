@@ -20,6 +20,10 @@ class QuizSessionsController < ApplicationController
     end
   end
 
+  def update
+    binding.pry
+  end
+
   private
 
   def ensure_token_matches
