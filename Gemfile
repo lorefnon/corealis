@@ -32,6 +32,7 @@ gem 'trix'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'formtastic-bootstrap'
 gem 'puma'
+gem 'actioncable', '~> 5.0.0.beta3'
 
 group :development do
   # Spring speeds up development by keeping your application running in the

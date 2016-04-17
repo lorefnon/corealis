@@ -9,6 +9,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
+require "action_cable/engine"
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -35,6 +36,7 @@ module Corealis
     ]
 
     config.action_controller.include_all_helpers = false
+    config.action_cable.mount_path = '/cable'
 
   end
 end

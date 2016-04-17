@@ -372,6 +372,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actioncable (~> 5.0.0.beta3)
   activeadmin!
   activemodel-serializers-xml
   activerecord-immutable

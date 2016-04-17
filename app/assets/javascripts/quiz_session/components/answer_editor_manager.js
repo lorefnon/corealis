@@ -16,23 +16,25 @@ AnswerEditorManager = {
   setupTrixChangeHandler: function() {
     var _this = this
     $('body').on('trix-change', _.debounce(function(e) {
-      _this.handleEditorChange(e.originalEvent.srcElement.innerHTML)
+      _this.handleEditorChange(e.target, e.originalEvent.srcElement.innerHTML)
     }, 100, {
       leading: true,
       trailing: true
     }))
   },
 
-  handleEditorChange: function(content) {
+  handleEditorChange: function(el, content) {
     var patches = this.patchManager.patch_make(
       this.answerHistory.lastContent,
       content
     )
     this.answerHistory.lastContent = content
-    this.answerHistory.patches.push({
+    var patchSet = {
       timestamp: Date.now(),
       patches: patches
-    })
+    }
+    this.answerHistory.patches.push(patchSet)
+    el.trigger('c-editor-change', patchSet)
     this.historyField.val(JSON.stringify(this.answerHistory.patches))
   }
 
