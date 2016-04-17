@@ -1,4 +1,5 @@
 //= require diff_match_patch
+//= require md5
 
 AnswerEditorManager = {
 
@@ -36,7 +37,8 @@ AnswerEditorManager = {
     this.answerHistory.patches.push(patchSet)
     $(el).trigger('c-editor-change', {
       quizSessionId: $('meta[name="quiz-session-id"]').attr('content'),
-      patchSet: patchSet
+      patchSet: patchSet,
+      hash: md5(content)
     })
     this.historyField.val(JSON.stringify(this.answerHistory.patches))
   }
