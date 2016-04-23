@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   post 'quiz_sessions/:id/complete',
     to: 'quiz_sessions#update',
-    params: -> {{ quiz_session: { ended_at: DateTime.now }}}
+    params: -> {{ quiz_session: { ended_at: DateTime.now }}},
     as: :quiz_session_completion
 
   ActiveAdmin.routes(self)
