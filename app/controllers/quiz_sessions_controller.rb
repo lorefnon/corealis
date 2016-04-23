@@ -2,8 +2,10 @@ class QuizSessionsController < ApplicationController
 
   before_action :load_invitation, only: :new
   before_action :load_quiz_session, only: :show
-  before_action :ensure_token_matches
+  before_action :ensure_token_matches, unless: :current_admin_user
   before_action :use_existing_session, only: :new
+
+  helper QuizSessionHelpers
 
   def new
     create_quiz_session_for_interview

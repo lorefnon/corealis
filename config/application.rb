@@ -17,6 +17,7 @@ Bundler.require(*Rails.groups)
 
 module Corealis
   class Application < Rails::Application
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -32,6 +33,8 @@ module Corealis
     config.autoload_paths += %w[
       app/decorators/concerns
     ]
+
+    config.action_controller.include_all_helpers = false
 
   end
 end

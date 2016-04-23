@@ -49,6 +49,7 @@ end
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  canonical       :boolean          default(FALSE), not null
+#  history         :jsonb
 #
 # Indexes
 #

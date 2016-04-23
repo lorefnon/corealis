@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     as: :application_submission_verdict,
     constraints: { vedict: /^(success|failure)$/ }
 
+  get 'question-submissions/:id/preview',
+    to: 'question_submission_preview#show',
+    as: :question_submission_preview
+
   ActiveAdmin.routes(self)
 
 end
@@ -101,6 +105,7 @@ end
 #                                            PUT        /admin/application_submissions/:id(.:format)                admin/application_submissions#update
 #                                            DELETE     /admin/application_submissions/:id(.:format)                admin/application_submissions#destroy
 #                            admin_dashboard GET        /admin/dashboard(.:format)                                  admin/dashboard#index
+#     dispatch_notification_admin_invitation GET        /admin/invitations/:id/dispatch_notification(.:format)      admin/invitations#dispatch_notification
 #             batch_action_admin_invitations POST       /admin/invitations/batch_action(.:format)                   admin/invitations#batch_action
 #                          admin_invitations GET        /admin/invitations(.:format)                                admin/invitations#index
 #                                            POST       /admin/invitations(.:format)                                admin/invitations#create

@@ -1,4 +1,7 @@
 .question-container
   = render 'quiz_sessions/question_description', question: question
 .answer-container
-  = render 'answers/edit', answer: answer, quiz_session: quiz_session
+  - if current_admin_user
+    = render 'answers/submitted_answer', answer: answer
+  - else
+    = render 'answers/edit', answer: answer, quiz_session: quiz_session
