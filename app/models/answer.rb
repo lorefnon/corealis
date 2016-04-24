@@ -34,6 +34,10 @@ class Answer < ApplicationRecord
     submitted_at.present?
   end
 
+  def attempt_duration
+    submitted_at - created_at if submitted?
+  end
+
   private
 
   def deduce_answerer_from_quiz_session
