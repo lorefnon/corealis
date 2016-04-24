@@ -16,10 +16,6 @@ Rails.application.routes.draw do
     to: 'quiz_sessions#new',
     as: :interview_session_initiation
 
-  get 'invitations/:invitation_id/quiz/session/preview',
-    to: 'quiz_session_preview#show',
-    as: :interview_session_preview
-
   get 'quiz_sessions/:quiz_session_id/preview',
     to: 'quiz_session_preview#show',
     as: :quiz_session_preview

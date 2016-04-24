@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_admin_user
-    handle_access_violation unless admin_user
+    handle_access_violation unless current_admin_user
   end
 
 end
