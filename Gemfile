@@ -33,6 +33,7 @@ gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'formtastic-bootstrap'
 gem 'puma'
 gem 'redis', '~> 3.0'
+gem 'sidekiq'
 
 group :development do
   # Spring speeds up development by keeping your application running in the

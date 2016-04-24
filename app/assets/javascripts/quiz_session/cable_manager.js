@@ -14,6 +14,10 @@ CableManager = {
   setupSubscriptions: function() {
     this.cable.subscriptions.create('QuizSessionChannel', {
 
+      received: function(data) {
+        debugger
+      },
+
       connected: function() {
         this.setupEvents()
       },

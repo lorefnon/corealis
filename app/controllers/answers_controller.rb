@@ -1,5 +1,7 @@
 class AnswersController < ApplicationController
 
+  after_action :dispatch_creation_notification, only: :create
+
   def show
     @answer = Answer.find params[:id]
     @question = @answer.question.decorate
@@ -21,6 +23,10 @@ class AnswersController < ApplicationController
     params
       .require(:answer)
       .permit(:quiz_session_id, :question_id, :details, :history)
+  end
+
+  def dispatch_creation_notification
+    AnswerSubmissionNotificationDispatcherJob.perform_later @answer.id
   end
 
 end
