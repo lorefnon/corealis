@@ -1,0 +1,2 @@
+class QuizSessionPreviewController < ApplicationController
+end
