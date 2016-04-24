@@ -15,7 +15,7 @@ CableManager = {
     this.cable.subscriptions.create('QuizSessionChannel', {
 
       received: function(data) {
-        debugger
+
       },
 
       connected: function() {
@@ -24,8 +24,8 @@ CableManager = {
 
       setupEvents: function() {
         var _this = this
-        $('body').on('c-editor-change', function(event, patchSet) {
-          _this.perform('update_answer', patchSet)
+        $('body').on('c-editor-change', function(event, payload) {
+          _this.perform('answer_edited', payload)
         })
       }
 

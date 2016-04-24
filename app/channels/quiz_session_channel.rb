@@ -1,22 +1,16 @@
 class QuizSessionChannel < ApplicationCable::Channel
 
+  include QuizSessionChannelSupport
+
   def subscribed
-    stream_from broadcast_stream_name
+    stream_from quiz_session_stream(quiz_session.id)
   end
 
   def unsubscribed
   end
 
-  def update_answer(patch_set)
-    ActionCable.server.broadcast broadcast_stream_name,
-      op: 'answer:edited',
-      args: patch_set
-  end
-
-  private
-
-  def broadcast_stream_name
-    "quiz_session_notifications_#{quiz_session.id}"
+  def answer_edited(payload)
+    broadcast_quiz_session_operation quiz_session.id, 'answer:edited', payload
   end
 
 end

@@ -33,6 +33,7 @@ module Corealis
 
     config.autoload_paths += %w[
       app/decorators/concerns
+      app/jobs/concerns
     ]
 
     config.action_controller.include_all_helpers = false

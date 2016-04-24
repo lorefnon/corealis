@@ -112,6 +112,7 @@ trix-editor {
     bottom: 40px;
     overflow: auto;
     padding: 0;
+    background: white;
 }
 
 .answer-details-container textarea {
@@ -166,15 +167,15 @@ trix-editor {
     overflow: auto;
 }
 
-.new_answer .answer-details-container {
+.answer-edit-container .answer-details-container {
     padding-top: 0;
     background: white;
 
     trix-toolbar {
         background: white;
         button, button:hover {
-            border: none;
-            background: none;
+            border: none !important;
+            background: none !important;
         }
     }
 }

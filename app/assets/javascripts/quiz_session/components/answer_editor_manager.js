@@ -36,8 +36,9 @@ AnswerEditorManager = {
     }
     this.answerHistory.patches.push(patchSet)
     $(el).trigger('c-editor-change', {
-      quizSessionId: $('meta[name="quiz-session-id"]').attr('content'),
-      patchSet: patchSet,
+      quiz_session_id: $('meta[name="quiz-session-id"]').attr('content'),
+      answer_id: $('.answer-edit-container').data('answer-id'),
+      patch_set: patchSet,
       hash: md5(content)
     })
     this.historyField.val(JSON.stringify(this.answerHistory.patches))
