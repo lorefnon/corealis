@@ -5,6 +5,6 @@
   - quiz_session.question_answer_pairs.each do |qa|
     %li.que-list-entry
       = link_to '#', remote: true do
-        %h2.question-title= qa[:question].title
-        - if qa[:answer]
+        %h2.question-title= qa.question.title
+        - if qa.answer
           .submission-status Submitted

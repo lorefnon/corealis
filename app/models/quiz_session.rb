@@ -34,6 +34,17 @@ class QuizSession < ApplicationRecord
     end.first
   end
 
+  def fetch_or_create_answer_for(question)
+    answers
+      .where(question: question)
+      .first_or_create!
+  end
+
+  def next_question_answer_pair
+    question = next_question
+    QuestionAnswerPair.new(question, fetch_or_create_answer_for(question))
+  end
+
   def expired?
     expired_at.present?
   end
@@ -48,10 +59,8 @@ class QuizSession < ApplicationRecord
 
   def question_answer_pairs
     questions.map do |question|
-      {
-        question: question,
-        answer: answers.find{|ans| ans.question == question }
-      }
+      answer = answers.find{|ans| ans.question == question }
+      QuestionAnswerPair.new(question, answer)
     end
   end
 
