@@ -1,0 +1,10 @@
+- if quiz_session.questions.count == 0
+  .zilch-container
+    This quiz does not contain any questions yet.
+- else
+  - quiz_session.question_answer_pairs.each do |qa|
+    %li.que-list-entry
+      = link_to '#', remote: true do
+        %h2.question-title= qa[:question].title
+        - if qa[:answer]
+          .submission-status Submitted

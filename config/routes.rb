@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   resources :quiz_sessions, only: [:show, :new, :update]
   resources :answers, only: [:show, :create]
+  resources :questions, only: [:new, :create]
   resources :openings, only: [:show, :create] do
     resources :application_submissions, only: [:new]
   end

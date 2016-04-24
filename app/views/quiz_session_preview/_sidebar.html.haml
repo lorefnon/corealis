@@ -1,8 +1,9 @@
 .sidebar
   .nav-container
   .question-list-container.panel
-    %h3.section-title.centered Answered Questions
+    %h3.section-title.centered Questions in this Quiz
     .panel-contents
       %ol.submitted-question-list
-        = render 'quiz_sessions/submitted_question_list', quiz_session: quiz_session
+        = render 'quiz_session_preview/question_list', quiz_session: quiz_session
         = link_to 'End Session', quiz_session_path(quiz_session), method: :patch, remote: true, params: { quiz_session: { meta: { end: 'now' }}}.to_json
+        = link_to 'Add question to quiz', new_question_path(quiz_session_id: quiz_session.id), method: :get, remote: true

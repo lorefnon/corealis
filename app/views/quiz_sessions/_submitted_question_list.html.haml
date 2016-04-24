@@ -4,9 +4,9 @@
     preview them using the links in this section.
 - else
   - quiz_session.answers.each do |answer|
-    %li.submitted-que-list-entry
+    %li.que-list-entry
       = link_to answer_path(answer), remote: true do
         %h2.question-title= answer.question.title
   - if @current_question
-    %li.submitted-que-list-entry
+    %li.que-list-entry
       = link_to 'Current Question', ''

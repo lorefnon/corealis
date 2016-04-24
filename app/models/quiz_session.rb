@@ -46,6 +46,15 @@ class QuizSession < ApplicationRecord
     ! expired? and ! ended?
   end
 
+  def question_answer_pairs
+    questions.map do |question|
+      {
+        question: question,
+        answer: answers.find{|ans| ans.question == question }
+      }
+    end
+  end
+
   private
 
   def deduce_associations_from_interview
