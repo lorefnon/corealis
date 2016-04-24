@@ -138,6 +138,10 @@ ActiveAdmin.register Invitation do
     link_to 'Resend Notification', dispatch_notification_admin_invitation_path
   end
 
+  action_item :preview_quiz_session, only: :show do
+    link_to 'Preview Session', interview_session_preview_path(resource)
+  end
+
 end
 
 # == Schema Information
