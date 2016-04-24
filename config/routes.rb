@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   devise_for :admin_users, ActiveAdmin::Devise.config
-  resources :quiz_sessions
-  resources :answers
-  resources :openings do
+  resources :quiz_sessions, only: [:show, :new, :update]
+  resources :answers, only: [:show, :create]
+  resources :openings, only: [:show, :create] do
     resources :application_submissions, only: [:new]
   end
   resources :application_submissions, only: [:create]
@@ -28,11 +28,6 @@ Rails.application.routes.draw do
   get 'question-submissions/:id/preview',
     to: 'question_submission_preview#show',
     as: :question_submission_preview
-
-  post 'quiz_sessions/:id/complete',
-    to: 'quiz_sessions#update',
-    params: -> {{ quiz_session: { ended_at: DateTime.now }}},
-    as: :quiz_session_completion
 
   ActiveAdmin.routes(self)
 
