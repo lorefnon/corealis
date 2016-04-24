@@ -14,8 +14,8 @@ CableManager = {
   setupSubscriptions: function() {
     this.cable.subscriptions.create('QuizSessionChannel', {
 
-      received: function(data) {
-
+      received: function(payload) {
+        $('body').trigger('c-editor-changed', payload)
       },
 
       connected: function() {
