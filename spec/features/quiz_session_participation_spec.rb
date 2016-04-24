@@ -24,8 +24,8 @@ feature 'Quiz Session participation' do
   scenario 'User visits quiz session from invitation email' do
     current_email.click_link 'Take the quiz'
     expect(page).to have_content 'Current Question'
-    expect(@invitation.quiz_sessions.count).to eq 1
-    @quiz_session = @invitation.quiz_sessions.first
+    @quiz_session = @invitation.quiz_session
+    expect(@quiz_session).to be_present
     expect(current_path).to eq quiz_session_path(@quiz_session.id)
     question = @quiz_session.quiz.questions.first
     description_container = page.find('.question-container .section-description')
@@ -38,12 +38,12 @@ feature 'Quiz Session participation' do
   scenario 'User revisits quiz session from invitation email' do
     current_email.click_link 'Take the quiz'
     current_email.click_link 'Take the quiz'
-    expect(@invitation.quiz_sessions.count).to eq 1
+    expect(@invitation.quiz_session).to be_present
   end
 
   scenario 'User answers questions' do
     current_email.click_link 'Take the quiz'
-    @quiz_session = @invitation.quiz_sessions.first
+    @quiz_session = @invitation.quiz_session
     expect { answer_editor }.to_not raise_error
     question = @quiz_session.questions.first
     submit_answer_to_presented_question
@@ -54,7 +54,8 @@ feature 'Quiz Session participation' do
 
   scenario 'User completes interview' do
     current_email.click_link 'Take the quiz'
-    @quiz_session = @invitation.quiz_sessions.first
+    @quiz_session = @invitation.quiz_session
+    expect(@quiz_session).to be_present
     @quiz_session.questions.count.times do
       submit_answer_to_presented_question
     end
@@ -64,7 +65,7 @@ feature 'Quiz Session participation' do
 
   scenario 'User revisits previous question' do
     current_email.click_link 'Take the quiz'
-    @quiz_session = @invitation.quiz_sessions.first
+    @quiz_session = @invitation.quiz_session
     submit_answer_to_presented_question
     expect(page).to have_selector :toast_message, 'Question submitted successfully'
     question = @quiz_session.submitted_questions.first

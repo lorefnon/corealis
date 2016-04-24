@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :quiz_sessions, only: [:show, :new, :update]
   resources :answers, only: [:show, :create]
   resources :questions, only: [:new, :create]
-  resources :openings, only: [:show, :create] do
+  resources :openings, only: [:index, :show, :create] do
     resources :application_submissions, only: [:new]
   end
   resources :application_submissions, only: [:create]

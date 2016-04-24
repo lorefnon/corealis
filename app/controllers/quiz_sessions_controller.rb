@@ -37,13 +37,13 @@ class QuizSessionsController < ApplicationController
   end
 
   def use_existing_session
-    if @quiz_session = @invitation.quiz_sessions.recent.first
+    if @quiz_session = @invitation.quiz_session
       redirect_to_quiz_session
     end
   end
 
   def create_quiz_session_for_interview
-    @quiz_session = @invitation.quiz_sessions.create!
+    @quiz_session = @invitation.create_quiz_session!
   end
 
   def redirect_to_quiz_session(options={})
