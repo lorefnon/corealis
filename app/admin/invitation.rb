@@ -139,7 +139,9 @@ ActiveAdmin.register Invitation do
   end
 
   action_item :preview_quiz_session, only: :show do
-    link_to 'Preview Session', interview_session_preview_path(resource)
+    if quiz_session = resource.quiz_session
+      link_to 'Preview Session', quiz_session_preview_path(quiz_session)
+    end
   end
 
 end
