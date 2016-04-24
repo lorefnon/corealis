@@ -1,8 +1,9 @@
 class QuizSessionsController < ApplicationController
 
+  before_action :ensure_admin_user, only: :update
   before_action :load_invitation, only: :new
-  before_action :load_quiz_session, only: :show
-  before_action :ensure_token_matches, unless: :current_admin_user
+  before_action :load_quiz_session, only: [:show, :update]
+  before_action :ensure_token_matches
   before_action :use_existing_session, only: :new
 
   def new
@@ -19,7 +20,10 @@ class QuizSessionsController < ApplicationController
   end
 
   def update
-    binding.pry
+    if (params[:quiz_session][:meta][:complete] rescue false)
+      @quiz_session.ended_at = DateTime.now
+    end
+    @quiz_session.save!
   end
 
   private
