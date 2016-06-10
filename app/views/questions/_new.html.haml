@@ -1,0 +1,10 @@
+.panel
+  %h3.section-title
+    New Question
+  .panel-contents.section-description
+    .que-description
+      = semantic_form_for question do |f|
+        = hidden_field_tag :quiz_session_id, quiz_session_id
+        = f.input :title
+        = f.input :description
+        = f.submit

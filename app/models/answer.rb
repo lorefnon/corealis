@@ -7,24 +7,36 @@ class Answer < ApplicationRecord
   belongs_to :quiz_session
 
   scope :canonical, -> { where canonical: true }
+  scope :submitted, -> { where 'submitted_at is not null' }
+  scope :pending_submission, -> { where(canonical: false, submitted_at: nil) }
 
   validates :question_id,
             :answerer_id,
             :answerer_type,
             presence: true
 
-  validates :canonical,
-            inclusion: { in: [false] },
-            if: -> { answerer_type == 'Applicant' }
+  with_options if: :answered_by_applicant? do
+    validates :canonical, inclusion: { in: [false] }
+    validates :quiz_session_id, presence: true
+    validate  :ensure_quiz_session_active, on: :create
+    validate  :ensure_unsubmitted, on: :update
+  end
 
-  validates :answerer_type,
-            inclusion: { in: %w[Applicant AdminUser] }
-
-  validates :quiz_session_id,
-            presence: true,
-            if: -> { answerer_type == 'Applicant' }
+  validates :answerer_type, inclusion: { in: %w[Applicant AdminUser] }
 
   before_validation :deduce_answerer_from_quiz_session
+
+  def answered_by_applicant?
+    answerer_type == 'Applicant'
+  end
+
+  def submitted?
+    submitted_at.present?
+  end
+
+  def attempt_duration
+    submitted_at - created_at if submitted?
+  end
 
   private
 
@@ -32,6 +44,18 @@ class Answer < ApplicationRecord
     return if answerer
     return unless quiz_session
     self.answerer = quiz_session.interviewee
+  end
+
+  def ensure_quiz_session_active
+    unless quiz_session.active?
+      errors[:base] << 'Quiz session is no longer active'
+    end
+  end
+
+  def ensure_unsubmitted
+    if submitted?
+      errors[:base] << 'Answer has already been submitted'
+    end
   end
 
 end
@@ -50,6 +74,7 @@ end
 #  updated_at      :datetime         not null
 #  canonical       :boolean          default(FALSE), not null
 #  history         :jsonb
+#  submitted_at    :datetime
 #
 # Indexes
 #

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.0.beta3'
+gem 'rails', '>= 5.0.0.beta3', '< 5.1'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
@@ -32,6 +32,8 @@ gem 'trix'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'formtastic-bootstrap'
 gem 'puma'
+gem 'redis', '~> 3.0'
+gem 'sidekiq'
 
 group :development do
   # Spring speeds up development by keeping your application running in the

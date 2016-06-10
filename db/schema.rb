@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416133614) do
+ActiveRecord::Schema.define(version: 20160417081753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20160416133614) do
     t.text     "body"
     t.string   "resource_id",   null: false
     t.string   "resource_type", null: false
-    t.integer  "author_id"
     t.string   "author_type"
+    t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160416133614) do
     t.datetime "updated_at",                      null: false
     t.boolean  "canonical",       default: false, null: false
     t.jsonb    "history"
+    t.datetime "submitted_at"
   end
 
   add_index "answers", ["id", "question_id", "quiz_session_id"], name: "index_answers_on_id_and_question_id_and_quiz_session_id", unique: true, using: :btree
@@ -160,17 +161,6 @@ ActiveRecord::Schema.define(version: 20160416133614) do
     t.integer  "creator_id",                  null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-  end
-
-  create_table "que_jobs", primary_key: ["queue", "priority", "run_at", "job_id"], force: :cascade do |t|
-    t.integer   "priority",    limit: 2, default: 100,            null: false
-    t.datetime  "run_at",                default: -> { "now()" }, null: false
-    t.bigserial "job_id",      limit: 8,                          null: false
-    t.text      "job_class",                                      null: false
-    t.json      "args",                  default: [],             null: false
-    t.integer   "error_count",           default: 0,              null: false
-    t.text      "last_error"
-    t.text      "queue",                 default: "",             null: false
   end
 
   create_table "questions", force: :cascade do |t|

@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
+  mount ActionCable.server => "/cable"
+
   root to: "home#index"
 
   devise_for :admin_users, ActiveAdmin::Devise.config
-  resources :quiz_sessions
-  resources :answers
-  resources :openings do
+  resources :quiz_sessions, only: [:show, :new, :update]
+  resources :answers, only: [:show, :create]
+  resources :questions, only: [:new, :create]
+  resources :openings, only: [:index, :show, :create] do
     resources :application_submissions, only: [:new]
   end
   resources :application_submissions, only: [:create]
@@ -13,6 +16,10 @@ Rails.application.routes.draw do
   get 'invitations/:invitation_id/quiz/session',
     to: 'quiz_sessions#new',
     as: :interview_session_initiation
+
+  get 'quiz_sessions/:quiz_session_id/preview',
+    to: 'quiz_session_preview#show',
+    as: :quiz_session_preview
 
   get 'application-submission/:verdict',
     to: 'application_submission_verdicts#show',
@@ -30,6 +37,7 @@ end
 # == Route Map
 #
 #                                     Prefix Verb       URI Pattern                                                 Controller#Action
+#                                                       /cable                                                      #<ActionCable::Server::Base:0x007ffcc40d1ab0 @mutex=#<Thread::Mutex:0x007ffcc40d1a60>, @pubsub=nil, @channel_classes=nil, @worker_pool=nil, @stream_event_loop=nil, @remote_connections=nil>
 #                                       root GET        /                                                           home#index
 #                     new_admin_user_session GET        /admin/login(.:format)                                      active_admin/devise/sessions#new
 #                         admin_user_session POST       /admin/login(.:format)                                      active_admin/devise/sessions#create
@@ -39,34 +47,22 @@ end
 #                   edit_admin_user_password GET        /admin/password/edit(.:format)                              active_admin/devise/passwords#edit
 #                                            PATCH      /admin/password(.:format)                                   active_admin/devise/passwords#update
 #                                            PUT        /admin/password(.:format)                                   active_admin/devise/passwords#update
-#                              quiz_sessions GET        /quiz_sessions(.:format)                                    quiz_sessions#index
-#                                            POST       /quiz_sessions(.:format)                                    quiz_sessions#create
 #                           new_quiz_session GET        /quiz_sessions/new(.:format)                                quiz_sessions#new
-#                          edit_quiz_session GET        /quiz_sessions/:id/edit(.:format)                           quiz_sessions#edit
 #                               quiz_session GET        /quiz_sessions/:id(.:format)                                quiz_sessions#show
 #                                            PATCH      /quiz_sessions/:id(.:format)                                quiz_sessions#update
 #                                            PUT        /quiz_sessions/:id(.:format)                                quiz_sessions#update
-#                                            DELETE     /quiz_sessions/:id(.:format)                                quiz_sessions#destroy
-#                                    answers GET        /answers(.:format)                                          answers#index
-#                                            POST       /answers(.:format)                                          answers#create
-#                                 new_answer GET        /answers/new(.:format)                                      answers#new
-#                                edit_answer GET        /answers/:id/edit(.:format)                                 answers#edit
+#                                    answers POST       /answers(.:format)                                          answers#create
 #                                     answer GET        /answers/:id(.:format)                                      answers#show
-#                                            PATCH      /answers/:id(.:format)                                      answers#update
-#                                            PUT        /answers/:id(.:format)                                      answers#update
-#                                            DELETE     /answers/:id(.:format)                                      answers#destroy
+#                                  questions POST       /questions(.:format)                                        questions#create
+#                               new_question GET        /questions/new(.:format)                                    questions#new
 #         new_opening_application_submission GET        /openings/:opening_id/application_submissions/new(.:format) application_submissions#new
-#                                   openings GET        /openings(.:format)                                         openings#index
-#                                            POST       /openings(.:format)                                         openings#create
-#                                new_opening GET        /openings/new(.:format)                                     openings#new
-#                               edit_opening GET        /openings/:id/edit(.:format)                                openings#edit
+#                                   openings POST       /openings(.:format)                                         openings#create
 #                                    opening GET        /openings/:id(.:format)                                     openings#show
-#                                            PATCH      /openings/:id(.:format)                                     openings#update
-#                                            PUT        /openings/:id(.:format)                                     openings#update
-#                                            DELETE     /openings/:id(.:format)                                     openings#destroy
 #                    application_submissions POST       /application_submissions(.:format)                          application_submissions#create
 #               interview_session_initiation GET        /invitations/:invitation_id/quiz/session(.:format)          quiz_sessions#new
+#                       quiz_session_preview GET        /quiz_sessions/:quiz_session_id/preview(.:format)           quiz_session_preview#show
 #             application_submission_verdict GET        /application-submission/:verdict(.:format)                  application_submission_verdicts#show
+#                question_submission_preview GET        /question-submissions/:id/preview(.:format)                 question_submission_preview#show
 #                                 admin_root GET        /admin(.:format)                                            admin/dashboard#index
 #             batch_action_admin_admin_users POST       /admin/admin_users/batch_action(.:format)                   admin/admin_users#batch_action
 #                          admin_admin_users GET        /admin/admin_users(.:format)                                admin/admin_users#index

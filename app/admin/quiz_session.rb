@@ -47,7 +47,7 @@ ActiveAdmin.register QuizSession do
   end
 
   action_item :preview_quiz_session, only: :show do
-    link_to "Preview Session", quiz_session_path(resource)
+    link_to "Preview Session", quiz_session_preview_path(resource)
   end
 
 end

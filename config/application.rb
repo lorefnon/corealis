@@ -9,6 +9,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
+require "action_cable/engine"
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -32,9 +33,16 @@ module Corealis
 
     config.autoload_paths += %w[
       app/decorators/concerns
+      app/jobs/concerns
     ]
 
     config.action_controller.include_all_helpers = false
+    config.action_cable.disable_request_forgery_protection = true
+    config.active_job.queue_adapter = :sidekiq
+
+    config.generators do |g|
+      g.javascript_engine :js
+    end
 
   end
 end

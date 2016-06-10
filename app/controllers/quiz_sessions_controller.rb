@@ -1,11 +1,11 @@
 class QuizSessionsController < ApplicationController
 
+  before_action :ensure_admin_user, only: :update
   before_action :load_invitation, only: :new
-  before_action :load_quiz_session, only: :show
-  before_action :ensure_token_matches, unless: :current_admin_user
+  before_action :load_quiz_session, only: [:show, :update]
+  before_action :persist_session_in_cookies, only: :show
+  before_action :ensure_token_matches, only: :show
   before_action :use_existing_session, only: :new
-
-  helper QuizSessionHelpers
 
   def new
     create_quiz_session_for_interview
@@ -16,8 +16,19 @@ class QuizSessionsController < ApplicationController
     @show_welcome_popup = params[:first_visit]
     if next_question = @quiz_session.next_question
       @current_question = next_question.decorate
-      @current_answer = @current_question.answers.build(quiz_session_id: @quiz_session.id)
+      @current_answer = @quiz_session
+        .answers
+        .where(question: @current_question)
+        .first_or_create!
     end
+  end
+
+  def update
+    if (params[:quiz_session][:meta][:end] rescue false) == 'now'
+      @quiz_session.ended_at = DateTime.now
+    end
+    @quiz_session.save!
+    head :ok
   end
 
   private
@@ -29,13 +40,13 @@ class QuizSessionsController < ApplicationController
   end
 
   def use_existing_session
-    if @quiz_session = @invitation.quiz_sessions.recent.first
+    if @quiz_session = @invitation.quiz_session
       redirect_to_quiz_session
     end
   end
 
   def create_quiz_session_for_interview
-    @quiz_session = @invitation.quiz_sessions.create!
+    @quiz_session = @invitation.create_quiz_session!
   end
 
   def redirect_to_quiz_session(options={})
@@ -46,6 +57,10 @@ class QuizSessionsController < ApplicationController
     @quiz_session = QuizSession.find(params[:id])
     @invitation = @quiz_session.invitation
     @applicant = @quiz_session.interviewee
+  end
+
+  def persist_session_in_cookies
+    cookies.signed[:quiz_session_id] = @quiz_session.id
   end
 
   def load_invitation

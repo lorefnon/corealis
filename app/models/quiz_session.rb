@@ -3,31 +3,65 @@ class QuizSession < ApplicationRecord
   has_paper_trail
   extend Memoist
 
+  scope :recent, -> { where created_at: (DateTime.now - 10.minutes)..(DateTime.now) }
+  scope :active, -> { where expired_at: nil, ended_at: nil }
+  scope :expired, -> { where 'expired_at is not null' }
+  scope :ended, -> { where 'ended_at is not null' }
+  scope :for_invitation, ->(iv) { where invitation: iv }
+
   belongs_to :quiz
   belongs_to :invitation
   belongs_to :interviewer, class_name: 'AdminUser'
   belongs_to :interviewee, class_name: 'Applicant'
   has_many :questions, through: :quiz
   has_many :answers, -> { order(:created_at) }
+  has_many :submitted_answers,
+    -> { submitted.order(:created_at) },
+    class_name: 'Answer'
   has_many :submitted_questions,
-           through: :answers,
-           source: :question
-
-  scope :recent, -> { where created_at: (DateTime.now - 10.minutes)..(DateTime.now) }
-  scope :active, -> { where expired_at: nil }
-  scope :expired, -> { where 'expired_at is not null' }
-  scope :for_invitation, ->(iv) { where invitation: iv }
+    through: :submitted_answers,
+    source: :question
 
   before_validation :deduce_associations_from_interview
 
   validates :quiz_id, presence: true
 
   def next_question
-    if submitted_questions.count == 0
+    if submitted_questions.count.zero?
       questions
     else
       questions.where('questions.id not in (?)', submitted_questions.pluck(:id))
     end.first
+  end
+
+  def fetch_or_create_answer_for(question)
+    answers
+      .where(question: question)
+      .first_or_create!
+  end
+
+  def next_question_answer_pair
+    question = next_question
+    QuestionAnswerPair.new(question, fetch_or_create_answer_for(question))
+  end
+
+  def expired?
+    expired_at.present?
+  end
+
+  def ended?
+    ended_at.present?
+  end
+
+  def active?
+    ! expired? and ! ended?
+  end
+
+  def question_answer_pairs
+    questions.map do |question|
+      answer = answers.find{|ans| ans.question == question }
+      QuestionAnswerPair.new(question, answer)
+    end
   end
 
   private
